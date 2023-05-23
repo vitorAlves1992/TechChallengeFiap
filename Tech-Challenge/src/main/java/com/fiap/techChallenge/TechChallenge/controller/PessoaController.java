@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/Pessoa")
@@ -19,44 +20,28 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    @Autowired
-    private JMapper<Pessoa, PessoaForm> pessoaMapper;
-
-    @Autowired
-    private JMapper<PessoaForm, Pessoa> pessoaFormMapper;
-
     @PostMapping
-    public ResponseEntity<PessoaForm> cadastro(@RequestBody PessoaForm pessoaForm){
-        Pessoa pessoa = pessoaMapper.getDestination(pessoaForm);
-        Pessoa pessoaSalva = pessoaService.salvar(pessoa);
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaFormMapper.getDestination(pessoaSalva));
+    public ResponseEntity<PessoaForm> inserir(@RequestBody PessoaForm pessoaForm){
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.salvar(pessoaForm));
     }
     @PutMapping
-    public ResponseEntity<PessoaForm> atualizarPessoa(@RequestBody PessoaForm pessoaForm){
-        Pessoa pessoa = pessoaMapper.getDestination(pessoaForm);
-        Pessoa pessoaAtualizada = pessoaService.atualizarPessoa(pessoa);
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaFormMapper.getDestination(pessoaAtualizada));
+    public ResponseEntity<Void> atualizar(@RequestBody PessoaForm pessoaForm){
+        pessoaService.atualizar(pessoaForm);
+        return ResponseEntity.noContent().build();
     }
     @GetMapping(path = "/Usuario/{id}")
-    public ResponseEntity<List<Pessoa>> listarPessoasDeUsuario(@PathVariable("id") String id){
-        int idUsuario = Integer.parseInt(id);
-        List<Pessoa> pessoasUsuario = pessoaService.listarPessoasUsuario(idUsuario);
+    public ResponseEntity<List<PessoaForm>> listarPessoasDeUsuario(@PathVariable("id") String id){
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listarPessoasUsuario(id));
+    }
 
-        return ResponseEntity.status(HttpStatus.OK).body(pessoasUsuario);
-    }
     @GetMapping(path = "/{id}")
-    public ResponseEntity<PessoaForm> listarPessoa(@PathVariable("id") String id){
-        int idUsuario = Integer.parseInt(id);
-        PessoaForm pessoaForm = pessoaFormMapper.getDestination(pessoaService.listarPessoa(idUsuario));
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaForm);
+    public ResponseEntity<PessoaForm> listar(@PathVariable("id") String id){
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listar(id));
     }
+
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Integer> deletarPessoa(@PathVariable("id") String idPessoaInput){
-        int idPessoa = Integer.parseInt(idPessoaInput);
-        boolean delete  = pessoaService.deletarPessoa(idPessoa);
-        if(delete)
-            return ResponseEntity.status(HttpStatus.OK).build();
-        else
-            return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
+    public ResponseEntity<Void> deletar(@PathVariable("id") String id){
+        pessoaService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }
