@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Random;
 
@@ -14,8 +15,8 @@ public class Pessoa {
     private Integer idUsuario;
     private Integer id;
     private String nome;
-    private Date dataNascimento;
-    private Character sexo;
+    private LocalDate dataNascimento;
+    private String sexo;  //@Todo para trocar enum
     private String parentesco;
 
 

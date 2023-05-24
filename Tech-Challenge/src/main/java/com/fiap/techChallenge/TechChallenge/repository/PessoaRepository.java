@@ -35,7 +35,7 @@ public class PessoaRepository {
         return pessoas.removeIf(pessoa -> (pessoa.getId().equals(idPessoa)));
     }
 
-    public Pessoa atualizarPessoa(Pessoa pessoa) {
+    public Pessoa atualizar(Pessoa pessoa) {
         Optional<Pessoa> pessoaEncontrada = pessoas.stream()
                 .filter(pessoaLista -> pessoaLista.getId().equals(pessoa.getId()))
                 .findFirst();
@@ -53,7 +53,7 @@ public class PessoaRepository {
         }
     }
 
-    public Pessoa listarPessoa(int id) {
+    public Pessoa listar(int id) {
         Optional<Pessoa> pessoaEncontrada = pessoas.stream()
                 .filter(pessoaLista -> pessoaLista.getId().equals(id))
                 .findFirst();
