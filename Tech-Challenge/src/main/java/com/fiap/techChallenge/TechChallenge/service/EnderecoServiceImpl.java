@@ -34,11 +34,11 @@ public class EnderecoServiceImpl implements EnderecoService{
     @Override
     public EnderecoForm listar(String id) {
         int idEndereco = Integer.parseInt(id);
-        Optional<Endereco> endereco = Optional.ofNullable(enderecoRepository.listar(idEndereco));
-        if(endereco.isEmpty())
-            return enderecoFormMapper.getDestination(endereco.get());
-        else {
+        Endereco endereco = enderecoRepository.listar(idEndereco);
+        if(endereco == null)
             throw new IllegalArgumentException("Erro ao buscar endereco");
+        else {
+            return enderecoFormMapper.getDestination(endereco);
         }
     }
 
@@ -56,6 +56,7 @@ public class EnderecoServiceImpl implements EnderecoService{
 
         if(enderecoAtualizado.isEmpty())
             throw new IllegalArgumentException("Erro ao atualizar endereco");
+
 
     }
 }

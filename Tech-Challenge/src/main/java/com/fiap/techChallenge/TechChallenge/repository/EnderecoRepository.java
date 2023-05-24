@@ -29,7 +29,7 @@ public class EnderecoRepository {
     public Endereco atualizar(Endereco enderecoNovo) {
         Optional<Endereco> enderecoEncontrado = enderecos
                 .stream()
-                .filter(endereco -> endereco.equals(enderecoNovo))
+                .filter(endereco -> endereco.getId().equals(enderecoNovo.getId()))
                 .findFirst();
 
         if(enderecoEncontrado.isPresent()) {
@@ -51,7 +51,7 @@ public class EnderecoRepository {
                 .filter(endereco -> endereco.getId().equals(idEndereco))
                 .findFirst();
 
-        return enderecoEncontrado.orElseGet(null);
+        return enderecoEncontrado.orElse(null);
 
     }
 }
