@@ -12,7 +12,7 @@ import static com.googlecode.jmapper.api.JMapperAPI.mappedClass;
 
 
 @Configuration
-public class JMapperBean {
+public class PessoaMapperBean {
     @Bean
     public JMapper<Pessoa, PessoaForm> pessoaMapper(){
         JMapperAPI jmapperAPI = new JMapperAPI()
@@ -39,4 +39,6 @@ public class JMapperBean {
 
         return new JMapper<>(PessoaForm.class, Pessoa.class, jmapperAPI);
     }
+
+
 }
