@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
-@Component
 @Getter@Setter
 public class Eletrodomestico {
     private Integer idUsuario;
