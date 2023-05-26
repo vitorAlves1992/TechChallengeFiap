@@ -17,4 +17,5 @@ public class Eletrodomestico {
         Random random = new Random();
         this.id = Math.abs(random.nextInt());
     }
+
 }
