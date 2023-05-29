@@ -2,9 +2,7 @@ package com.fiap.techChallenge.TechChallenge.service;
 
 import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
 import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoResultForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
 import com.fiap.techChallenge.TechChallenge.domain.Eletrodomestico;
-import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import com.fiap.techChallenge.TechChallenge.repository.EletrodomesticoRepository;
 import com.googlecode.jmapper.JMapper;
 import org.springframework.beans.factory.annotation.Autowired;

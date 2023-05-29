@@ -1,6 +1,5 @@
 package com.fiap.techChallenge.TechChallenge.repository;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import org.springframework.stereotype.Repository;
 
