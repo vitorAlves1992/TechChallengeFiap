@@ -6,8 +6,7 @@ import lombok.Setter;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import java.util.Random;
 
 @Getter
