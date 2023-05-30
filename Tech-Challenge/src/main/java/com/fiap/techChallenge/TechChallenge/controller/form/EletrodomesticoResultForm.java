@@ -20,5 +20,5 @@ public class EletrodomesticoResultForm {
     private String modelo;
 
     @JsonProperty
-    private Integer potencia;
+    private Double potencia;
 }

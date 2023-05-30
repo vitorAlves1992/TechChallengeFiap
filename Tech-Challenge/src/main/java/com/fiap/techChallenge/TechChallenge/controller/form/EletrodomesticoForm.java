@@ -3,20 +3,15 @@ package com.fiap.techChallenge.TechChallenge.controller.form;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Value;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 
 @Getter@Setter
 public class EletrodomesticoForm {
 
     @JsonProperty
-    @Min(value = 0L, message = "Valor deve ser maior do que zero")
-    @NotNull
+    @NotNull(message = "O ID do usuário não pode ser nulo")
+    @Min(value = 1, message = "O ID do usuário deve ser maior que 0")
     private Long idUsuario;
 
     @JsonProperty
@@ -28,5 +23,8 @@ public class EletrodomesticoForm {
     private String modelo;
 
     @JsonProperty
-    private Integer potencia;
+    @Digits(integer = 4, fraction = 2, message = "Potencia deve ter no máximo 4 digitos e 2 casas decimais")
+    @NotNull(message = "Potencia obrigatorio")
+    @Positive(message = "Potencia deve ser maior que 0")
+    private Double potencia;
 }
