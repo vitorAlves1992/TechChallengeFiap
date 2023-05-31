@@ -3,7 +3,9 @@ package com.fiap.techChallenge.TechChallenge.domain;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import nonapi.io.github.classgraph.json.Id;
 import org.springframework.stereotype.Component;
+
 
 import java.util.Random;
 
@@ -13,6 +15,8 @@ import java.util.Random;
 @EqualsAndHashCode(exclude = {"id"})
 public class Endereco {
 
+    @Id
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String rua;
     private Integer numero;

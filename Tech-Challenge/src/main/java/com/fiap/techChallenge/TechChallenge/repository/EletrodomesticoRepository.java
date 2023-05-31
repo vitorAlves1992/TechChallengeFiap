@@ -1,10 +1,12 @@
 package com.fiap.techChallenge.TechChallenge.repository;
 
 import com.fiap.techChallenge.TechChallenge.domain.Eletrodomestico;
-import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository

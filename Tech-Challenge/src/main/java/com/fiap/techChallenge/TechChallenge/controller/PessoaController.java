@@ -29,12 +29,12 @@ public class PessoaController {
 
     @GetMapping(path = "/usuario/{id}")
     public ResponseEntity<List<PessoaForm>> listarPessoasDeUsuario(@PathVariable("id") String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listarPessoasUsuario(id));
+        return ResponseEntity.ok(pessoaService.listarPessoasUsuario(id))/*status(HttpStatus.OK).body*/;
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<PessoaForm> listar(@PathVariable("id") String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listar(id));
+        return ResponseEntity.ok(pessoaService.listar(id));
     }
 
     @DeleteMapping(path = "/{id}")
