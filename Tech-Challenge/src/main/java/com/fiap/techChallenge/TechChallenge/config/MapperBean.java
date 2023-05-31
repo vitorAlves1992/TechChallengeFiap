@@ -20,7 +20,6 @@ public class MapperBean {
         JMapperAPI jmapperAPI = new JMapperAPI()
                 .add(mappedClass(Pessoa.class)
                         .add(attribute("idUsuario").value("idUsuario"))
-                        .add(attribute("id").value("id"))
                         .add(attribute("nome").value("nome"))
                         .add(attribute("dataNascimento").value("dataNascimento"))
                         .add(attribute("sexo").value("sexo"))
@@ -29,9 +28,9 @@ public class MapperBean {
         return new JMapper<>(Pessoa.class, PessoaForm.class, jmapperAPI);
     }
     @Bean
-    public JMapper<PessoaForm, Pessoa> pessoaFormMapper(){
+    public JMapper<PessoaResultForm, Pessoa> pessoaFormMapper(){
         JMapperAPI jmapperAPI = new JMapperAPI()
-                .add(mappedClass(PessoaForm.class)
+                .add(mappedClass(PessoaResultForm.class)
                         .add(attribute("idUsuario").value("idUsuario"))
                         .add(attribute("id").value("id"))
                         .add(attribute("nome").value("nome"))
@@ -39,7 +38,7 @@ public class MapperBean {
                         .add(attribute("sexo").value("sexo"))
                         .add(attribute("parentesco").value("parentesco")));
 
-        return new JMapper<>(PessoaForm.class, Pessoa.class, jmapperAPI);
+        return new JMapper<>(PessoaResultForm.class, Pessoa.class, jmapperAPI);
     }
     @Bean
     public JMapper<Eletrodomestico, EletrodomesticoForm> eletrodomesticoMapper(){
@@ -80,7 +79,7 @@ public class MapperBean {
     @Bean
     public JMapper<EnderecoResultForm, Endereco> enderecoResultFormMapper(){
         JMapperAPI jmapperAPI = new JMapperAPI()
-                .add(mappedClass(EnderecoForm.class)
+                .add(mappedClass(EnderecoResultForm.class)
                         .add(attribute("id").value("id"))
                         .add(attribute("rua").value("rua"))
                         .add(attribute("numero").value("numero"))

@@ -1,7 +1,10 @@
 package com.fiap.techChallenge.TechChallenge.controller;
 
 import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
+import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultForm;
 import com.fiap.techChallenge.TechChallenge.service.PessoaService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,23 +20,31 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @PostMapping
-    public ResponseEntity<PessoaForm> inserir(@RequestBody PessoaForm pessoaForm) {
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Processo realizado com sucesso"),
+            @ApiResponse(code = 400, message = "Näo foi possivel inserir"),
+            @ApiResponse(code = 401, message = "Autenticação não realizada / Usuario e/ou senha inválida"),
+            @ApiResponse(code = 403, message = "Usuario não possui permissão para acessar esta API"),
+            @ApiResponse(code = 404, message = "Status não encontrado"),
+            @ApiResponse(code = 500, message = "Erro de servidor")
+    })
+    public ResponseEntity<PessoaResultForm> inserir(@RequestBody PessoaForm pessoaForm) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.salvar(pessoaForm));
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizar(@RequestBody PessoaForm pessoaForm) {
-        pessoaService.atualizar(pessoaForm);
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Void> atualizar(@RequestBody PessoaForm pessoaForm, @PathVariable String id) {
+        pessoaService.atualizar(pessoaForm, id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping(path = "/usuario/{id}")
-    public ResponseEntity<List<PessoaForm>> listarPessoasDeUsuario(@PathVariable("id") String id) {
+    public ResponseEntity<List<PessoaResultForm>> listarPessoasDeUsuario(@PathVariable("id") String id) {
         return ResponseEntity.ok(pessoaService.listarPessoasUsuario(id))/*status(HttpStatus.OK).body*/;
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<PessoaForm> listar(@PathVariable("id") String id) {
+    public ResponseEntity<PessoaResultForm> listar(@PathVariable("id") String id) {
         return ResponseEntity.ok(pessoaService.listar(id));
     }
 

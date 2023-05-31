@@ -14,7 +14,7 @@ public class Pessoa {
     private Integer id;
     private String nome;
     private LocalDate dataNascimento;
-    private String sexo;  //@Todo para trocar enum
+    private String sexo;
     private String parentesco;
 
 
