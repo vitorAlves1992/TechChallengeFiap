@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Eletrodomestico")
+@RequestMapping("/eletrodomestico")
 public class EletrodomesticoController {
     @Autowired
     private EletrodomesticoService eletrodomesticoService;
@@ -21,7 +21,7 @@ public class EletrodomesticoController {
     public ResponseEntity<EletrodomesticoResultForm> inserir(@RequestBody EletrodomesticoForm eletrodomesticoForm) {
         return ResponseEntity.status(HttpStatus.CREATED).body(eletrodomesticoService.salvar(eletrodomesticoForm));
     }
-    @GetMapping(path = "/Usuario/{id}")
+    @GetMapping(path = "/usuario/{id}")
     public ResponseEntity<List<EletrodomesticoResultForm>> listarEletrodomesticosDeUsuario(@PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK).body(eletrodomesticoService.listarEletrodomesticosDeUsuario(id));
     }

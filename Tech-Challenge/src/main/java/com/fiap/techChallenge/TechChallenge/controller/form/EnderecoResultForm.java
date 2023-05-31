@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EnderecoForm {
+public class EnderecoResultForm {
 
     @JsonProperty
     private String rua;
@@ -18,4 +18,6 @@ public class EnderecoForm {
     private String cidade;
     @JsonProperty
     private String estado;
+    @JsonProperty
+    private Integer id;
 }

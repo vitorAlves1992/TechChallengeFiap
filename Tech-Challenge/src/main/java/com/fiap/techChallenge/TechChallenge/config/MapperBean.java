@@ -1,9 +1,8 @@
 package com.fiap.techChallenge.TechChallenge.config;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoResultForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
+import com.fiap.techChallenge.TechChallenge.controller.form.*;
 import com.fiap.techChallenge.TechChallenge.domain.Eletrodomestico;
+import com.fiap.techChallenge.TechChallenge.domain.Endereco;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import com.googlecode.jmapper.JMapper;
 import com.googlecode.jmapper.api.JMapperAPI;
@@ -15,7 +14,7 @@ import static com.googlecode.jmapper.api.JMapperAPI.mappedClass;
 
 
 @Configuration
-public class PessoaMapperBean {
+public class MapperBean {
     @Bean
     public JMapper<Pessoa, PessoaForm> pessoaMapper(){
         JMapperAPI jmapperAPI = new JMapperAPI()
@@ -64,6 +63,32 @@ public class PessoaMapperBean {
                         .add(attribute("potencia").value("potencia")));
 
         return new JMapper<>(EletrodomesticoResultForm.class, Eletrodomestico.class, jmapperAPI);
+    }
+
+    @Bean
+    public JMapper<Endereco, EnderecoForm> enderecoMapper(){
+        JMapperAPI jmapperAPI = new JMapperAPI()
+                .add(mappedClass(Endereco.class)
+                        .add(attribute("rua").value("rua"))
+                        .add(attribute("numero").value("numero"))
+                        .add(attribute("bairro").value("bairro"))
+                        .add(attribute("cidade").value("cidade"))
+                        .add(attribute("estado").value("estado")));
+
+        return new JMapper<>(Endereco.class, EnderecoForm.class, jmapperAPI);
+    }
+    @Bean
+    public JMapper<EnderecoResultForm, Endereco> enderecoResultFormMapper(){
+        JMapperAPI jmapperAPI = new JMapperAPI()
+                .add(mappedClass(EnderecoForm.class)
+                        .add(attribute("id").value("id"))
+                        .add(attribute("rua").value("rua"))
+                        .add(attribute("numero").value("numero"))
+                        .add(attribute("bairro").value("bairro"))
+                        .add(attribute("cidade").value("cidade"))
+                        .add(attribute("estado").value("estado")));
+
+        return new JMapper<>(EnderecoResultForm.class, Endereco.class, jmapperAPI);
     }
 
 }

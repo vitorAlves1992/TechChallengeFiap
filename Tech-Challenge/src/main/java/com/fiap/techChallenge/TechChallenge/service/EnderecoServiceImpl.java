@@ -1,6 +1,7 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
 import com.fiap.techChallenge.TechChallenge.controller.form.EnderecoForm;
+import com.fiap.techChallenge.TechChallenge.controller.form.EnderecoResultForm;
 import com.fiap.techChallenge.TechChallenge.domain.Endereco;
 import com.fiap.techChallenge.TechChallenge.repository.EnderecoRepository;
 import com.googlecode.jmapper.JMapper;
@@ -19,26 +20,25 @@ public class EnderecoServiceImpl implements EnderecoService{
     private JMapper<Endereco, EnderecoForm> enderecoMapper;
 
     @Autowired
-    private JMapper<EnderecoForm, Endereco> enderecoFormMapper;
+    private JMapper<EnderecoResultForm, Endereco> enderecoResultFormMapper;
 
     @Override
-    public EnderecoForm salvar(EnderecoForm enderecoForm) {
+    public EnderecoResultForm salvar(EnderecoForm enderecoForm) {
         Endereco endereco = enderecoMapper.getDestination(enderecoForm);
         Optional<Endereco> enderecoSalvo = Optional.ofNullable(enderecoRepository.salvar(endereco));
         if(enderecoSalvo.isEmpty())
             throw new IllegalArgumentException("Erro ao criar endereco");
 
-        return enderecoFormMapper.getDestination(enderecoSalvo.get());
+        return enderecoResultFormMapper.getDestination(enderecoSalvo.get());
     }
 
     @Override
-    public EnderecoForm listar(String id) {
-        int idEndereco = Integer.parseInt(id);
-        Endereco endereco = enderecoRepository.listar(idEndereco);
+    public EnderecoResultForm listar(String id) {
+        Endereco endereco = enderecoRepository.listar(Integer.parseInt(id));
         if(endereco == null)
             throw new IllegalArgumentException("Erro ao buscar endereco");
         else {
-            return enderecoFormMapper.getDestination(endereco);
+            return enderecoResultFormMapper.getDestination(endereco);
         }
     }
 
@@ -49,10 +49,10 @@ public class EnderecoServiceImpl implements EnderecoService{
     }
 
     @Override
-    public void atualizar(EnderecoForm enderecoForm) {
+    public void atualizar(EnderecoForm enderecoForm, String id) {
 
         Endereco endereco = enderecoMapper.getDestination(enderecoForm);
-        Optional<Endereco> enderecoAtualizado = Optional.ofNullable(enderecoRepository.atualizar(endereco));
+        Optional<Endereco> enderecoAtualizado = Optional.ofNullable(enderecoRepository.atualizar(endereco, id));
 
         if(enderecoAtualizado.isEmpty())
             throw new IllegalArgumentException("Erro ao atualizar endereco");

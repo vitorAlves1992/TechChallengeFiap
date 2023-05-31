@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Pessoa")
+@RequestMapping("/pessoa")
 public class PessoaController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class PessoaController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(path = "/Usuario/{id}")
+    @GetMapping(path = "/usuario/{id}")
     public ResponseEntity<List<PessoaForm>> listarPessoasDeUsuario(@PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listarPessoasUsuario(id));
     }
