@@ -13,6 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/*@ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Processo realizado com sucesso"),
+        @ApiResponse(code = 400, message = "Näo foi possivel inserir"),
+        @ApiResponse(code = 401, message = "Autenticação não realizada / Usuario e/ou senha inválida"),
+        @ApiResponse(code = 403, message = "Usuario não possui permissão para acessar esta API"),
+        @ApiResponse(code = 404, message = "Status não encontrado"),
+        @ApiResponse(code = 500, message = "Erro de servidor")
+})*/
 @RestController
 @RequestMapping("/eletrodomestico")
 public class EletrodomesticoController {
@@ -20,15 +28,6 @@ public class EletrodomesticoController {
     private EletrodomesticoService eletrodomesticoService;
 
     @PostMapping
-    @ApiResponses(value = {
-                    @ApiResponse(code = 200, message = "Processo realizado com sucesso"),
-                    @ApiResponse(code = 400, message = "Näo foi possivel inserir"),
-                    @ApiResponse(code = 401, message = "Autenticação não realizada / Usuario e/ou senha inválida"),
-                    @ApiResponse(code = 403, message = "Usuario não possui permissão para acessar esta API"),
-                    @ApiResponse(code = 404, message = "Status não encontrado"),
-                    @ApiResponse(code = 500, message = "Erro de servidor")
-    })
-
     public ResponseEntity<EletrodomesticoResultForm> inserir(@RequestBody @Valid EletrodomesticoForm eletrodomesticoForm) {
         return ResponseEntity.status(HttpStatus.CREATED).body(eletrodomesticoService.salvar(eletrodomesticoForm));
     }
@@ -38,7 +37,7 @@ public class EletrodomesticoController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Void> atualizar(@RequestBody EletrodomesticoForm eletrodomesticoForm, @PathVariable String id) {
+    public ResponseEntity<Void> atualizar(@RequestBody @Valid EletrodomesticoForm eletrodomesticoForm, @PathVariable String id) {
         eletrodomesticoService.atualizar(eletrodomesticoForm, id);
         return ResponseEntity.noContent().build();
     }

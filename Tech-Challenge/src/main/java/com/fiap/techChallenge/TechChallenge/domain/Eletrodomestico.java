@@ -10,7 +10,7 @@ public class Eletrodomestico {
     private Integer id ;
     private String nome;
     private String modelo;
-    private Integer potencia;
+    private Double potencia;
 
     public void setId(){
         Random random = new Random();
