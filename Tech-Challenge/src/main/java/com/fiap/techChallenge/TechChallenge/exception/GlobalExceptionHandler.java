@@ -1,6 +1,7 @@
 package com.fiap.techChallenge.TechChallenge.exception;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -34,5 +35,12 @@ public class GlobalExceptionHandler {
         response.setErros(erros);
 
         return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(HttpMessageConversionException.class)
+    public ResponseEntity<ErrorMessage> handleHttpMessageConversionException(HttpMessageConversionException ex) {
+        String errorMessage = "Ocorreu um erro na desserialização do JSON. Verifique os tipos dos atributos.";
+        ErrorMessage error = new ErrorMessage(errorMessage);
+        return ResponseEntity.badRequest().body(error);
     }
 }
