@@ -2,7 +2,6 @@ package com.fiap.techChallenge.TechChallenge.service;
 
 import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
 import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoResultForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
 
 import java.util.List;
 

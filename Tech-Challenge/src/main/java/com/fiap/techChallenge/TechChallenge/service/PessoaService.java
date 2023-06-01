@@ -1,7 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
 import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
-import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 
 import java.util.List;
 

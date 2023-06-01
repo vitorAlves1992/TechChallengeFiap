@@ -44,8 +44,8 @@ public class EnderecoServiceImpl implements EnderecoService{
 
     @Override
     public void deletar(String id) {
-        int idEndereco = Integer.parseInt(id);
-        enderecoRepository.deletar(idEndereco);
+        /*int idEndereco = Integer.parseInt(id);*/
+        enderecoRepository.deletar(Integer.parseInt(id));
     }
 
     @Override

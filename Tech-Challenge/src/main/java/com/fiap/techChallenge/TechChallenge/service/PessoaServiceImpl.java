@@ -4,6 +4,7 @@ import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import com.fiap.techChallenge.TechChallenge.repository.PessoaRepository;
 import com.googlecode.jmapper.JMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class PessoaServiceImpl implements PessoaService {
 
     //@TODO trazer todas as excecoes do repository para dentro service

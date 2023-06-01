@@ -6,14 +6,19 @@ import lombok.Setter;
 
 @Getter @Setter
 public class EletrodomesticoResultForm {
+
     @JsonProperty
     private Integer idUsuario;
+
     @JsonProperty
     private Integer id;
+
     @JsonProperty
     private String nome;
+
     @JsonProperty
     private String modelo;
+
     @JsonProperty
-    private Integer potencia;
+    private Double potencia;
 }
