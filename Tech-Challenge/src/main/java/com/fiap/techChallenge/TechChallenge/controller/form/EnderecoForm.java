@@ -18,7 +18,7 @@ public class EnderecoForm {
 
     @JsonProperty
     @Min(value = 0L, message = "Numero e obrigatorio e deve ser maior que zero")
-    @NotNull
+    @NotNull(message = "Numero obrigatorio")
     private Integer numero;
 
     @JsonProperty

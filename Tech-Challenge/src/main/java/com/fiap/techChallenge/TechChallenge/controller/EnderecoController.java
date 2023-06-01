@@ -20,19 +20,11 @@ public class EnderecoController {
     private EnderecoService enderecoService;
 
     @PostMapping
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Processo realizado com sucesso"),
-            @ApiResponse(code = 400, message = "Näo foi possivel inserir"),
-            @ApiResponse(code = 401, message = "Autenticação não realizada / Usuario e/ou senha inválida"),
-            @ApiResponse(code = 403, message = "Usuario não possui permissão para acessar esta API"),
-            @ApiResponse(code = 404, message = "Status não encontrado"),
-            @ApiResponse(code = 500, message = "Erro de servidor")
-    })
     public ResponseEntity<EnderecoResultForm> inserir(@RequestBody @Valid EnderecoForm enderecoForm){
         return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.salvar(enderecoForm));
     }
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Void> atualizar(@RequestBody EnderecoForm enderecoForm, @PathVariable String id){
+    public ResponseEntity<Void> atualizar(@RequestBody @Valid EnderecoForm enderecoForm, @PathVariable String id){
         enderecoService.atualizar(enderecoForm, id);
         return ResponseEntity.noContent().build();
     }
