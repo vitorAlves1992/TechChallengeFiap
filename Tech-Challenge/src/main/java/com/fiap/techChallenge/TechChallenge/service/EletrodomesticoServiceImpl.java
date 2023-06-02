@@ -26,7 +26,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
         Eletrodomestico eletrodomestico = eletrodomesticoMapper.getDestination(eletrodomesticoForm);
         Optional<Eletrodomestico> eletrodomesticoSalvo = Optional.ofNullable(eletrodomesticoRepository.salvar(eletrodomestico));
         if (eletrodomesticoSalvo.isEmpty())
-            throw new IllegalArgumentException("Erro ao criar eletrodomestico.");
+            throw new RuntimeException("Erro ao criar eletrodomestico.");
 
         return eletrodomesticoResultMapper.getDestination(eletrodomesticoSalvo.get());
     }
@@ -39,9 +39,6 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     public List<EletrodomesticoResultForm> listarEletrodomesticosDeUsuario(String id) {
         int idUsuario = Integer.parseInt(id);
         Optional<List<Eletrodomestico>> eletrodomesticosEncontrados = Optional.ofNullable(eletrodomesticoRepository.listarEletrodomesticosDeUsuario(idUsuario));
-
-        if(eletrodomesticosEncontrados.isEmpty())
-            throw new IllegalArgumentException(String.format("Não foram encontradas pessoas para o id %s", id));
 
         List<EletrodomesticoResultForm> eletrodomesticoResultForm = new ArrayList<>();
         for (Eletrodomestico eletrodomestico : eletrodomesticosEncontrados.get()) {
@@ -61,10 +58,6 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     @Override
     public void atualizar(EletrodomesticoForm eletrodomesticoForm, String id) {
         Eletrodomestico eletrodomestico = eletrodomesticoMapper.getDestination(eletrodomesticoForm);
-        Optional<Eletrodomestico> eletrodomesticoAtualizado = Optional.ofNullable(eletrodomesticoRepository.atualizar(eletrodomestico, id));
-
-        if (eletrodomesticoAtualizado.isEmpty())
-            throw new IllegalArgumentException("Erro ao atualizar eletrodomestico");
-
+        eletrodomesticoRepository.atualizar(eletrodomestico, id);
     }
 }

@@ -19,8 +19,9 @@ public class EletrodomesticoRepository {
         return eletrodomestico;
     }
 
-    public boolean deletarEletrodomestico(int idEletrodomestico) {
-        return eletrodomesticos.removeIf(eletrodomesticos -> (eletrodomesticos.getId().equals(idEletrodomestico)));
+    public void deletarEletrodomestico(int idEletrodomestico) {
+         if(!eletrodomesticos.removeIf(eletrodomesticos -> (eletrodomesticos.getId().equals(idEletrodomestico))))
+             throw new RuntimeException("Não Existe Eletrodomestico para ser deletado.");
     }
 
     public Eletrodomestico atualizar(Eletrodomestico eletrodomestico, String id) {
