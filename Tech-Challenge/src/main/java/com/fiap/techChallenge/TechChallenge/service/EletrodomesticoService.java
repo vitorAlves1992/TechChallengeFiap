@@ -12,5 +12,5 @@ public interface EletrodomesticoService {
 
     void deletar(String idEletrodomestico);
 
-    void atualizar(EletrodomesticoForm eletrodomestico, String id);
+    EletrodomesticoResultForm atualizar(EletrodomesticoForm eletrodomestico, String id);
 }

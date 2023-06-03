@@ -31,6 +31,7 @@ public class EletrodomesticoRepository {
 
         if (eletrodomesticoEncontrado.isPresent()) {
             Eletrodomestico eletrodomesticoAtualizado = eletrodomesticoEncontrado.get();
+            eletrodomesticoAtualizado.setIdUsuario(eletrodomestico.getIdUsuario());
             eletrodomesticoAtualizado.setNome(eletrodomestico.getNome());
             eletrodomesticoAtualizado.setModelo(eletrodomestico.getModelo());
             eletrodomesticoAtualizado.setPotencia(eletrodomestico.getPotencia());

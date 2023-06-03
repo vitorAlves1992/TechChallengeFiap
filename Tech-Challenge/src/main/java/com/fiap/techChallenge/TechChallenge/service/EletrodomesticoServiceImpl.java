@@ -56,8 +56,12 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     }
 
     @Override
-    public void atualizar(EletrodomesticoForm eletrodomesticoForm, String id) {
+    public EletrodomesticoResultForm atualizar(EletrodomesticoForm eletrodomesticoForm, String id) {
         Eletrodomestico eletrodomestico = eletrodomesticoMapper.getDestination(eletrodomesticoForm);
-        eletrodomesticoRepository.atualizar(eletrodomestico, id);
+        Optional<Eletrodomestico> eletrodomesticoAtualizar = Optional.ofNullable(eletrodomesticoRepository.atualizar(eletrodomestico, id));
+        if (eletrodomesticoAtualizar.isEmpty())
+            throw new RuntimeException("Erro ao atualizar eletrodomestico.");
+
+        return eletrodomesticoResultMapper.getDestination(eletrodomesticoAtualizar.get());
     }
 }
