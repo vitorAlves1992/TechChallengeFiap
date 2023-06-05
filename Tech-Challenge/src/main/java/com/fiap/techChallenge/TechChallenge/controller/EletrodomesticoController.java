@@ -37,9 +37,8 @@ public class EletrodomesticoController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Void> atualizar(@RequestBody @Valid EletrodomesticoForm eletrodomesticoForm, @PathVariable String id) {
-        eletrodomesticoService.atualizar(eletrodomesticoForm, id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<EletrodomesticoResultForm> atualizar(@RequestBody @Valid EletrodomesticoForm eletrodomesticoForm, @PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(eletrodomesticoService.atualizar(eletrodomesticoForm, id));
     }
 
     @GetMapping(path = "/{id}")

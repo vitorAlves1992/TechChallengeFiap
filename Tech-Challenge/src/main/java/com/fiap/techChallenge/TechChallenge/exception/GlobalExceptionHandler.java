@@ -43,4 +43,10 @@ public class GlobalExceptionHandler {
         ErrorMessage error = new ErrorMessage(errorMessage);
         return ResponseEntity.badRequest().body(error);
     }
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorMessage> runtimeException(RuntimeException ex) {
+        String errorMessage = ex.getMessage();
+        ErrorMessage error = new ErrorMessage(errorMessage);
+        return ResponseEntity.badRequest().body(error);
+    }
 }

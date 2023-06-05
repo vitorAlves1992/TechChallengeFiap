@@ -19,8 +19,9 @@ public class EletrodomesticoRepository {
         return eletrodomestico;
     }
 
-    public boolean deletarEletrodomestico(int idEletrodomestico) {
-        return eletrodomesticos.removeIf(eletrodomesticos -> (eletrodomesticos.getId().equals(idEletrodomestico)));
+    public void deletarEletrodomestico(int idEletrodomestico) {
+         if(!eletrodomesticos.removeIf(eletrodomesticos -> (eletrodomesticos.getId().equals(idEletrodomestico))))
+             throw new RuntimeException("Não Existe Eletrodomestico para ser deletado.");
     }
 
     public Eletrodomestico atualizar(Eletrodomestico eletrodomestico, String id) {
@@ -30,20 +31,23 @@ public class EletrodomesticoRepository {
 
         if (eletrodomesticoEncontrado.isPresent()) {
             Eletrodomestico eletrodomesticoAtualizado = eletrodomesticoEncontrado.get();
+            eletrodomesticoAtualizado.setIdUsuario(eletrodomestico.getIdUsuario());
             eletrodomesticoAtualizado.setNome(eletrodomestico.getNome());
             eletrodomesticoAtualizado.setModelo(eletrodomestico.getModelo());
             eletrodomesticoAtualizado.setPotencia(eletrodomestico.getPotencia());
             return eletrodomesticoAtualizado;
         } else {
-            // TODO Lidar com o caso em que o eletrodomestico não foi encontrado, por exemplo, lançar uma exceção ou retornar null
-            throw new RuntimeException("Eletrodomestico não encontrada na lista.");
+            throw new RuntimeException("Eletrodomestico não encontrado na lista.");
         }
     }
     public List<Eletrodomestico> listarEletrodomesticosDeUsuario(int idUsuario){
-        List<Eletrodomestico> eletrodomesticosDeUsuario = eletrodomesticos.stream().
-                filter(eletrodomestico -> eletrodomestico.getIdUsuario().equals(idUsuario)).collect(Collectors.toList());
+        Optional<List<Eletrodomestico>> eletrodomesticosDeUsuario = Optional.of(eletrodomesticos.stream()
+                .filter(eletrodomestico -> eletrodomestico.getIdUsuario().equals(idUsuario))
+                .collect(Collectors.toList()));
+        if (eletrodomesticosDeUsuario.get().isEmpty())
+            throw new RuntimeException("Não há eletrodomesticos cadastrados para esse usuário." );
 
-        return eletrodomesticosDeUsuario;
+        return eletrodomesticosDeUsuario.get();
     }
     public Eletrodomestico listar(int id) {
         Optional<Eletrodomestico> eletrodomesticoEncontrado = eletrodomesticos.stream()
@@ -54,8 +58,7 @@ public class EletrodomesticoRepository {
             Eletrodomestico eletrodomestico = eletrodomesticoEncontrado.get();
             return eletrodomestico;
         } else {
-            // TODO Lidar com o caso em que o eletrodomestico não foi encontrado, por exemplo, lançar uma exceção ou retornar null
-            throw new RuntimeException("Eletrodomestico não encontrada na lista.");
+            throw new RuntimeException("Eletrodomestico não encontrado na lista.");
         }
     }
 }
