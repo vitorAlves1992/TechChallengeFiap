@@ -1,9 +1,9 @@
-#Relatório Técnico da Fase 1
+# Relatório Técnico da Fase 1
 ---
 ## Tecnologias Utilizadas 
 
 ---
-##Desafios Encontrados / Soluções Apresentadas
+## Desafios Encontrados / Soluções Apresentadas
 ### Desafio: Classe de domínio responsável por encapsular dados das requisições 
 Descrever aqui porque isso é um problema 
 ### Solução: Criar DTOs / Forms
