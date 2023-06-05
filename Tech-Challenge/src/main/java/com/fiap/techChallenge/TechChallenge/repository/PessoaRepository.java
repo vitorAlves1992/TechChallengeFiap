@@ -34,9 +34,9 @@ public class PessoaRepository {
         return pessoas.removeIf(pessoa -> (pessoa.getId().equals(idPessoa)));
     }
 
-    public Pessoa atualizar(Pessoa pessoa) {
+    public Pessoa atualizar(Pessoa pessoa, String id) {
         Optional<Pessoa> pessoaEncontrada = pessoas.stream()
-                .filter(pessoaLista -> pessoaLista.getId().equals(pessoa.getId()))
+                .filter(pessoaLista -> pessoaLista.getId().equals(Integer.parseInt(id)))
                 .findFirst();
 
         if (pessoaEncontrada.isPresent()) {

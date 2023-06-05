@@ -26,10 +26,10 @@ public class EnderecoRepository {
         enderecos.removeIf(endereco -> endereco.getId().equals(idEndereco));
     }
 
-    public Endereco atualizar(Endereco enderecoNovo) {
+    public Endereco atualizar(Endereco enderecoNovo, String id) {
         Optional<Endereco> enderecoEncontrado = enderecos
                 .stream()
-                .filter(endereco -> endereco.getId().equals(enderecoNovo.getId()))
+                .filter(endereco -> endereco.getId().equals(Integer.parseInt(id)))
                 .findFirst();
 
         if(enderecoEncontrado.isPresent()) {
@@ -40,9 +40,9 @@ public class EnderecoRepository {
             enderecoAtualizado.setBairro(enderecoNovo.getBairro());
             enderecoAtualizado.setRua(enderecoNovo.getRua());
             return enderecoAtualizado;
+        }else {
+            throw new RuntimeException("Endereco não encontrada na lista.");
         }
-
-        return new Endereco();
     }
 
     public Endereco listar(int idEndereco) {
