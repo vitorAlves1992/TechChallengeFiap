@@ -49,7 +49,7 @@ public class EnderecoServiceImpl implements EnderecoService{
     }
 
     @Override
-    public void atualizar(EnderecoForm enderecoForm, String id) {
+    public EnderecoResultForm atualizar(EnderecoForm enderecoForm, String id) {
 
         Endereco endereco = enderecoMapper.getDestination(enderecoForm);
         Optional<Endereco> enderecoAtualizado = Optional.ofNullable(enderecoRepository.atualizar(endereco, id));
@@ -57,6 +57,6 @@ public class EnderecoServiceImpl implements EnderecoService{
         if(enderecoAtualizado.isEmpty())
             throw new IllegalArgumentException("Erro ao atualizar endereco");
 
-
+        return enderecoResultFormMapper.getDestination(enderecoAtualizado.get());
     }
 }

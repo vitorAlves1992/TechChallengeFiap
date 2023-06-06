@@ -24,9 +24,8 @@ public class EnderecoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.salvar(enderecoForm));
     }
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Void> atualizar(@RequestBody @Valid EnderecoForm enderecoForm, @PathVariable String id){
-        enderecoService.atualizar(enderecoForm, id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<EnderecoResultForm> atualizar(@RequestBody @Valid EnderecoForm enderecoForm, @PathVariable String id){
+        return ResponseEntity.ok(enderecoService.atualizar(enderecoForm, id));
     }
 
     @GetMapping(path = "/{id}")
