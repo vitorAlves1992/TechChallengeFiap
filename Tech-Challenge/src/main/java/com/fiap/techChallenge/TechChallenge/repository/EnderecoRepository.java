@@ -23,7 +23,8 @@ public class EnderecoRepository {
     }
 
     public void deletar (int idEndereco) {
-        enderecos.removeIf(endereco -> endereco.getId().equals(idEndereco));
+        if(!enderecos.removeIf(endereco -> endereco.getId().equals(idEndereco)))
+            throw new RuntimeException("Endereco não encontrado na lista.");
     }
 
     public Endereco atualizar(Endereco enderecoNovo, String id) {
@@ -50,8 +51,9 @@ public class EnderecoRepository {
                 .stream()
                 .filter(endereco -> endereco.getId().equals(idEndereco))
                 .findFirst();
-
-        return enderecoEncontrado.orElse(null);
-
+        if(enderecoEncontrado.isPresent())
+            return enderecoEncontrado.get();
+        else
+            throw new RuntimeException("Endereco não encontrado na lista.");
     }
 }

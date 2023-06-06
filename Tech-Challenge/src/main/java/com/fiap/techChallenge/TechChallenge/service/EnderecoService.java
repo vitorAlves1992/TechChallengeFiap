@@ -7,6 +7,6 @@ public interface EnderecoService {
     public EnderecoResultForm salvar(EnderecoForm enderecoForm);
     public EnderecoResultForm listar(String idEndereco);
     public void deletar(String idEndereco);
-    public void atualizar(EnderecoForm endereco, String id);
+    public EnderecoResultForm atualizar(EnderecoForm endereco, String id);
 
 }

@@ -13,11 +13,11 @@ import javax.validation.constraints.NotNull;
 public class EnderecoForm {
 
     @JsonProperty
-    @NotBlank(message = "Rua obrigatorio")
+    @NotBlank(message = "Rua obrigatoria")
     private String rua;
 
     @JsonProperty
-    @Min(value = 0L, message = "Numero e obrigatorio e deve ser maior que zero")
+    @Min(value = 1, message = "Numero e obrigatorio e deve ser maior que zero")
     @NotNull(message = "Numero obrigatorio")
     private Integer numero;
 
@@ -26,7 +26,7 @@ public class EnderecoForm {
     private String bairro;
 
     @JsonProperty
-    @NotBlank(message = "Cidade obrigatorio")
+    @NotBlank(message = "Cidade obrigatoria")
     private String cidade;
 
     @JsonProperty
