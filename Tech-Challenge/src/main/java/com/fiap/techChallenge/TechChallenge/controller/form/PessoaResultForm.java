@@ -6,9 +6,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-//@TODO validar dados e jogar mensagens de erro
-
-//@TODO criar form para enviar (sem id) e para response (com id)
 
 @Getter@Setter
 public class PessoaResultForm {

@@ -26,7 +26,7 @@ public class PessoaServiceImpl implements PessoaService {
     private JMapper<Pessoa, PessoaForm> pessoaMapper;
 
     @Autowired
-    private JMapper<PessoaResultForm, Pessoa> pessoaFormMapper;
+    private JMapper<PessoaResultForm, Pessoa> pessoaResultMapper;
 
     @Override
     public PessoaResultForm salvar(PessoaForm pessoaForm) {
@@ -35,7 +35,7 @@ public class PessoaServiceImpl implements PessoaService {
         if(pessoaSalva.isEmpty())
             throw new IllegalArgumentException("Erro ao criar pessoa");
 
-        return pessoaFormMapper.getDestination(pessoaSalva.get());
+        return pessoaResultMapper.getDestination(pessoaSalva.get());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class PessoaServiceImpl implements PessoaService {
 
         List<PessoaResultForm> pessoasForm = new ArrayList<>();
         for (Pessoa pessoa : pessoasEncontradas.get()) {
-            pessoasForm.add(pessoaFormMapper.getDestination(pessoa));
+            pessoasForm.add(pessoaResultMapper.getDestination(pessoa));
         }
 
         return pessoasForm;
@@ -57,7 +57,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public PessoaResultForm listar(String id) {
-        return pessoaFormMapper.getDestination(pessoaRepository.listar(Integer.parseInt(id)));
+        return pessoaResultMapper.getDestination(pessoaRepository.listar(Integer.parseInt(id)));
     }
 
     @Override
@@ -67,12 +67,14 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public void atualizar(PessoaForm pessoaForm, String id) {
+    public PessoaResultForm atualizar(PessoaForm pessoaForm, String id) {
         Pessoa pessoa = pessoaMapper.getDestination(pessoaForm);
         Optional<Pessoa> pessoaAtualizada = Optional.ofNullable(pessoaRepository.atualizar(pessoa, id));
 
         if(pessoaAtualizada.isEmpty())
             throw new IllegalArgumentException("Erro ao atualizar pessoa");
+
+        return pessoaResultMapper.getDestination(pessoaAtualizada.get());
 
     }
 }

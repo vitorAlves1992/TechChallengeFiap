@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter@Setter
 public class PessoaForm {
     @JsonProperty
-    @Min(value = 0L, message = "Id do usuario deve ser maior do que zero")
+    @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
     @NotNull
     private Integer idUsuario;
 
@@ -31,7 +31,7 @@ public class PessoaForm {
     private String sexo;
 
     @JsonProperty
-    @NotNull(message = "Sexo obrigatorio")
+    @NotNull(message = "Parentesco obrigatorio")
     private String parentesco;
 
 
