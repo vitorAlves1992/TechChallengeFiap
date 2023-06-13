@@ -24,14 +24,21 @@ public class PessoaRepository {
     }
 
     public List<Pessoa> listarPessoasUsuario(int idUsuario){
-        List<Pessoa> pessoasUsuario = pessoas.stream().
-                filter(pessoa -> pessoa.getIdUsuario().equals(idUsuario)).collect(Collectors.toList());
 
-        return pessoasUsuario;
+        Optional<List<Pessoa>> pessoasUsuario = Optional.of(
+                pessoas.stream()
+                        .filter(pessoa -> pessoa.getIdUsuario().equals(idUsuario))
+                        .collect(Collectors.toList()));
+
+        if(pessoasUsuario.get().isEmpty())
+            throw new RuntimeException("Não há pessoas cadastradas para esse usuário." );
+
+        return pessoasUsuario.get();
     }
 
-    public boolean deletarPessoa(int idPessoa) {
-        return pessoas.removeIf(pessoa -> (pessoa.getId().equals(idPessoa)));
+    public void deletarPessoa(int idPessoa) {
+        if(!pessoas.removeIf(pessoa -> pessoa.getId().equals(idPessoa)))
+            throw new RuntimeException("Não Existe Pessoa para ser deletada.");
     }
 
     public Pessoa atualizar(Pessoa pessoa, String id) {
@@ -47,7 +54,6 @@ public class PessoaRepository {
             pessoaAtualizada.setDataNascimento(pessoa.getDataNascimento());
             return pessoaAtualizada;
         } else {
-            // Lidar com o caso em que a pessoa não foi encontrada, por exemplo, lançar uma exceção ou retornar null
             throw new RuntimeException("Pessoa não encontrada na lista.");
         }
     }
@@ -61,7 +67,6 @@ public class PessoaRepository {
             Pessoa pessoa = pessoaEncontrada.get();
              return pessoa;
         } else {
-            // Lidar com o caso em que a pessoa não foi encontrada, por exemplo, lançar uma exceção ou retornar null
             throw new RuntimeException("Pessoa não encontrada na lista.");
         }
     }

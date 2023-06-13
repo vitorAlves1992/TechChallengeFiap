@@ -11,6 +11,6 @@ public interface PessoaService {
     public List<PessoaResultForm> listarPessoasUsuario (String idUsuario);
     public PessoaResultForm listar(String idUsuario);
     public void deletar(String idPessoa);
-    public void atualizar(PessoaForm pessoa, String id);
+    public PessoaResultForm atualizar(PessoaForm pessoa, String id);
 
 }

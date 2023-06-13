@@ -11,7 +11,11 @@ import java.util.stream.Collectors;
 
 @Repository
 public class EletrodomesticoRepository {
-    private Collection <Eletrodomestico> eletrodomesticos = new ArrayList<>();
+    private Collection <Eletrodomestico> eletrodomesticos;
+
+    public EletrodomesticoRepository() {
+        this.eletrodomesticos = new ArrayList<>();
+    }
 
     public Eletrodomestico salvar (Eletrodomestico eletrodomestico){
         eletrodomestico.setId();
