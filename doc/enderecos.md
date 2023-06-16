@@ -119,9 +119,11 @@ Recebe um endereço no formato json com os seguintes campos e um id como Path Pa
 <span style="color: #000">/endereco/{id}</span>
 <sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >deletar</sub>
 </h3>
+
 ### Descrição
 Recebe um Id via Path Parameter e deleta o recurso correspondente ao ID
 ```
 /endereco/1
 ```
+
 **Saída - Código 204 No Content**
