@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "c3db5c07-2dcc-4db5-96f4-9d9f58169f9d",
-		"name": "EletrodomesticoAPI",
+		"_postman_id": "2df23c91-d899-450c-bacf-cfcc47cb3878",
+		"name": "PessoaAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "10294930",
-		"_collection_link": "https://galactic-zodiac-994955.postman.co/workspace/TechChallengeFiap~2131bce6-151a-4004-89ac-bd12b653f66d/collection/10294930-c3db5c07-2dcc-4db5-96f4-9d9f58169f9d?action=share&creator=10294930&source=collection_link"
+		"_collection_link": "https://galactic-zodiac-994955.postman.co/workspace/TechChallengeFiap~2131bce6-151a-4004-89ac-bd12b653f66d/collection/10294930-2df23c91-d899-450c-bacf-cfcc47cb3878?action=share&creator=10294930&source=collection_link"
 	},
 	"item": [
 		{
@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"idUsuario\": 2,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,12 +22,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -40,7 +41,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 0,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -48,12 +49,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -66,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": -1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -74,12 +76,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -92,7 +95,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 1,\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -100,12 +103,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -118,7 +122,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"potencia\": 75.0\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -126,12 +130,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -144,7 +149,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\"\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -152,12 +157,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -170,7 +176,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": -1.3\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -178,12 +184,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -196,7 +203,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 55555.123\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -204,12 +211,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico",
+					"raw": "{{url}}/pessoa/",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico"
+						"pessoa",
+						""
 					]
 				}
 			},
@@ -221,69 +229,69 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/575896321",
+					"raw": "{{url}}/pessoa/1465571452",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"575896321"
+						"pessoa",
+						"1465571452"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Buscar por ID Não existente",
+			"name": "Buscar por ID Não Existente",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/575896321",
+					"raw": "{{url}}/pessoa/1465571452",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"575896321"
+						"pessoa",
+						"1465571452"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Buscar Eletrodomésticos por Usuário",
+			"name": "Buscar Pessoas de Usuário por ID",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/usuario/2",
+					"raw": "{{url}}/pessoa/usuario/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
+						"pessoa",
 						"usuario",
-						"2"
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Buscar Eletrodomésticos por Usuário não existente",
+			"name": "Buscar Pessoas de Usuário por ID Não Existente",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/usuario/2",
+					"raw": "{{url}}/pessoa/usuario/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
+						"pessoa",
 						"usuario",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -296,7 +304,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"idUsuario\": 2,\n\"nome\": \"Microondas alterado\", \n\"modelo\": \"Brastemp alterado\",\n\"potencia\": 80.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2020-06-16\",\n  \"idUsuario\": 1,\n  \"nome\": \"Felipe alterado\",\n  \"parentesco\": \"pai\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -304,13 +312,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/23715860",
+					"raw": "{{url}}/pessoa/1465571452",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"23715860"
+						"pessoa",
+						"1465571452"
 					]
 				}
 			},
@@ -323,7 +331,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"idUsuario\": 2,\n\"nome\": \"Microondas alterado\", \n\"modelo\": \"Brastemp alterado\",\n\"potencia\": 80.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2020-06-16\",\n  \"idUsuario\": 1,\n  \"nome\": \"Felipe alterado\",\n  \"parentesco\": \"pai\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -331,26 +339,26 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/23715860",
+					"raw": "{{url}}/pessoa/1465571452",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"23715860"
+						"pessoa",
+						"1465571452"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Atualizar c/erro validação 1",
+			"name": "Alterar c/erro validação 1",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 0,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -358,12 +366,39 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/1",
+					"raw": "{{url}}/pessoa/1 ",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
+						"pessoa",
+						"1 "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar c/erro validação 2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/pessoa/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pessoa",
 						"1"
 					]
 				}
@@ -371,13 +406,13 @@
 			"response": []
 		},
 		{
-			"name": "Atualizar c/erro validação 2",
+			"name": "Alterar c/erro validação 3",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": -1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 1,\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -385,12 +420,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/1",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
+						"pessoa",
 						"1"
 					]
 				}
@@ -398,13 +433,13 @@
 			"response": []
 		},
 		{
-			"name": "Atualizar c/erro validação 3",
+			"name": "Alterar c/erro validação 4",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -412,12 +447,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/1",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
+						"pessoa",
 						"1"
 					]
 				}
@@ -425,13 +460,13 @@
 			"response": []
 		},
 		{
-			"name": "Atualizar c/erro validação 4",
+			"name": "Alterar c/erro validação 5",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"potencia\": 75.0\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -439,12 +474,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/1",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
+						"pessoa",
 						"1"
 					]
 				}
@@ -452,13 +487,13 @@
 			"response": []
 		},
 		{
-			"name": "Atualizar c/erro validação 5",
+			"name": "Alterar c/erro validação 6",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\"\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -466,12 +501,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/1",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
+						"pessoa",
 						"1"
 					]
 				}
@@ -479,13 +514,13 @@
 			"response": []
 		},
 		{
-			"name": "Atualizar c/erro validação 6",
+			"name": "Alterar c/erro validação 7",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": -1.3\n}",
+					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -493,39 +528,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/1",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Atualizar c/erro validação 7",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 55555.123\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/eletrodomestico/1",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"eletrodomestico",
+						"pessoa",
 						"1"
 					]
 				}
@@ -538,13 +546,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/743",
+					"raw": "{{url}}/pessoa/1465571452",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"743"
+						"pessoa",
+						"1465571452"
 					]
 				}
 			},
@@ -556,13 +564,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/743",
+					"raw": "{{url}}/pessoa/1465571452",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"743"
+						"pessoa",
+						"1465571452"
 					]
 				}
 			},
