@@ -1,5 +1,5 @@
 # Documentação da API de Cadastro de Endereços
----
+
 ## Propósito
 Permitir o gerenciamento de informações sobre os endereços cadastrados em nosso sistema
 
@@ -31,7 +31,7 @@ Recebe uma representação de endereço no formato json com os seguintes campos
  - cidade - String
  - estado - String
 
-###Exemplos de entrada e saída
+### Exemplos de entrada e saída
 
 **Entrada Esperada**
 ```json
