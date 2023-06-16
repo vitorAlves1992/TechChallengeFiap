@@ -1,5 +1,5 @@
 # Documentação da API de Gestão de Eletrodomésticos
----
+
 ## Propósito
 Permitir o cadastro e gerenciamento de informações sobre os aparelhos eletrônicos dos usuários cadastrados em nosso sistema
 
@@ -11,7 +11,7 @@ Receber as informações dos eletrônicos com os campos de nome, modelo, potênc
 4. Uma vez validadas as informações, a API deve informar que está tudo ok e dar um retorno positivo ao usuário.
                   
 ## Endpoints
-Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/eletrodomestico-controller]
+Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/eletrodomestico-controller](http://localhost:8080/swagger-ui/index.html#/eletrodomestico-controller)
 
 ### Para exemplos práticos de entrada e de validações consultar arquivo Postman:
 [Enpoints e Validações no Postman](/postman/EletrodomesticoAPI.postman_collection.json)
@@ -31,7 +31,7 @@ Recebe uma representação de eletrodoméstico no formato json com os seguintes 
  - nome - String
  - potencia - Double
 
-###Exemplos de entrada e saída
+### Exemplos de entrada e saída
 
 **Entrada Esperada**
 ```json
@@ -58,9 +58,10 @@ Recebe uma representação de eletrodoméstico no formato json com os seguintes 
 <span style="color: #000">/eletrodomestico/{id}</span>
 <sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >listar</sub>
 </h3>
+
 ### Descrição
 Recebe um id como Path Parameter e retorna o respectivo eletrodomestico corresponente a esse id
-###Exemplos de entrada e saída
+### Exemplos de entrada e saída
 
 **Entrada Esperada**
 ```
@@ -81,9 +82,10 @@ Recebe um id como Path Parameter e retorna o respectivo eletrodomestico correspo
 <span style="color: #000">/eletrodomestico/usuario/{id}</span>
 <sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >listar Eletrodomesticos de Usuario</sub>
 </h3>
+
 ### Descrição
 Recebe um id como Path Parameter e retorna uma lista com os eletrodomésticos associados ao usuário que corresponda a esse id
-###Exemplos de entrada e saída
+### Exemplos de entrada e saída
 
 **Entrada Esperada**
 ```
@@ -113,6 +115,7 @@ Recebe um id como Path Parameter e retorna uma lista com os eletrodomésticos as
 <span style="color: #000">/eletrodomestico/{id}</span>
 <sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >atualizar</sub>
 </h3>
+
 ### Descrição
 Recebe um eletrodoméstico no formato json com os seguintes campos e um id como Path Parameter que indica qual eletrodoméstico será atualizado
  - idUsuario - Long
@@ -120,7 +123,7 @@ Recebe um eletrodoméstico no formato json com os seguintes campos e um id como 
  - nome - String
  - potencia - Double
 
-###Exemplos de entrada e saída
+### Exemplos de entrada e saída
 
 **Entrada Esperada**
 ```json
@@ -146,6 +149,7 @@ Recebe um eletrodoméstico no formato json com os seguintes campos e um id como 
 <span style="color: #000">/eletrodomestico/{id}</span>
 <sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >deletar</sub>
 </h3>
+
 ### Descrição
 Recebe um Id via Path Parameter e deleta o recurso correspondente ao ID
 ```
