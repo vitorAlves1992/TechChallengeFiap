@@ -11,7 +11,7 @@ Receber as informações dos endereços com os campos de rua, número, bairro, c
 4. Uma vez validadas as informações, a API deve informar que está tudo ok e dar um retorno positivo ao usuário.
                   
 ## Endpoints
-Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/endereco-controller]
+Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/endereco-controller](http://localhost:8080/swagger-ui/index.html#/endereco-controller)
 
 ### Para exemplos práticos de entrada e de validações consultar arquivo Postman:
 [Enpoints e Validações no Postman](/postman/EnderecosAPI.postman_collection.json)
