@@ -1,5 +1,5 @@
 # Relatório Técnico da Fase 1
----
+
 ## Tecnologias, Frameworks e Bibliotecas Utilizadas 
 - Java
 - Spring
@@ -33,20 +33,22 @@ O desafio aqui reside na quantidade de trabalho e código necessário para reali
 Há diversas bibliotecas que se propõe a realizar a tarefa de tranformar DTOs em entidades (e vice-versa). Optamos pelo JMapper para mantermos o alinhamento com o que foi passado no curso, mas cientes das limitações dela, principalmente em relação à versão do Java 
 
 ---
-### Desafio: Necessidade de validar os dados de entrada, aplicando o failfast 
-Por motivos de segurança e integridade dos dados da aplicação, é necessário realizar validações nos dados que estão sendo submetidos na fronteira de nossa aplicação, garantindo que o formato esperado seja atendido nas requisições. Seguindo o Failfast, é importante que as requisições com dados inválidos falhem já na etapa inicial, dessa forma aumentando a performance e segurança pois evitamos que falhas se propaguem para as camadas de nível mais baixo. 
+### Desafio: Necessidade de validar os dados de entrada, aplicando o Fail Fast 
+Por motivos de segurança e integridade dos dados da aplicação, é necessário realizar validações nos dados que estão sendo submetidos na fronteira de nossa aplicação, garantindo que o formato esperado seja atendido nas requisições. Seguindo o Fail Fast, é importante que as requisições com dados inválidos falhem já na etapa inicial, dessa forma aumentando a performance e segurança pois evitamos que falhas se propaguem para as camadas de nível mais baixo. 
 ### Solução: Utilizar o Bean Validation
 A fim de obter os benefícios declarados acima, utilizamos o Bean Validation para especificar as regras básicas de validação do formato dos dados recebidos na fronteira de nossa aplicação. Dessa forma, podemos realizar validações anotando diretamente nossos DTOs e retornar exatamente quais dados ferem essas regras de validação. 
+
 [Bean validation Spec](https://beanvalidation.org/2.0-jsr380/)
+
 [Implementação Hibernate](https://hibernate.org/validator/)
 
 
 ---
-### Desafio: Necessidade de retirar as regras de negócio do controller e desacoplar sua especificação de sua implementação 
+### Desafio: Necessidade de retirar as regras de negócio do Controller e desacoplar sua especificação de sua implementação 
 Como boa prática, o Controller não deve assumir a responsabilidade de orquestrar os métodos negociais necessários para produzir o retorno de um dado Endpoint. 
 O papel do Controller é atuar na fronteira da aplicação, expondo os métodos que a API disponibilizará e repassando as mensagens de requisição e resposta nos formatos especificados. 
 
-### Solução: Utilizar o service em nossa arquitetura e abstraí-lo no esquema interface / implementação 
+### Solução: Utilizar o Service em nossa arquitetura e abstraí-lo no esquema interface / implementação 
 A arquitetura escolhida para o sistema envolve utilizar o Service como camada responsável por fazer a orquestração dos métodos negociais necessários para produzir o retorno esperado pelo Controller, dessa maneira, o Controller fica com a responsabilidade especializada de atuar na fronteira da aplicação, expondo os métodos de nossa API, redirecionando as chamadas para o service e reencapsulando as respostas produzidas pelo service no formato do protocolo HTTP.
 
 ---
