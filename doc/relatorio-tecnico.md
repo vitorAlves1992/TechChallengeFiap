@@ -2,10 +2,13 @@
 
 ## Tecnologias, Frameworks e Bibliotecas Utilizadas 
 - Java
+- Postman
+- Swagger
 - Spring
 - Lombok 
 - JMapper
 - Bean Validation
+
 ---
 
 ## Arquitetura Utilizada 
