@@ -3,7 +3,8 @@ package com.fiap.techChallenge.TechChallenge.service;
 import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
 import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoResultForm;
 import com.fiap.techChallenge.TechChallenge.domain.Eletrodomestico;
-import com.fiap.techChallenge.TechChallenge.repository.EletrodomesticoRepository;
+import com.fiap.techChallenge.TechChallenge.domain.Usuario;
+import com.fiap.techChallenge.TechChallenge.repository.IEletrodomesticoRepository;
 import com.googlecode.jmapper.JMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +16,21 @@ import java.util.Optional;
 @Service
 public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     @Autowired
-    private EletrodomesticoRepository eletrodomesticoRepository;
+    private IEletrodomesticoRepository eletrodomesticoRepository;
+
     @Autowired
     private JMapper<Eletrodomestico, EletrodomesticoForm> eletrodomesticoMapper;
+
     @Autowired
     private JMapper<EletrodomesticoResultForm, Eletrodomestico> eletrodomesticoResultMapper;
 
     @Override
     public EletrodomesticoResultForm salvar(EletrodomesticoForm eletrodomesticoForm) {
         Eletrodomestico eletrodomestico = eletrodomesticoMapper.getDestination(eletrodomesticoForm);
-        Optional<Eletrodomestico> eletrodomesticoSalvo = Optional.ofNullable(eletrodomesticoRepository.salvar(eletrodomestico));
+        Usuario usuario = new Usuario();
+        usuario.setId(eletrodomesticoForm.getIdUsuario());
+        eletrodomestico.setUsuario(usuario);
+        Optional<Eletrodomestico> eletrodomesticoSalvo = Optional.ofNullable(eletrodomesticoRepository.save(eletrodomestico));
         if (eletrodomesticoSalvo.isEmpty())
             throw new RuntimeException("Erro ao criar eletrodomestico.");
 
@@ -33,12 +39,13 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
 
     @Override
     public EletrodomesticoResultForm listar(String id) {
-        return eletrodomesticoResultMapper.getDestination(eletrodomesticoRepository.listar(Integer.parseInt(id)));
+        return eletrodomesticoResultMapper.getDestination(eletrodomesticoRepository.findById(Long.parseLong(id)).get());
     }
     @Override
     public List<EletrodomesticoResultForm> listarEletrodomesticosDeUsuario(String id) {
-        int idUsuario = Integer.parseInt(id);
-        Optional<List<Eletrodomestico>> eletrodomesticosEncontrados = Optional.ofNullable(eletrodomesticoRepository.listarEletrodomesticosDeUsuario(idUsuario));
+        Long idUsuario = Long.parseLong(id);
+        Optional<List<Eletrodomestico>> eletrodomesticosEncontrados =
+                eletrodomesticoRepository.listarEletrodomesticosDeUsuario(idUsuario);
 
         List<EletrodomesticoResultForm> eletrodomesticoResultForm = new ArrayList<>();
         for (Eletrodomestico eletrodomestico : eletrodomesticosEncontrados.get()) {
@@ -51,17 +58,23 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
 
     @Override
     public void deletar(String id) {
-        int idEletrodomestico = Integer.parseInt(id);
-        eletrodomesticoRepository.deletarEletrodomestico(idEletrodomestico);
+        Long idEletrodomestico = Long.parseLong(id);
+        Eletrodomestico eletrodomestico = eletrodomesticoRepository.getReferenceById(idEletrodomestico);
+        eletrodomesticoRepository.delete(eletrodomestico);
     }
 
     @Override
     public EletrodomesticoResultForm atualizar(EletrodomesticoForm eletrodomesticoForm, String id) {
         Eletrodomestico eletrodomestico = eletrodomesticoMapper.getDestination(eletrodomesticoForm);
-        Optional<Eletrodomestico> eletrodomesticoAtualizar = Optional.ofNullable(eletrodomesticoRepository.atualizar(eletrodomestico, id));
+        Usuario usuario = new Usuario();
+        usuario.setId(eletrodomesticoForm.getIdUsuario());
+        eletrodomestico.setId(eletrodomesticoRepository.getReferenceById(Long.parseLong(id)).getId());
+        eletrodomestico.setUsuario(usuario);
+        Optional<Eletrodomestico> eletrodomesticoAtualizar = Optional.ofNullable(eletrodomesticoRepository.save(eletrodomestico));
         if (eletrodomesticoAtualizar.isEmpty())
             throw new RuntimeException("Erro ao atualizar eletrodomestico.");
 
         return eletrodomesticoResultMapper.getDestination(eletrodomesticoAtualizar.get());
     }
+
 }

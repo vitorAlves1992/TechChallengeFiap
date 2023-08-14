@@ -44,10 +44,10 @@ public class MapperBean {
     public JMapper<Eletrodomestico, EletrodomesticoForm> eletrodomesticoMapper(){
         JMapperAPI jmapperAPI = new JMapperAPI()
                 .add(mappedClass(Eletrodomestico.class)
-                        .add(attribute("idUsuario").value("idUsuario"))
                         .add(attribute("nome").value("nome"))
                         .add(attribute("modelo").value("modelo"))
-                        .add(attribute("potencia").value("potencia")));
+                        .add(attribute("potencia").value("potencia"))
+                        );
 
         return new JMapper<>(Eletrodomestico.class, EletrodomesticoForm.class, jmapperAPI);
     }
@@ -55,7 +55,6 @@ public class MapperBean {
     public JMapper<EletrodomesticoResultForm, Eletrodomestico> eletrodomesticoResultMapper(){
         JMapperAPI jmapperAPI = new JMapperAPI()
                 .add(mappedClass(EletrodomesticoResultForm.class)
-                        .add(attribute("idUsuario").value("idUsuario"))
                         .add(attribute("id").value("id"))
                         .add(attribute("nome").value("nome"))
                         .add(attribute("modelo").value("modelo"))

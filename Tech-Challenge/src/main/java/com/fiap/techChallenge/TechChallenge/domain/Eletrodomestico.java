@@ -11,7 +11,7 @@ import java.util.Random;
 public class Eletrodomestico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id ;
+    private Long id ;
     @Column(name = "nome")
     private String nome;
     @Column(name = "modelo")
@@ -26,9 +26,6 @@ public class Eletrodomestico {
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    public void setId(){
-        Random random = new Random();
-        this.id = Math.abs(random.nextInt());
-    }
+
 
 }

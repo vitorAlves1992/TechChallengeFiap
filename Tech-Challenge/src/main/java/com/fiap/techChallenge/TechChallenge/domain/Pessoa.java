@@ -41,6 +41,8 @@ public class Pessoa {
     private List<Parente> parentesRelacionados;
 
 
+    private Integer idUsuario;
+
     public void setId(){
         Random random = new Random();
         this.id = Math.abs(random.nextInt());
