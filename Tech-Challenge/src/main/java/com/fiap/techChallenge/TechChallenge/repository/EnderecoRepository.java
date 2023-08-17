@@ -17,20 +17,20 @@ public class EnderecoRepository {
     }
 
     public Endereco salvar (Endereco endereco) {
-        endereco.setId();
+//        endereco.setId(); //TODO corrigir o ID
         enderecos.add(endereco);
         return  endereco;
     }
 
-    public void deletar (int idEndereco) {
+    public void deletar (Long idEndereco) {
         if(!enderecos.removeIf(endereco -> endereco.getId().equals(idEndereco)))
             throw new RuntimeException("Endereco não encontrado na lista.");
     }
 
-    public Endereco atualizar(Endereco enderecoNovo, String id) {
+    public Endereco atualizar(Endereco enderecoNovo, Long id) {
         Optional<Endereco> enderecoEncontrado = enderecos
                 .stream()
-                .filter(endereco -> endereco.getId().equals(Integer.parseInt(id)))
+                .filter(endereco -> endereco.getId().equals(id))
                 .findFirst();
 
         if(enderecoEncontrado.isPresent()) {
@@ -46,7 +46,7 @@ public class EnderecoRepository {
         }
     }
 
-    public Endereco listar(int idEndereco) {
+    public Endereco listar(Long idEndereco) {
         Optional<Endereco> enderecoEncontrado = enderecos
                 .stream()
                 .filter(endereco -> endereco.getId().equals(idEndereco))

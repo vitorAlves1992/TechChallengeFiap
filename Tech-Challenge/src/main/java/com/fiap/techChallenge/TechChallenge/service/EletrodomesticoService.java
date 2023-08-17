@@ -1,14 +1,14 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoResultForm;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoResultDTO;
 
 import java.util.List;
 
 public interface EletrodomesticoService {
-    public EletrodomesticoResultForm salvar(EletrodomesticoForm eletrodomesticoForm);
-    public List<EletrodomesticoResultForm> listarEletrodomesticosDeUsuario (String idUsuario);
-    public EletrodomesticoResultForm listar(String idEletrodomestico);
-    public void deletar(String idEletrodomestico);
-    public EletrodomesticoResultForm atualizar(EletrodomesticoForm eletrodomestico, String id);
+    public EletrodomesticoResultDTO salvar(EletrodomesticoDTO eletrodomesticoForm);
+    public List<EletrodomesticoResultDTO> listarEletrodomesticosDeUsuario (Long idUsuario);
+    public EletrodomesticoResultDTO listar(Long idEletrodomestico);
+    public void deletar(Long idEletrodomestico);
+    public EletrodomesticoResultDTO atualizar(EletrodomesticoDTO eletrodomestico, Long id);
 }

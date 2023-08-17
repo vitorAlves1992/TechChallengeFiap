@@ -1,4 +1,4 @@
-package com.fiap.techChallenge.TechChallenge.controller.form;
+package com.fiap.techChallenge.TechChallenge.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.*;
 
 @Getter@Setter
-public class EletrodomesticoForm {
+public class EletrodomesticoDTO {
 
     @JsonProperty
     @NotNull(message = "O ID do usuário não pode ser nulo")

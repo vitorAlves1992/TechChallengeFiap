@@ -1,0 +1,20 @@
+* Configurar H2
+    - Eletrodomestico - OK
+    - Pessoa (Vitor/Leandro)
+    - Endereco (Kassi)
+    - Parente (Daniel)
+
+* Fazer o Seed da base
+    - Usuario - OK
+    - Eletrodomestico (Kassi)
+    - Pessoa (Vitor/Leandro)
+    - Endereco (Kassi)
+    - Parente (Daniel)
+
+* Refatorar / Criar API com persistência
+    - Eletrodomestico - OK
+    - Pessoa (Vitor/Leandro)
+    - Endereco (Kassi)
+    - Parente (Daniel)
+
+* Atualizar documentação
