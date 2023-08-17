@@ -9,12 +9,12 @@
     - Eletrodomestico (Kassi)
     - Pessoa (Vitor/Leandro)
     - Endereco (Kassi)
-    - Parente (Daniel/Leandro)
+    - Parente (Daniel)
 
 * Refatorar / Criar API com persistência
     - Eletrodomestico - OK
     - Pessoa (Vitor/Leandro)
     - Endereco (Kassi)
-    - Parente (Daniel/Leandro)
+    - Parente (Daniel)
 
 * Atualizar documentação
