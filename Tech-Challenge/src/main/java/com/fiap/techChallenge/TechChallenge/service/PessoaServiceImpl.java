@@ -1,10 +1,9 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
 import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultForm;
+import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import com.fiap.techChallenge.TechChallenge.repository.PessoaRepository;
-import com.googlecode.jmapper.JMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,33 +21,26 @@ public class PessoaServiceImpl implements PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    @Autowired
-    private JMapper<Pessoa, PessoaForm> pessoaMapper;
-
-    @Autowired
-    private JMapper<PessoaResultForm, Pessoa> pessoaResultMapper;
 
     @Override
-    public PessoaResultForm salvar(PessoaForm pessoaForm) {
-        Pessoa pessoa = pessoaMapper.getDestination(pessoaForm);
-        Optional<Pessoa> pessoaSalva = Optional.ofNullable(pessoaRepository.salvar(pessoa));
-        if(pessoaSalva.isEmpty())
-            throw new IllegalArgumentException("Erro ao criar pessoa");
-
-        return pessoaResultMapper.getDestination(pessoaSalva.get());
+    public PessoaResultDTO salvar(PessoaForm pessoaForm) {
+        try {
+            return new PessoaResultDTO(pessoaRepository.salvar(new Pessoa(pessoaForm)));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Erro ao criar pessoa: " + e.getMessage());
+        }
     }
 
     @Override
-    public List<PessoaResultForm> listarPessoasUsuario(String id) {
-        int idUsuario = Integer.parseInt(id);
-        Optional<List<Pessoa>> pessoasEncontradas = Optional.ofNullable(pessoaRepository.listarPessoasUsuario(idUsuario));
+    public List<PessoaResultDTO> listarPessoasUsuario(Long id) {
+        Optional<List<Pessoa>> pessoasEncontradas = Optional.ofNullable(pessoaRepository.listarPessoasUsuario(id));
 
         if(pessoasEncontradas.isEmpty())
             throw new IllegalArgumentException(String.format("Não foram encontradas pessoas para o id %s", id));
 
-        List<PessoaResultForm> pessoasForm = new ArrayList<>();
+        List<PessoaResultDTO> pessoasForm = new ArrayList<>();
         for (Pessoa pessoa : pessoasEncontradas.get()) {
-            pessoasForm.add(pessoaResultMapper.getDestination(pessoa));
+            pessoasForm.add(new PessoaResultDTO(pessoa));
         }
 
         return pessoasForm;
@@ -56,25 +48,24 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public PessoaResultForm listar(String id) {
-        return pessoaResultMapper.getDestination(pessoaRepository.listar(Integer.parseInt(id)));
+    public PessoaResultDTO listar(Long id) {
+        return new PessoaResultDTO(pessoaRepository.listar(id));
     }
 
     @Override
-    public void deletar(String id) {
-        int idPessoa = Integer.parseInt(id);
-        pessoaRepository.deletarPessoa(idPessoa);
+    public void deletar(Long id) {
+        pessoaRepository.deletarPessoa(id);
     }
 
     @Override
-    public PessoaResultForm atualizar(PessoaForm pessoaForm, String id) {
-        Pessoa pessoa = pessoaMapper.getDestination(pessoaForm);
+    public PessoaResultDTO atualizar(PessoaForm pessoaForm, Long id) {
+        Pessoa pessoa = new Pessoa(pessoaForm);
         Optional<Pessoa> pessoaAtualizada = Optional.ofNullable(pessoaRepository.atualizar(pessoa, id));
 
         if(pessoaAtualizada.isEmpty())
             throw new IllegalArgumentException("Erro ao atualizar pessoa");
 
-        return pessoaResultMapper.getDestination(pessoaAtualizada.get());
+        return new PessoaResultDTO(pessoaAtualizada.get());
 
     }
 }

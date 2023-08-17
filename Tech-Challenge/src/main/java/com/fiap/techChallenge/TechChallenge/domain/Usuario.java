@@ -22,4 +22,10 @@ public class Usuario {
     private List<Pessoa> usuarios;
     @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY)
     private List<Eletrodomestico> eletrodomesticos;
+
+    public Usuario() {
+    }
+    public Usuario(Long idUsuario) {
+        this.id = idUsuario;
+    }
 }

@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface IEletrodomesticoRepository extends JpaRepository<Eletrodomestico, Long> {
 
     @Query(value = "select e from Eletrodomestico e where e.usuario.id = :idUsuario ")
-    Optional<List<Eletrodomestico>> listarEletrodomesticosDeUsuario(Long idUsuario);
+    List<Eletrodomestico> listarEletrodomesticosDeUsuario(Long idUsuario);
 }

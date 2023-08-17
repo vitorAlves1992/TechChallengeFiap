@@ -1,5 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
+import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +27,14 @@ public class Eletrodomestico {
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
+    public Eletrodomestico() {
+    }
 
+    public Eletrodomestico(EletrodomesticoForm form) {
+        this.nome = form.getNome();
+        this.modelo = form.getModelo();
+        this.potencia = form.getPotencia();
+        this.usuario = new Usuario(form.getIdUsuario());
+    }
 
 }

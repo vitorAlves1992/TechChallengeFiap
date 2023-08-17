@@ -1,16 +1,16 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
 import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultForm;
+import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultDTO;
 
 import java.util.List;
 
 public interface PessoaService {
 
-    public PessoaResultForm salvar(PessoaForm pessoa);
-    public List<PessoaResultForm> listarPessoasUsuario (String idUsuario);
-    public PessoaResultForm listar(String idUsuario);
-    public void deletar(String idPessoa);
-    public PessoaResultForm atualizar(PessoaForm pessoa, String id);
+    public PessoaResultDTO salvar(PessoaForm pessoa);
+    public List<PessoaResultDTO> listarPessoasUsuario (Long idUsuario);
+    public PessoaResultDTO listar(Long idUsuario);
+    public void deletar(Long idPessoa);
+    public PessoaResultDTO atualizar(PessoaForm pessoa, Long id);
 
 }

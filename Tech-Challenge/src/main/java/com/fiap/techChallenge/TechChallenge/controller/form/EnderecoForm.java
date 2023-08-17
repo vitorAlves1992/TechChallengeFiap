@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Getter
 @Setter
@@ -32,4 +33,9 @@ public class EnderecoForm {
     @JsonProperty
     @NotBlank(message = "Estado obrigatorio")
     private String estado;
+
+    @JsonProperty
+    @NotNull(message = "Id Usuario Obrigatorio")
+    @Positive
+    private Long idUsuario;
 }

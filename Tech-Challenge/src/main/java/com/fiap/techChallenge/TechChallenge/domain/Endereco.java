@@ -1,5 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
+import com.fiap.techChallenge.TechChallenge.controller.form.EnderecoForm;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,8 +42,15 @@ public class Endereco {
     @Column(name = "estado")
     private String estado;
 
-    public void setId(){
-        Random random = new Random();
-        this.id = Math.abs(random.nextInt());
+    public Endereco() {
+    }
+
+    public Endereco(EnderecoForm form) {
+        this.usuario = new Usuario(form.getIdUsuario());
+        this.rua = form.getRua();
+        this.numero = form.getNumero();
+        this.bairro = form.getBairro();
+        this.cidade = form.getCidade();
+        this.estado = form.getEstado();
     }
 }

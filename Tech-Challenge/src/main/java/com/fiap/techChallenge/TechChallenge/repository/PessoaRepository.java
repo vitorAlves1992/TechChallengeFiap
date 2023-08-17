@@ -23,7 +23,7 @@ public class PessoaRepository {
         return pessoa;
     }
 
-    public List<Pessoa> listarPessoasUsuario(int idUsuario){
+    public List<Pessoa> listarPessoasUsuario(Long idUsuario){
 
         Optional<List<Pessoa>> pessoasUsuario = Optional.of(
                 pessoas.stream()
@@ -36,14 +36,14 @@ public class PessoaRepository {
         return pessoasUsuario.get();
     }
 
-    public void deletarPessoa(int idPessoa) {
+    public void deletarPessoa(Long idPessoa) {
         if(!pessoas.removeIf(pessoa -> pessoa.getId().equals(idPessoa)))
             throw new RuntimeException("Não Existe Pessoa para ser deletada.");
     }
 
-    public Pessoa atualizar(Pessoa pessoa, String id) {
+    public Pessoa atualizar(Pessoa pessoa, Long id) {
         Optional<Pessoa> pessoaEncontrada = pessoas.stream()
-                .filter(pessoaLista -> pessoaLista.getId().equals(Integer.parseInt(id)))
+                .filter(pessoaLista -> pessoaLista.getId().equals(id))
                 .findFirst();
 
         if (pessoaEncontrada.isPresent()) {
@@ -58,7 +58,7 @@ public class PessoaRepository {
         }
     }
 
-    public Pessoa listar(int id) {
+    public Pessoa listar(Long id) {
         Optional<Pessoa> pessoaEncontrada = pessoas.stream()
                 .filter(pessoaLista -> pessoaLista.getId().equals(id))
                 .findFirst();

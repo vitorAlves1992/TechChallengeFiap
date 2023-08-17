@@ -1,5 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
+import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,5 +47,16 @@ public class Pessoa {
     public void setId(){
         Random random = new Random();
         this.id = Math.abs(random.nextInt());
+    }
+
+    public Pessoa() {
+    }
+
+    public Pessoa(PessoaForm form) {
+        this.nome = form.getNome();
+        this.dataNascimento = form.getDataNascimento();
+        this.sexo = form.getSexo();
+        this.parentesco = form.getParentesco();
+        this.idUsuario = form.getIdUsuario();;
     }
 }
