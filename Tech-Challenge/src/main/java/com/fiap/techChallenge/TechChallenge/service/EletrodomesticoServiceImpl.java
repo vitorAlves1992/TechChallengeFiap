@@ -1,17 +1,15 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoResultDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Eletrodomestico;
 import com.fiap.techChallenge.TechChallenge.domain.Usuario;
 import com.fiap.techChallenge.TechChallenge.repository.IEletrodomesticoRepository;
-import com.googlecode.jmapper.JMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EletrodomesticoServiceImpl implements EletrodomesticoService {
@@ -19,7 +17,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     private IEletrodomesticoRepository eletrodomesticoRepository;
 
     @Override
-    public EletrodomesticoResultDTO salvar(EletrodomesticoForm eletrodomesticoForm) {
+    public EletrodomesticoResultDTO salvar(EletrodomesticoDTO eletrodomesticoForm) {
         Eletrodomestico eletrodomestico = new Eletrodomestico(eletrodomesticoForm);
         Usuario usuario = new Usuario();
         usuario.setId(eletrodomesticoForm.getIdUsuario());
@@ -58,7 +56,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     }
 
     @Override
-    public EletrodomesticoResultDTO atualizar(EletrodomesticoForm eletrodomesticoForm, Long id) {
+    public EletrodomesticoResultDTO atualizar(EletrodomesticoDTO eletrodomesticoForm, Long id) {
         Eletrodomestico eletrodomestico = new Eletrodomestico(eletrodomesticoForm);
         Usuario usuario = new Usuario();
         usuario.setId(eletrodomesticoForm.getIdUsuario());

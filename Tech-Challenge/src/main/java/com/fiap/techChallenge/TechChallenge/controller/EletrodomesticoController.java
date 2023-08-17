@@ -1,7 +1,7 @@
 package com.fiap.techChallenge.TechChallenge.controller;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoResultDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoResultDTO;
 import com.fiap.techChallenge.TechChallenge.service.EletrodomesticoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,7 @@ public class EletrodomesticoController {
     private EletrodomesticoService eletrodomesticoService;
 
     @PostMapping
-    public ResponseEntity<EletrodomesticoResultDTO> inserir(@RequestBody @Valid EletrodomesticoForm eletrodomesticoForm) {
+    public ResponseEntity<EletrodomesticoResultDTO> inserir(@RequestBody @Valid EletrodomesticoDTO eletrodomesticoForm) {
         return ResponseEntity.status(HttpStatus.CREATED).body(eletrodomesticoService.salvar(eletrodomesticoForm));
     }
     @GetMapping(path = "/usuario/{id}")
@@ -36,7 +36,7 @@ public class EletrodomesticoController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<EletrodomesticoResultDTO> atualizar(@RequestBody @Valid EletrodomesticoForm eletrodomesticoForm, @PathVariable Long id) {
+    public ResponseEntity<EletrodomesticoResultDTO> atualizar(@RequestBody @Valid EletrodomesticoDTO eletrodomesticoForm, @PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(eletrodomesticoService.atualizar(eletrodomesticoForm, id));
     }
 

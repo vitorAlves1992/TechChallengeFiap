@@ -1,11 +1,11 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.EletrodomesticoForm;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Random;
+
 @Getter@Setter
 @Entity
 @Table(name = "eletrodomestico")
@@ -30,7 +30,7 @@ public class Eletrodomestico {
     public Eletrodomestico() {
     }
 
-    public Eletrodomestico(EletrodomesticoForm form) {
+    public Eletrodomestico(EletrodomesticoDTO form) {
         this.nome = form.getNome();
         this.modelo = form.getModelo();
         this.potencia = form.getPotencia();

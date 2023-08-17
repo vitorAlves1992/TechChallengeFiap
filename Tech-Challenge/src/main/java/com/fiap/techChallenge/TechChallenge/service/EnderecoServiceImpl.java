@@ -1,7 +1,7 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.EnderecoForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.EnderecoResultDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EnderecoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EnderecoResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Endereco;
 import com.fiap.techChallenge.TechChallenge.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class EnderecoServiceImpl implements EnderecoService {
     private EnderecoRepository enderecoRepository;
 
     @Override
-    public EnderecoResultDTO salvar(EnderecoForm enderecoForm) {
+    public EnderecoResultDTO salvar(EnderecoDTO enderecoForm) {
         try {
             return new EnderecoResultDTO(enderecoRepository.salvar(new Endereco(enderecoForm)));
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public EnderecoResultDTO atualizar(EnderecoForm enderecoForm, Long id) {
+    public EnderecoResultDTO atualizar(EnderecoDTO enderecoForm, Long id) {
 
         Endereco endereco = new Endereco(enderecoForm);
 

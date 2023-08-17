@@ -1,4 +1,4 @@
-package com.fiap.techChallenge.TechChallenge.controller.form;
+package com.fiap.techChallenge.TechChallenge.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import javax.validation.constraints.Positive;
 
 @Getter
 @Setter
-public class EnderecoForm {
+public class EnderecoDTO {
 
     @JsonProperty
     @NotBlank(message = "Rua obrigatoria")

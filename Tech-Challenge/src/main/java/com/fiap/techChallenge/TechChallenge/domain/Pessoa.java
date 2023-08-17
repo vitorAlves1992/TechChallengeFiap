@@ -1,7 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
-import lombok.Generated;
+import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaDTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -52,7 +51,7 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(PessoaForm form) {
+    public Pessoa(PessoaDTO form) {
         this.nome = form.getNome();
         this.dataNascimento = form.getDataNascimento();
         this.sexo = form.getSexo();

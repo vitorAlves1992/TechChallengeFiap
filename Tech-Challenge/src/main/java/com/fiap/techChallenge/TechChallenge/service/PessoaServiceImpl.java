@@ -1,7 +1,7 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import com.fiap.techChallenge.TechChallenge.repository.PessoaRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ public class PessoaServiceImpl implements PessoaService {
 
 
     @Override
-    public PessoaResultDTO salvar(PessoaForm pessoaForm) {
+    public PessoaResultDTO salvar(PessoaDTO pessoaForm) {
         try {
             return new PessoaResultDTO(pessoaRepository.salvar(new Pessoa(pessoaForm)));
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public PessoaResultDTO atualizar(PessoaForm pessoaForm, Long id) {
+    public PessoaResultDTO atualizar(PessoaDTO pessoaForm, Long id) {
         Pessoa pessoa = new Pessoa(pessoaForm);
         Optional<Pessoa> pessoaAtualizada = Optional.ofNullable(pessoaRepository.atualizar(pessoa, id));
 

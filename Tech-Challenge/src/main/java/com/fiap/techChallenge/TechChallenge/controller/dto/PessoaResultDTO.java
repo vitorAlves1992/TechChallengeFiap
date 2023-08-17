@@ -1,4 +1,4 @@
-package com.fiap.techChallenge.TechChallenge.controller.form;
+package com.fiap.techChallenge.TechChallenge.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;

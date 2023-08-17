@@ -1,7 +1,7 @@
 package com.fiap.techChallenge.TechChallenge.controller;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaResultDTO;
 import com.fiap.techChallenge.TechChallenge.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,12 +29,12 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @PostMapping
-    public ResponseEntity<PessoaResultDTO> inserir(@RequestBody @Valid PessoaForm pessoaForm) {
+    public ResponseEntity<PessoaResultDTO> inserir(@RequestBody @Valid PessoaDTO pessoaForm) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.salvar(pessoaForm));
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<PessoaResultDTO> atualizar(@RequestBody @Valid PessoaForm pessoaForm, @PathVariable @Positive Long id) {
+    public ResponseEntity<PessoaResultDTO> atualizar(@RequestBody @Valid PessoaDTO pessoaForm, @PathVariable @Positive Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.atualizar(pessoaForm, id));
     }
 
