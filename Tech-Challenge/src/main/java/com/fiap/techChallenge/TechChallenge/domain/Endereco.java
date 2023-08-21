@@ -12,23 +12,25 @@ import java.util.List;
 
 @Getter
 @Setter
-@Component
 @EqualsAndHashCode(exclude = {"id"})
 @Entity
 @Table(name = "endereco")
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "endereco_sequence")
+    @SequenceGenerator(name = "endereco_sequence", sequenceName = "end_seq", initialValue = 8)
+    private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
     @OneToMany(mappedBy = "endereco",fetch = FetchType.LAZY)
     private List<Pessoa> pessoas;
+
     @OneToMany(mappedBy = "endereco",fetch = FetchType.LAZY)
     private List<Eletrodomestico> eletrodomesticos;
-
 
     @Column(name = "rua")
     private String rua;
