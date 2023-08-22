@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ParenteService {
 
-    List<ParenteResultDTO> getAll();
+    List<ParenteResultDTO> getByPessoaId(Long id);
 
     ParenteResultDTO getById(Long id);
 

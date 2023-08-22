@@ -4,12 +4,12 @@ import com.fiap.techChallenge.TechChallenge.controller.dto.ParenteDTO;
 import com.fiap.techChallenge.TechChallenge.controller.dto.ParenteResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Parente;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
+import com.fiap.techChallenge.TechChallenge.repository.IPessoaRepository;
 import com.fiap.techChallenge.TechChallenge.repository.ParenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,12 +18,12 @@ public class ParenteServiceImpl implements ParenteService {
 
     @Autowired
     private ParenteRepository repository;
-
-    private Collection<Pessoa> pessoas;
+    @Autowired
+    private IPessoaRepository pessoaRepository;
 
     @Override
-    public List<ParenteResultDTO> getAll() {
-        return repository.findAll()
+    public List<ParenteResultDTO> getByPessoaId(Long id) {
+        return repository.findByPessoaId(id)
                 .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
@@ -63,10 +63,10 @@ public class ParenteServiceImpl implements ParenteService {
 
     private Parente toEntity(ParenteDTO dto) {
         Parente parente = new Parente();
-        Pessoa pessoa = pessoas.stream().filter(e -> e.getId().equals(dto.getPessoaId())).findFirst()
+        Pessoa pessoa = pessoaRepository.findById(dto.getPessoaId())
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa com o ID " + dto.getPessoaId() + " não encontrada."));
         parente.setPessoa(pessoa);
-        Pessoa pessoaRelacionada = pessoas.stream().filter(e -> e.getId().equals(dto.getPessoaRelacionadaId())).findFirst()
+        Pessoa pessoaRelacionada = pessoaRepository.findById(dto.getPessoaRelacionadaId())
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa relacionada com o ID " + dto.getPessoaRelacionadaId() + " não encontrada."));
         parente.setPessoaRelacionada(pessoaRelacionada);
         parente.setParentesco(dto.getParentesco());
