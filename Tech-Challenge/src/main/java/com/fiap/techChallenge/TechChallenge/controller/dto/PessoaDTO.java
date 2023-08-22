@@ -13,7 +13,12 @@ public class PessoaDTO {
     @JsonProperty
     @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
     @NotNull
-    private Integer idUsuario;
+    private Long idUsuario;
+
+    @JsonProperty
+    @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
+    @NotNull
+    private Long idEndereco;
 
     @JsonProperty
     @NotBlank(message = "Nome obrigatorio")

@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-
+import java.util.Optional;
 
 @Getter@Setter
 public class PessoaResultDTO {
     @JsonProperty
-    private Integer idUsuario;
-    @JsonProperty
-    private Integer id;
+    private Long id;
     @JsonProperty
     private String nome;
     @JsonProperty
@@ -21,17 +19,18 @@ public class PessoaResultDTO {
     @JsonProperty
     private String sexo;
     @JsonProperty
-    private String parentesco;
-
+    private Long idUsuario;
+    @JsonProperty
+    private EnderecoResultDTO endereco;
     public PessoaResultDTO() {
     }
 
     public PessoaResultDTO(Pessoa pessoa) {
-        this.idUsuario = pessoa.getIdUsuario();
         this.id = pessoa.getId();
         this.nome = pessoa.getNome();
         this.dataNascimento = pessoa.getDataNascimento();
         this.sexo = pessoa.getSexo();
-        this.parentesco = pessoa.getParentesco();
+        this.idUsuario = pessoa.getUsuario().getId();
+        this.endereco = new EnderecoResultDTO(pessoa.getEndereco());
     }
 }
