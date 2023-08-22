@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Table(name = "eletrodomestico")
 public class Eletrodomestico {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "eletrodomestico_sequence")
+    @SequenceGenerator(name = "eletrodomestico_sequence", sequenceName = "elet_seq", initialValue = 8)
     private Long id ;
     @Column(name = "nome")
     private String nome;
@@ -23,6 +24,7 @@ public class Eletrodomestico {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
