@@ -33,10 +33,4 @@ public class PessoaDTO {
     @JsonProperty
     @NotNull(message = "Sexo obrigatorio")
     private String sexo;
-
-    @JsonProperty
-    @NotNull(message = "Parentesco obrigatorio")
-    private String parentesco;
-
-
 }
