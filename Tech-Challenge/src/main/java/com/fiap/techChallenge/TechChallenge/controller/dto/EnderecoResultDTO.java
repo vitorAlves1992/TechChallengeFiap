@@ -10,7 +10,7 @@ import lombok.Setter;
 public class EnderecoResultDTO {
 
     @JsonProperty
-    private Integer id;
+    private Long id;
     @JsonProperty
     private String rua;
     @JsonProperty

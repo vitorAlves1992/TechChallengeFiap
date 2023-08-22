@@ -3,22 +3,26 @@ package com.fiap.techChallenge.TechChallenge.service;
 import com.fiap.techChallenge.TechChallenge.controller.dto.EnderecoDTO;
 import com.fiap.techChallenge.TechChallenge.controller.dto.EnderecoResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Endereco;
-import com.fiap.techChallenge.TechChallenge.repository.EnderecoRepository;
+import com.fiap.techChallenge.TechChallenge.domain.Usuario;
+import com.fiap.techChallenge.TechChallenge.repository.IEnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class EnderecoServiceImpl implements EnderecoService {
 
     @Autowired
-    private EnderecoRepository enderecoRepository;
+    private IEnderecoRepository enderecoRepository;
 
     @Override
     public EnderecoResultDTO salvar(EnderecoDTO enderecoForm) {
+        Endereco endereco = new Endereco(enderecoForm);
+        Usuario usuario = new Usuario();
+        usuario.setId(enderecoForm.getIdUsuario());
+        endereco.setUsuario(usuario);
         try {
-            return new EnderecoResultDTO(enderecoRepository.salvar(new Endereco(enderecoForm)));
+            return new EnderecoResultDTO(enderecoRepository.save(endereco));
         } catch (Exception e) {
             throw new IllegalArgumentException("Erro ao criar endereco: " + e.getMessage());
         }
@@ -26,30 +30,29 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     public EnderecoResultDTO listar(Long id) {
-        Endereco endereco = enderecoRepository.listar(id);
-        if(endereco == null)
-            throw new IllegalArgumentException("Erro ao buscar endereco");
-        else {
-            return new EnderecoResultDTO(endereco);
-        }
+       return new EnderecoResultDTO(enderecoRepository.findById(id).get());
     }
 
     @Override
     public void deletar(Long id) {
-        /*int idEndereco = Integer.parseInt(id);*/
-        enderecoRepository.deletar(id);
+        Endereco endereco = enderecoRepository.getReferenceById(id);
+        enderecoRepository.delete(endereco);
     }
 
     @Override
     public EnderecoResultDTO atualizar(EnderecoDTO enderecoForm, Long id) {
 
         Endereco endereco = new Endereco(enderecoForm);
+        Usuario usuario = new Usuario();
+        usuario.setId(enderecoForm.getIdUsuario());
+        endereco.setId(enderecoRepository.getReferenceById(id).getId());
+        endereco.setUsuario(usuario);
 
-        Optional<Endereco> enderecoAtualizado = Optional.ofNullable(enderecoRepository.atualizar(endereco, id));
+        try {
+            return new EnderecoResultDTO(enderecoRepository.save(endereco));
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao atualizar endereco: "+ e.getMessage());
+        }
 
-        if(enderecoAtualizado.isEmpty())
-            throw new IllegalArgumentException("Erro ao atualizar endereco");
-
-        return new EnderecoResultDTO(enderecoAtualizado.get());
     }
 }
