@@ -1,4 +1,4 @@
-package com.fiap.techChallenge.TechChallenge.controller.form;
+package com.fiap.techChallenge.TechChallenge.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -7,10 +7,11 @@ import lombok.Setter;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Getter
 @Setter
-public class EnderecoForm {
+public class EnderecoDTO {
 
     @JsonProperty
     @NotBlank(message = "Rua obrigatoria")
@@ -32,4 +33,9 @@ public class EnderecoForm {
     @JsonProperty
     @NotBlank(message = "Estado obrigatorio")
     private String estado;
+
+    @JsonProperty
+    @NotNull(message = "Id Usuario Obrigatorio")
+    @Positive
+    private Long idUsuario;
 }

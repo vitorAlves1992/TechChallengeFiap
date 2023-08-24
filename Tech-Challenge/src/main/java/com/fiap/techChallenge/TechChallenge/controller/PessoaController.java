@@ -1,7 +1,7 @@
 package com.fiap.techChallenge.TechChallenge.controller;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.PessoaResultForm;
+import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaResultDTO;
 import com.fiap.techChallenge.TechChallenge.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 /*@ApiResponses(value = {
@@ -28,27 +29,27 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @PostMapping
-    public ResponseEntity<PessoaResultForm> inserir(@RequestBody @Valid PessoaForm pessoaForm) {
+    public ResponseEntity<PessoaResultDTO> inserir(@RequestBody @Valid PessoaDTO pessoaForm) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.salvar(pessoaForm));
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<PessoaResultForm> atualizar(@RequestBody @Valid PessoaForm pessoaForm, @PathVariable String id) {
+    public ResponseEntity<PessoaResultDTO> atualizar(@RequestBody @Valid PessoaDTO pessoaForm, @PathVariable @Positive Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.atualizar(pessoaForm, id));
     }
 
     @GetMapping(path = "/usuario/{id}")
-    public ResponseEntity<List<PessoaResultForm>> listarPessoasDeUsuario(@PathVariable("id") String id) {
+    public ResponseEntity<List<PessoaResultDTO>> listarPessoasDeUsuario(@PathVariable("id") @Positive  Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listarPessoasUsuario(id));
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<PessoaResultForm> listar(@PathVariable("id") String id) {
+    public ResponseEntity<PessoaResultDTO> listar(@PathVariable("id") @Positive Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listar(id));
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable("id") String id) {
+    public ResponseEntity<Void> deletar(@PathVariable("id") @Positive Long id) {
         pessoaService.deletar(id);
         return ResponseEntity.noContent().build();
     }

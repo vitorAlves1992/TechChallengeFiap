@@ -1,4 +1,4 @@
-package com.fiap.techChallenge.TechChallenge.controller.form;
+package com.fiap.techChallenge.TechChallenge.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -9,11 +9,16 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Getter@Setter
-public class PessoaForm {
+public class PessoaDTO {
     @JsonProperty
     @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
     @NotNull
-    private Integer idUsuario;
+    private Long idUsuario;
+
+    @JsonProperty
+    @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
+    @NotNull
+    private Long idEndereco;
 
     @JsonProperty
     @NotBlank(message = "Nome obrigatorio")
@@ -29,10 +34,4 @@ public class PessoaForm {
     //@TODO validar a string sexo somente M ou N
     @NotNull(message = "Sexo obrigatorio")
     private String sexo;
-
-    @JsonProperty
-    @NotNull(message = "Parentesco obrigatorio")
-    private String parentesco;
-
-
 }

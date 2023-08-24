@@ -1,62 +1,58 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
-import com.fiap.techChallenge.TechChallenge.controller.form.EnderecoForm;
-import com.fiap.techChallenge.TechChallenge.controller.form.EnderecoResultForm;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EnderecoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EnderecoResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Endereco;
-import com.fiap.techChallenge.TechChallenge.repository.EnderecoRepository;
-import com.googlecode.jmapper.JMapper;
+import com.fiap.techChallenge.TechChallenge.domain.Usuario;
+import com.fiap.techChallenge.TechChallenge.repository.IEnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
-public class EnderecoServiceImpl implements EnderecoService{
+public class EnderecoServiceImpl implements EnderecoService {
 
     @Autowired
-    private EnderecoRepository enderecoRepository;
-
-    @Autowired
-    private JMapper<Endereco, EnderecoForm> enderecoMapper;
-
-    @Autowired
-    private JMapper<EnderecoResultForm, Endereco> enderecoResultFormMapper;
+    private IEnderecoRepository enderecoRepository;
 
     @Override
-    public EnderecoResultForm salvar(EnderecoForm enderecoForm) {
-        Endereco endereco = enderecoMapper.getDestination(enderecoForm);
-        Optional<Endereco> enderecoSalvo = Optional.ofNullable(enderecoRepository.salvar(endereco));
-        if(enderecoSalvo.isEmpty())
-            throw new IllegalArgumentException("Erro ao criar endereco");
-
-        return enderecoResultFormMapper.getDestination(enderecoSalvo.get());
-    }
-
-    @Override
-    public EnderecoResultForm listar(String id) {
-        Endereco endereco = enderecoRepository.listar(Integer.parseInt(id));
-        if(endereco == null)
-            throw new IllegalArgumentException("Erro ao buscar endereco");
-        else {
-            return enderecoResultFormMapper.getDestination(endereco);
+    public EnderecoResultDTO salvar(EnderecoDTO enderecoForm) {
+        Endereco endereco = new Endereco(enderecoForm);
+        Usuario usuario = new Usuario();
+        usuario.setId(enderecoForm.getIdUsuario());
+        endereco.setUsuario(usuario);
+        try {
+            return new EnderecoResultDTO(enderecoRepository.save(endereco));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Erro ao criar endereco: " + e.getMessage());
         }
     }
 
     @Override
-    public void deletar(String id) {
-        /*int idEndereco = Integer.parseInt(id);*/
-        enderecoRepository.deletar(Integer.parseInt(id));
+    public EnderecoResultDTO listar(Long id) {
+       return new EnderecoResultDTO(enderecoRepository.findById(id).get());
     }
 
     @Override
-    public EnderecoResultForm atualizar(EnderecoForm enderecoForm, String id) {
+    public void deletar(Long id) {
+        Endereco endereco = enderecoRepository.getReferenceById(id);
+        enderecoRepository.delete(endereco);
+    }
 
-        Endereco endereco = enderecoMapper.getDestination(enderecoForm);
-        Optional<Endereco> enderecoAtualizado = Optional.ofNullable(enderecoRepository.atualizar(endereco, id));
+    @Override
+    public EnderecoResultDTO atualizar(EnderecoDTO enderecoForm, Long id) {
 
-        if(enderecoAtualizado.isEmpty())
-            throw new IllegalArgumentException("Erro ao atualizar endereco");
+        Endereco endereco = new Endereco(enderecoForm);
+        Usuario usuario = new Usuario();
+        usuario.setId(enderecoForm.getIdUsuario());
+        endereco.setId(enderecoRepository.getReferenceById(id).getId());
+        endereco.setUsuario(usuario);
 
-        return enderecoResultFormMapper.getDestination(enderecoAtualizado.get());
+        try {
+            return new EnderecoResultDTO(enderecoRepository.save(endereco));
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao atualizar endereco: "+ e.getMessage());
+        }
+
     }
 }
