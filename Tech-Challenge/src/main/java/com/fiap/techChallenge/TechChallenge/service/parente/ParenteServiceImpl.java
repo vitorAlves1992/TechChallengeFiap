@@ -4,6 +4,7 @@ import com.fiap.techChallenge.TechChallenge.controller.dto.ParenteDTO;
 import com.fiap.techChallenge.TechChallenge.controller.dto.ParenteResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Parente;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
+import com.fiap.techChallenge.TechChallenge.domain.enums.ParentescoEnum;
 import com.fiap.techChallenge.TechChallenge.repository.IPessoaRepository;
 import com.fiap.techChallenge.TechChallenge.repository.ParenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class ParenteServiceImpl implements ParenteService {
         Pessoa pessoaRelacionada = pessoaRepository.findById(dto.getPessoaRelacionadaId())
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa relacionada com o ID " + dto.getPessoaRelacionadaId() + " não encontrada."));
         parente.setPessoaRelacionada(pessoaRelacionada);
-        parente.setParentesco(dto.getParentesco());
+        parente.setParentesco(ParentescoEnum.valueOf((dto.getParentesco())));
 
         return parente;
     }
@@ -79,7 +80,7 @@ public class ParenteServiceImpl implements ParenteService {
         dto.setId(entity.getId());
         dto.setPessoaId(Long.valueOf(entity.getPessoa().getId()));
         dto.setPessoaRelacionadaId(Long.valueOf(entity.getPessoaRelacionada().getId()));
-        dto.setParentesco(entity.getParentesco());
+        dto.setParentesco(entity.getParentesco().getDescricao());
         return dto;
     }
 }

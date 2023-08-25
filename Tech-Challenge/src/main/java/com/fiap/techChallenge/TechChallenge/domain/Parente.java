@@ -1,5 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
+import com.fiap.techChallenge.TechChallenge.domain.enums.ParentescoEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public class Parente {
     @JoinColumn(name = "pessoa_relacionada_id")
     private Pessoa pessoaRelacionada;
 
-    private String parentesco;
+    @Enumerated(EnumType.STRING)
+    private ParentescoEnum parentesco;
 
 }
