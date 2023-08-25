@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.fiap.techChallenge.TechChallenge.domain.Parente;
+import com.fiap.techChallenge.TechChallenge.domain.enums.ParentescoEnum;
+import com.fiap.techChallenge.TechChallenge.repository.IUsuarioRepository;
+import com.fiap.techChallenge.TechChallenge.repository.ParenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +30,13 @@ public class PessoaServiceImpl implements PessoaService {
     @Autowired
     private IEnderecoRepository enderecoRepository;
 
+    @Autowired
+    private ParenteRepository parenteRepository;
+
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
+
+    @Transactional
     @Override
     @Transactional
     public PessoaResultDTO salvar(PessoaDTO pessoaDto) {
@@ -33,6 +44,21 @@ public class PessoaServiceImpl implements PessoaService {
             Pessoa pessoa = new Pessoa(pessoaDto);
             Endereco endereco = enderecoRepository.getReferenceById(pessoaDto.getIdEndereco());
             pessoa.setEndereco(endereco);
+            Long idParentesco = pessoaDto.getIdParentesco();
+            Parente novoParente = new Parente();
+            novoParente.setPessoa(pessoa);
+
+            //inserir tratamento de exceção ao não encontrar parente aqui
+            novoParente.setParentesco(ParentescoEnum.fromLong(idParentesco).get());
+            novoParente.setPessoaRelacionada(usuarioRepository.findById(pessoaDto.getIdUsuario()).get().getPessoaUsuario());
+            parenteRepository.save(novoParente);
+
+
+            //fazer rebalanceamento de relacionamentos dessa pessoa
+            /*
+            - para cada pessoa desse usuário fazer o seguinte:
+             */
+
             return new PessoaResultDTO(pessoaRepository.save(pessoa));
         } catch (Exception e) {
             throw new IllegalArgumentException("Erro ao criar pessoa: " + e.getMessage());
@@ -89,4 +115,8 @@ public class PessoaServiceImpl implements PessoaService {
             throw new IllegalArgumentException("Erro ao atualizar pessoa: " + e.getMessage());
         }
     }
+
+
+
+
 }

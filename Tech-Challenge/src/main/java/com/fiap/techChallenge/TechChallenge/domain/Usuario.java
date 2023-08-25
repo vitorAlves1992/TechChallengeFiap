@@ -22,6 +22,8 @@ public class Usuario {
     private List<Pessoa> usuarios;
     @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY)
     private List<Eletrodomestico> eletrodomesticos;
+    @OneToOne(mappedBy = "usuarioPessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Pessoa pessoaUsuario;
 
     public Usuario() {
     }
