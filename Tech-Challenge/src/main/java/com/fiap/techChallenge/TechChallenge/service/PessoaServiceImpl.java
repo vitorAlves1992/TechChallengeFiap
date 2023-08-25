@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.fiap.techChallenge.TechChallenge.domain.Parente;
+import com.fiap.techChallenge.TechChallenge.domain.Usuario;
 import com.fiap.techChallenge.TechChallenge.domain.enums.ParentescoEnum;
 import com.fiap.techChallenge.TechChallenge.repository.IUsuarioRepository;
 import com.fiap.techChallenge.TechChallenge.repository.ParenteRepository;
@@ -45,19 +46,44 @@ public class PessoaServiceImpl implements PessoaService {
             Endereco endereco = enderecoRepository.getReferenceById(pessoaDto.getIdEndereco());
             pessoa.setEndereco(endereco);
             Long idParentesco = pessoaDto.getIdParentesco();
-            Parente novoParente = new Parente();
-            novoParente.setPessoa(pessoa);
-
-            //inserir tratamento de exceção ao não encontrar parente aqui
-            novoParente.setParentesco(ParentescoEnum.fromLong(idParentesco).get());
-            novoParente.setPessoaRelacionada(usuarioRepository.findById(pessoaDto.getIdUsuario()).get().getPessoaUsuario());
+            Usuario usuario = usuarioRepository.findById(pessoaDto.getIdUsuario()).get();
+            Pessoa pessoaUsuario = usuario.getPessoaUsuario();
+            Parente novoParente = parenteFactory(pessoa, idParentesco, pessoaUsuario);
             parenteRepository.save(novoParente);
-
 
             //fazer rebalanceamento de relacionamentos dessa pessoa
             /*
             - para cada pessoa desse usuário fazer o seguinte:
              */
+            switch (ParentescoEnum.fromLong(idParentesco).get()) {
+                case PAI:
+                case MAE:
+                    Parente filho = parenteFactory(pessoaUsuario, ParentescoEnum.FILHOS.getId(), pessoa);
+                    parenteRepository.save(filho);
+                    break;
+                case FILHOS:
+                    Parente pai = parenteFactory(pessoaUsuario, ParentescoEnum.PAI.getId(), pessoa);
+                    parenteRepository.save(pai);
+                    break;
+                case CONJUGE:
+                    Parente conjuge = parenteFactory(pessoaUsuario, ParentescoEnum.CONJUGE.getId(), pessoa);
+                    parenteRepository.save(conjuge);
+                    break;
+                case IRMAOS:
+                    Parente irmaos = parenteFactory(pessoaUsuario, ParentescoEnum.IRMAOS.getId(), pessoa);
+                    parenteRepository.save(irmaos);
+                    break;
+            }
+
+
+        /*    pessoaRepository.saveAndFlush(pessoa);
+
+            usuario.getUsuarios().stream().forEach(
+                    p -> {
+                        Parente relacionamentoBase = parenteRepository.findRelacionamentoBase(p.getId(), usuario.getId());
+                        System.out.println(relacionamentoBase.getParentesco().getDescricao());
+                    }
+            );*/
 
             return new PessoaResultDTO(pessoaRepository.save(pessoa));
         } catch (Exception e) {
@@ -117,6 +143,14 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
 
+    private Parente parenteFactory(Pessoa pessoa, Long idParentesco, Pessoa pessoaRelacionada){
+        Parente novoParente = new Parente();
+        novoParente.setPessoa(pessoa);
 
+        //inserir tratamento de exceção ao não encontrar parente aqui
+        novoParente.setParentesco(ParentescoEnum.fromLong(idParentesco).get());
+        novoParente.setPessoaRelacionada(pessoaRelacionada);
+        return novoParente;
+    }
 
 }

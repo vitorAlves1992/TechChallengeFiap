@@ -8,10 +8,9 @@ public enum ParentescoEnum {
     MAE(1L, "Mãe"),
     PAI(2L, "Pai"),
     CONJUGE(3L, "Conjuge"),
-    IRMAO(4L, "Irmão"),
-    IRMA(5L, "Irmã"),
-    FILHO(6L, "Filho"),
-    FILHA(7L, "Filha");
+    IRMAOS(4L, "Irmãos"),
+    FILHOS(5L, "Filhos");
+
 
     private Long id;
     private String descricao;
