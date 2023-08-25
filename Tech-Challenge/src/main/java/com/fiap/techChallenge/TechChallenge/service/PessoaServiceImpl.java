@@ -9,6 +9,7 @@ import com.fiap.techChallenge.TechChallenge.domain.Usuario;
 import com.fiap.techChallenge.TechChallenge.domain.enums.ParentescoEnum;
 import com.fiap.techChallenge.TechChallenge.repository.IUsuarioRepository;
 import com.fiap.techChallenge.TechChallenge.repository.ParenteRepository;
+import com.fiap.techChallenge.TechChallenge.service.parente.strategies.RebalanceStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class PessoaServiceImpl implements PessoaService {
     private IEnderecoRepository enderecoRepository;
 
     @Autowired
-    private ParenteRepository parenteRepository;
+    protected ParenteRepository parenteRepository;
 
     @Autowired
     private IUsuarioRepository usuarioRepository;
@@ -56,13 +57,12 @@ public class PessoaServiceImpl implements PessoaService {
             - para cada pessoa desse usuário fazer o seguinte:
              */
             switch (ParentescoEnum.fromLong(idParentesco).get()) {
-                case PAI:
-                case MAE:
+                case PAIS:
                     Parente filho = parenteFactory(pessoaUsuario, ParentescoEnum.FILHOS.getId(), pessoa);
                     parenteRepository.save(filho);
                     break;
                 case FILHOS:
-                    Parente pai = parenteFactory(pessoaUsuario, ParentescoEnum.PAI.getId(), pessoa);
+                    Parente pai = parenteFactory(pessoaUsuario, ParentescoEnum.PAIS.getId(), pessoa);
                     parenteRepository.save(pai);
                     break;
                 case CONJUGE:
@@ -76,14 +76,24 @@ public class PessoaServiceImpl implements PessoaService {
             }
 
 
-        /*    pessoaRepository.saveAndFlush(pessoa);
+            pessoaRepository.saveAndFlush(pessoa);
 
+            List<Parente> relacionamentosDerivados = new ArrayList<>();
             usuario.getUsuarios().stream().forEach(
                     p -> {
                         Parente relacionamentoBase = parenteRepository.findRelacionamentoBase(p.getId(), usuario.getId());
                         System.out.println(relacionamentoBase.getParentesco().getDescricao());
+
+                        switch (relacionamentoBase.getParentesco()){
+                            case PAIS:
+                                RebalanceStrategy strategy = new PaiStrategy(parenteRepository);
+                                 relacionamentosDerivados.addAll(strategy.rebalance(pessoa,usuario));
+                                 break;
+                        }
                     }
-            );*/
+            );
+
+            relacionamentosDerivados.stream().forEach(p -> System.out.println(p.getPessoa().getNome() + " " + p.getParentesco().getDescricao()));
 
             return new PessoaResultDTO(pessoaRepository.save(pessoa));
         } catch (Exception e) {

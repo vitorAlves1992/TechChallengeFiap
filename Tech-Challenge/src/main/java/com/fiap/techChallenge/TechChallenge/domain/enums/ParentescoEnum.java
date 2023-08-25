@@ -5,11 +5,10 @@ import java.util.Optional;
 
 public enum ParentescoEnum {
 
-    MAE(1L, "Mãe"),
-    PAI(2L, "Pai"),
-    CONJUGE(3L, "Conjuge"),
-    IRMAOS(4L, "Irmãos"),
-    FILHOS(5L, "Filhos");
+    PAIS(1L, "Mãe"),
+    CONJUGE(2L, "Conjuge"),
+    IRMAOS(3L, "Irmãos"),
+    FILHOS(4L, "Filhos");
 
 
     private Long id;
