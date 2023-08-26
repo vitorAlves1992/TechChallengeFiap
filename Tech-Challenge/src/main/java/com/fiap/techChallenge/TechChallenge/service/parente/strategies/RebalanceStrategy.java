@@ -6,9 +6,10 @@ import com.fiap.techChallenge.TechChallenge.domain.Usuario;
 
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface RebalanceStrategy {
 
-    List<Parente> rebalance(Pessoa pessoa, Usuario u);
+    Set<Parente> rebalance(Pessoa pessoa, Usuario u);
 }

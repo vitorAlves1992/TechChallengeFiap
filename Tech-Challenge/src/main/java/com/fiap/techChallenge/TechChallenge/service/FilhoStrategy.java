@@ -6,27 +6,16 @@ import com.fiap.techChallenge.TechChallenge.domain.Usuario;
 import com.fiap.techChallenge.TechChallenge.domain.enums.ParentescoEnum;
 import com.fiap.techChallenge.TechChallenge.repository.ParenteRepository;
 import com.fiap.techChallenge.TechChallenge.service.parente.strategies.RebalanceStrategy;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+public class FilhoStrategy implements RebalanceStrategy {
 
-@Service
-public class PaiStrategy implements RebalanceStrategy {
-
-
-    protected   ParenteRepository repository;
-
-    PaiStrategy(ParenteRepository repository) {
+    private ParenteRepository repository;
+    public FilhoStrategy(ParenteRepository repository){
         this.repository = repository;
     }
-
-
-
-
 
     @Override
     public Set<Parente> rebalance(Pessoa pessoa, Usuario u) {
@@ -38,7 +27,19 @@ public class PaiStrategy implements RebalanceStrategy {
                 Parente novoParentesco = new Parente();
                 Parente novoParentescoReverso = new Parente();
                 switch (relacionamentoBase.getParentesco()){
-                    case IRMAOS:
+                    case FILHOS:
+                        novoParentesco.setParentesco(ParentescoEnum.IRMAOS);
+                        novoParentesco.setPessoa(pessoaParente);
+                        novoParentesco.setPessoaRelacionada(pessoa);
+                        parentescosDerivados.add(novoParentesco);
+
+                        novoParentescoReverso.setParentesco(ParentescoEnum.IRMAOS);
+                        novoParentescoReverso.setPessoa(pessoa);
+                        novoParentescoReverso.setPessoaRelacionada(pessoaParente);
+                        parentescosDerivados.add(novoParentescoReverso);
+                        break;
+
+                    case CONJUGE:
                         novoParentesco.setParentesco(ParentescoEnum.PAIS);
                         novoParentesco.setPessoa(pessoaParente);
                         novoParentesco.setPessoaRelacionada(pessoa);
@@ -48,18 +49,7 @@ public class PaiStrategy implements RebalanceStrategy {
                         novoParentescoReverso.setPessoa(pessoa);
                         novoParentescoReverso.setPessoaRelacionada(pessoaParente);
                         parentescosDerivados.add(novoParentescoReverso);
-                        break;
 
-                    case PAIS:
-                        novoParentesco.setParentesco(ParentescoEnum.CONJUGE);
-                        novoParentesco.setPessoa(pessoaParente);
-                        novoParentesco.setPessoaRelacionada(pessoa);
-                        parentescosDerivados.add(novoParentesco);
-
-                        novoParentescoReverso.setParentesco(ParentescoEnum.CONJUGE);
-                        novoParentescoReverso.setPessoa(pessoa);
-                        novoParentescoReverso.setPessoaRelacionada(pessoaParente);
-                        parentescosDerivados.add(novoParentescoReverso);
                         break;
                 }}
         };
@@ -69,4 +59,5 @@ public class PaiStrategy implements RebalanceStrategy {
 
         return parentescosDerivados;
     }
+
 }
