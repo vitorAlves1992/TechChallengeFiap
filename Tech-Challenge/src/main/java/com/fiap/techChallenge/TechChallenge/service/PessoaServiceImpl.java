@@ -27,8 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class PessoaServiceImpl implements PessoaService {
 
-    //@TODO trazer todas as excecoes do repository para dentro service
-
     @Autowired
     private IPessoaRepository pessoaRepository;
     @Autowired
@@ -42,6 +40,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Transactional
     @Override
+    @Transactional
     public PessoaResultDTO salvar(PessoaDTO pessoaDto) {
         try {
             Pessoa pessoa = new Pessoa(pessoaDto);

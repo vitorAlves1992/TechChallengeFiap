@@ -31,7 +31,6 @@ public class PessoaDTO {
     private LocalDate dataNascimento;
 
     @JsonProperty
-    //@TODO validar a string sexo somente M ou N
     @NotNull(message = "Sexo obrigatorio")
     private String sexo;
 
