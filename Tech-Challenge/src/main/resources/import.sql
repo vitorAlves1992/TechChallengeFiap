@@ -1,4 +1,5 @@
 INSERT INTO usuario (id) values (1);
+
 INSERT INTO usuario (id) values (2);
 INSERT INTO usuario (id) values (3);
 INSERT INTO usuario (id) values (4);
@@ -11,6 +12,12 @@ INSERT INTO endereco (id, bairro, cidade, estado, numero, rua, usuario_id) VALUE
 INSERT INTO endereco (id, bairro, cidade, estado, numero, rua, usuario_id) VALUES  (5, 'bairro e', 'cidade e', 'RS', '654', 'rua e', 5);
 INSERT INTO endereco (id, bairro, cidade, estado, numero, rua, usuario_id) VALUES  (6, 'bairro f', 'cidade f', 'RS', '156', 'rua f', 4);
 INSERT INTO endereco (id, bairro, cidade, estado, numero, rua, usuario_id) VALUES  (7, 'bairro g', 'cidade g', 'RS', '832', 'rua g', 5);
+
+INSERT INTO pessoa (data_nascimento, nome, sexo, endereco_id,  usuario_pessoa_id) VALUES ('2021-06-16', 'Daniel', 'masculino', 1, 1);
+INSERT INTO pessoa (data_nascimento, nome, sexo, endereco_id,  usuario_pessoa_id) VALUES ('2021-06-16', 'Felipe', 'masculino', 2, 2);
+INSERT INTO pessoa (data_nascimento, nome, sexo, endereco_id,  usuario_pessoa_id) VALUES ('2021-06-16', 'Kassi', 'feminino', 3, 3);
+INSERT INTO pessoa (data_nascimento, nome, sexo, endereco_id,  usuario_pessoa_id) VALUES ('2021-06-16', 'Leandro', 'masculino', 4, 4);
+INSERT INTO pessoa (data_nascimento, nome, sexo, endereco_id,  usuario_pessoa_id) VALUES ( '2021-06-16', 'Vitor', 'masculino', 5, 5);
 
 
 INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (1, 'Modelo a', 'nome a', 200.00, 1, 1);

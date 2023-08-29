@@ -36,8 +36,5 @@ public class PessoaDTO {
     private String sexo;
 
     @JsonProperty
-    @NotNull(message = "Parentesco obrigatorio")
-    private String parentesco;
-
-
+    private Long idParentesco;
 }

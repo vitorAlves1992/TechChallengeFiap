@@ -3,16 +3,7 @@ package com.fiap.techChallenge.TechChallenge.domain;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.stereotype.Component;
 
@@ -22,7 +13,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Component
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {
@@ -40,9 +30,14 @@ public class Pessoa {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @OneToOne
+    private Usuario usuarioPessoa;
+
     @OneToMany(mappedBy = "pessoa")
     private List<Parente> parentes;
 

@@ -2,28 +2,25 @@ package com.fiap.techChallenge.TechChallenge.controller;
 
 import com.fiap.techChallenge.TechChallenge.controller.dto.ParenteDTO;
 import com.fiap.techChallenge.TechChallenge.controller.dto.ParenteResultDTO;
-import com.fiap.techChallenge.TechChallenge.domain.Parente;
 import com.fiap.techChallenge.TechChallenge.service.parente.ParenteService;
-import com.fiap.techChallenge.TechChallenge.service.parente.ParenteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/parente")
 public class ParenteController {
 
     @Autowired
     private ParenteService parenteService;
 
-    @GetMapping
-    public ResponseEntity<List<ParenteResultDTO>> getAll() {
-        return ResponseEntity.ok(parenteService.getAll());
+    @GetMapping("/pessoa/{id}")
+    public ResponseEntity<List<ParenteResultDTO>> getByPessoaId(@PathVariable Long id) {
+        return ResponseEntity.ok(parenteService.getByPessoaId(id));
     }
 
     @GetMapping("/{id}")
