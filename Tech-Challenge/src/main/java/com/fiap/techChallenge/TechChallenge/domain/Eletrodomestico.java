@@ -1,6 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
-import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoDTO;
 import lombok.Getter;
 import lombok.Setter;
 

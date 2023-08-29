@@ -1,7 +1,8 @@
 package com.fiap.techChallenge.TechChallenge.controller;
 
-import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
-import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoResultDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoConsumoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoResultDTO;
 import com.fiap.techChallenge.TechChallenge.service.EletrodomesticoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,5 +50,19 @@ public class EletrodomesticoController {
     public ResponseEntity<Void> deletar(@PathVariable("id") @Positive Long id) {
         eletrodomesticoService.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(path = "/consumo/{id}/{tempo_uso}")
+    public ResponseEntity<EletrodomesticoConsumoDTO> calculoConsumo(@PathVariable("id") @Positive Long idEletrodomestico,
+                                                                    @PathVariable("tempo_uso") @Positive Double tempoUso) {
+        return ResponseEntity.status(HttpStatus.OK).body(eletrodomesticoService.calculoConsumo(idEletrodomestico, tempoUso));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EletrodomesticoResultDTO>> buscaAvancada(@RequestParam(required = false) String nome,
+                                                                  @RequestParam(required = false) String modelo,
+                                                                  @RequestParam(required = false) Double potencia) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(eletrodomesticoService.buscaAvancada(nome, modelo, potencia));
     }
 }
