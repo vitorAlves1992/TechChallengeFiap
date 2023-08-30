@@ -10,6 +10,9 @@ PESSOA: (Felipe)
 ELETRODOMESTICO: (Kassi)
 * Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (Ainda nao esta funcionando, falta o parse do resultado)
 * Isolar um Eletrodomestico e criar uma tabela intermediaria endereco_eletrodomestico
+- Eletrodomestico tem de ter vinculo com o Endereco
+- Endereco tem uma lista de eletrodomestico
+-
 * Criar API de calculaConsumo(tempo, idEletrodomestico) OK
 
 * Atualizar documentação (Daniel)

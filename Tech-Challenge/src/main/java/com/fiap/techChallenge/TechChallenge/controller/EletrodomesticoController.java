@@ -31,6 +31,9 @@ public class EletrodomesticoController {
     public ResponseEntity<EletrodomesticoResultDTO> inserir(@RequestBody @Valid EletrodomesticoDTO eletrodomesticoForm) {
         return ResponseEntity.status(HttpStatus.CREATED).body(eletrodomesticoService.salvar(eletrodomesticoForm));
     }
+    //TODO remover controller de listar eletrodomestico por usuario
+    //TODO Adicionar adicionar um get pelo id do eletrodomestico retornando uma lista de pessoas que
+    //TODO possuem aquele eletrodomestico (vinculo atraves do endereco)
     @GetMapping(path = "/usuario/{id}")
     public ResponseEntity<List<EletrodomesticoResultDTO>> listarEletrodomesticosDeUsuario(@PathVariable("id") @Positive Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(eletrodomesticoService.listarEletrodomesticosDeUsuario(id));

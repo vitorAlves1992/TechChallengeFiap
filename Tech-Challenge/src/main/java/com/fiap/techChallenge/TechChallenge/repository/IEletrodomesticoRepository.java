@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface IEletrodomesticoRepository extends JpaRepository<Eletrodomestico, Long>,
-        JpaSpecificationExecutor<EletrodomesticoResultDTO> {
+        JpaSpecificationExecutor<Eletrodomestico> {
 
     //TODO BUSCAR OS ELETRODOMESTICOS DO USUARIO ATRAVES DE SEU ENDERECO
     @Query(value = "select e from Eletrodomestico e where e.usuario.id = :idUsuario ")

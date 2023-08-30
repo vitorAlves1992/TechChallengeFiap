@@ -73,14 +73,18 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     @Override
     public List<EletrodomesticoResultDTO> buscaAvancada(String nome, String modelo, Double potencia) {
 
-        List<EletrodomesticoResultDTO> eletrodomesticosEncontrados = eletrodomesticoRepository.findAll(Specification
+        List<Eletrodomestico> eletrodomesticosEncontrados = eletrodomesticoRepository.findAll(Specification
                 .where(
                         SpecificationEletrodomestico.nome(nome))
                 .or(SpecificationEletrodomestico.modelo(modelo))
                 .or(SpecificationEletrodomestico.potencia(potencia))
         );
 
-        return eletrodomesticosEncontrados;
+        List<EletrodomesticoResultDTO> eletrodomesticoResultForm = new ArrayList<>();
+        for (Eletrodomestico eletrodomestico : eletrodomesticosEncontrados) {
+            eletrodomesticoResultForm.add(new EletrodomesticoResultDTO(eletrodomestico));
+        }
+        return eletrodomesticoResultForm;
     }
 
 
