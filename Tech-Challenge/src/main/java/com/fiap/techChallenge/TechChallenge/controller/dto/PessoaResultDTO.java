@@ -19,8 +19,6 @@ public class PessoaResultDTO {
     @JsonProperty
     private String sexo;
     @JsonProperty
-    private String parentesco;
-    @JsonProperty
     private Long idUsuario;
     @JsonProperty
     private EnderecoResultDTO endereco;
@@ -32,7 +30,6 @@ public class PessoaResultDTO {
         this.nome = pessoa.getNome();
         this.dataNascimento = pessoa.getDataNascimento();
         this.sexo = pessoa.getSexo();
-        this.parentesco = pessoa.getParenstesco();
         this.idUsuario = pessoa.getUsuario().getId();
         this.endereco = new EnderecoResultDTO(pessoa.getEndereco());
     }

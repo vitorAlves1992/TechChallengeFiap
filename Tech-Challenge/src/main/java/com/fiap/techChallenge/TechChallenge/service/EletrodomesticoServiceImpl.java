@@ -1,13 +1,11 @@
 package com.fiap.techChallenge.TechChallenge.service;
 
-import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoConsumoDTO;
-import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoDTO;
-import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoResultDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoResultDTO;
 import com.fiap.techChallenge.TechChallenge.domain.Eletrodomestico;
+import com.fiap.techChallenge.TechChallenge.domain.Usuario;
 import com.fiap.techChallenge.TechChallenge.repository.IEletrodomesticoRepository;
-import com.fiap.techChallenge.TechChallenge.specification.SpecificationEletrodomestico;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +19,10 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     @Override
     public EletrodomesticoResultDTO salvar(EletrodomesticoDTO eletrodomesticoForm) {
         Eletrodomestico eletrodomestico = new Eletrodomestico(eletrodomesticoForm);
+        Usuario usuario = new Usuario();
+        usuario.setId(eletrodomesticoForm.getIdUsuario());
+        eletrodomestico.setUsuario(usuario);
+
         try {
             return new EletrodomesticoResultDTO(eletrodomesticoRepository.save(eletrodomestico));
         } catch (Exception e) {
@@ -56,6 +58,10 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     @Override
     public EletrodomesticoResultDTO atualizar(EletrodomesticoDTO eletrodomesticoForm, Long id) {
         Eletrodomestico eletrodomestico = new Eletrodomestico(eletrodomesticoForm);
+        Usuario usuario = new Usuario();
+        usuario.setId(eletrodomesticoForm.getIdUsuario());
+        eletrodomestico.setId(eletrodomesticoRepository.getReferenceById(id).getId());
+        eletrodomestico.setUsuario(usuario);
 
         try {
             return new EletrodomesticoResultDTO(eletrodomesticoRepository.save(eletrodomestico));
@@ -63,25 +69,5 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
             throw new RuntimeException("Erro ao atualizar eletrodomestico: "+ e.getMessage());
         }
     }
-
-    @Override
-    public EletrodomesticoConsumoDTO calculoConsumo(Long idEletrodomestico, Double tempoUso) {
-        Eletrodomestico eletrodomestico = eletrodomesticoRepository.findById(idEletrodomestico).get();
-        return new EletrodomesticoConsumoDTO(eletrodomestico.getPotencia().doubleValue() * tempoUso);
-    }
-
-    @Override
-    public List<EletrodomesticoResultDTO> buscaAvancada(String nome, String modelo, Double potencia) {
-
-        List<EletrodomesticoResultDTO> eletrodomesticosEncontrados = eletrodomesticoRepository.findAll(Specification
-                .where(
-                        SpecificationEletrodomestico.nome(nome))
-                .or(SpecificationEletrodomestico.modelo(modelo))
-                .or(SpecificationEletrodomestico.potencia(potencia))
-        );
-
-        return eletrodomesticosEncontrados;
-    }
-
 
 }

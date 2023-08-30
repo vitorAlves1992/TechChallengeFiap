@@ -1,4 +1,4 @@
-package com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico;
+package com.fiap.techChallenge.TechChallenge.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
