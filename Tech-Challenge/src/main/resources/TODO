@@ -8,8 +8,8 @@ PESSOA: (Felipe)
 * Trazer a lista de parentes na pessoa
 
 ELETRODOMESTICO: (Kassi)
-* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (Ainda nao esta funcionando, falta o parse do resultado)
 * Isolar um Eletrodomestico e criar uma tabela intermediaria endereco_eletrodomestico
-* Criar API de calculaConsumo(tempo, idEletrodomestico)
+* Criar API de calculaConsumo(tempo, idEletrodomestico) OK
 
 * Atualizar documentação (Daniel)
