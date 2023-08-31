@@ -54,4 +54,8 @@ public class Endereco {
         this.cidade = form.getCidade();
         this.estado = form.getEstado();
     }
+
+    public Endereco(Long id) {
+        this.id = id;
+    }
 }
