@@ -1,9 +1,9 @@
-INSERT INTO usuario (id) values (1);
+INSERT INTO usuario (id, email) VALUES (1, 'su8217@uorak.com');
+INSERT INTO usuario (id, email) VALUES (2, 'su8218@uorak.com');
+INSERT INTO usuario (id, email) VALUES (3, 'su8211@uorak.com');
+INSERT INTO usuario (id, email) VALUES (4, 'su8212@uorak.com');
+INSERT INTO usuario (id, email) VALUES (5, 'su8213@uorak.com');
 
-INSERT INTO usuario (id) values (2);
-INSERT INTO usuario (id) values (3);
-INSERT INTO usuario (id) values (4);
-INSERT INTO usuario (id) values (5);
 
 INSERT INTO endereco (id, bairro, cidade, estado, numero, rua, usuario_id) VALUES  (1, 'bairro a', 'cidade a', 'RS', '123', 'rua a', 1);
 INSERT INTO endereco (id, bairro, cidade, estado, numero, rua, usuario_id) VALUES  (2, 'bairro b', 'cidade b', 'RS', '456', 'rua b', 2);
