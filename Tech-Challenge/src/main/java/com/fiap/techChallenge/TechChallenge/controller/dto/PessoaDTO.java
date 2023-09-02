@@ -10,10 +10,6 @@ import java.time.LocalDate;
 
 @Getter@Setter
 public class PessoaDTO {
-    @JsonProperty
-    @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
-    @NotNull
-    private Long idUsuario;
 
     @JsonProperty
     @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
@@ -36,5 +32,5 @@ public class PessoaDTO {
     private String sexo;
 
     @JsonProperty
-    private Long idParentesco;
+    private String parentesco;
 }

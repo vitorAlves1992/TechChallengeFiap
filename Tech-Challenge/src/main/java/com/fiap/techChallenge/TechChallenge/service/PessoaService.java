@@ -3,6 +3,7 @@ package com.fiap.techChallenge.TechChallenge.service;
 import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaDTO;
 import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaResultDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PessoaService {
@@ -13,4 +14,5 @@ public interface PessoaService {
     public void deletar(Long idPessoa);
     public PessoaResultDTO atualizar(PessoaDTO pessoa, Long id);
 
+    List<PessoaResultDTO> buscaAvancada(String nome, LocalDate date, String sexo, String parentesco);
 }

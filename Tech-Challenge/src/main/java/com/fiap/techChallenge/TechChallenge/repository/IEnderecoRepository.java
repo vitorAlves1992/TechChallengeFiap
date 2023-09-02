@@ -1,7 +1,13 @@
 package com.fiap.techChallenge.TechChallenge.repository;
 
+import com.fiap.techChallenge.TechChallenge.domain.Eletrodomestico;
 import com.fiap.techChallenge.TechChallenge.domain.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface IEnderecoRepository extends JpaRepository<Endereco, Long> {
+import java.util.List;
+
+public interface IEnderecoRepository extends JpaRepository<Endereco, Long> ,
+        JpaSpecificationExecutor<Endereco> {
+    List<Endereco> findByUsuarioId(Long id);
 }

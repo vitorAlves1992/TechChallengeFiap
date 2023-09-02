@@ -33,7 +33,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
             throw new RuntimeException("Endereco nao encontrado ao criar eletrodomestico: id " + eletrodomesticoForm.getIdEndereco());
         eletrodomestico.setEndereco(endereco.get());
         try {
-            return new EletrodomesticoResultDTO(eletrodomesticoRepository.save(eletrodomestico));
+            return new EletrodomesticoResultDTO(eletrodomesticoRepository.save(eletrodomestico), true);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao criar eletrodomestico: " + e.getMessage());
         }
@@ -42,7 +42,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
 
     @Override
     public EletrodomesticoResultDTO listar(Long id) {
-        return new EletrodomesticoResultDTO(eletrodomesticoRepository.findById(id).get());
+        return new EletrodomesticoResultDTO(eletrodomesticoRepository.findById(id).get(), true);
     }
     @Override
     public List<EletrodomesticoResultDTO> listarEletrodomesticosPorEndereco(Long idEndereco) {
@@ -51,7 +51,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
 
         List<EletrodomesticoResultDTO> eletrodomesticoResultForm = new ArrayList<>();
         for (Eletrodomestico eletrodomestico : eletrodomesticosEncontrados) {
-            eletrodomesticoResultForm.add(new EletrodomesticoResultDTO(eletrodomestico));
+            eletrodomesticoResultForm.add(new EletrodomesticoResultDTO(eletrodomestico , true));
         }
 
         return eletrodomesticoResultForm;
@@ -77,7 +77,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
         eletrodomestico.setEndereco(endereco.get());
 
         try {
-            return new EletrodomesticoResultDTO(eletrodomesticoRepository.save(eletrodomestico));
+            return new EletrodomesticoResultDTO(eletrodomesticoRepository.save(eletrodomestico), true);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao atualizar eletrodomestico: "+ e.getMessage());
         }
@@ -101,7 +101,7 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
 
         List<EletrodomesticoResultDTO> eletrodomesticoResultForm = new ArrayList<>();
         for (Eletrodomestico eletrodomestico : eletrodomesticosEncontrados) {
-            eletrodomesticoResultForm.add(new EletrodomesticoResultDTO(eletrodomestico));
+            eletrodomesticoResultForm.add(new EletrodomesticoResultDTO(eletrodomestico, true));
         }
         return eletrodomesticoResultForm;
     }

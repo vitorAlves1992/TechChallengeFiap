@@ -26,10 +26,10 @@ public class Endereco {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "endereco",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "endereco",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Pessoa> pessoas;
 
-    @OneToMany(mappedBy = "endereco",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "endereco",fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
     private List<Eletrodomestico> eletrodomesticos;
 
     @Column(name = "rua")

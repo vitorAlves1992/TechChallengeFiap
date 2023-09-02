@@ -26,23 +26,12 @@ public class Pessoa {
     private LocalDate dataNascimento;
     @Column(name = "sexo")
     private String sexo;
-
+    @Column
+    private String parentesco;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    @OneToOne
-    private Usuario usuarioPessoa;
-
-    @OneToMany(mappedBy = "pessoa")
-    private List<Parente> parentes;
-
-    @OneToMany(mappedBy = "pessoaRelacionada")
-    private List<Parente> parentesRelacionados;
 
     public Pessoa() {
     }
@@ -51,6 +40,6 @@ public class Pessoa {
         this.nome = dto.getNome();
         this.dataNascimento = dto.getDataNascimento();
         this.sexo = dto.getSexo();
-        this.usuario = new Usuario(dto.getIdUsuario());
+        this.parentesco = dto.getParentesco();
     }
 }

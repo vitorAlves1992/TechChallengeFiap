@@ -1,13 +1,13 @@
 ENDEREÇO:
-* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo
-* no result trazer uma lista de eletrodomestico por endereco e uma lista de pessoas por endereco
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (OK)
+* no result trazer uma lista de eletrodomestico por endereco e uma lista de pessoas por endereco (OK)
 
 
 PESSOA:
-* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo
-* Parentesco vai ser uma string
-* Tirar o idUsuario do cadastro da pessoa (busca o usuario atraves endereco)
-* Uma pessoa nao pode ser cadastrada sem um endereco
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (OK)
+* Parentesco vai ser uma string (OK)
+* Tirar o idUsuario do cadastro da pessoa (busca o usuario atraves endereco) (OK)
+* Uma pessoa nao pode ser cadastrada sem um endereco (OK)
 
 
 ELETRODOMESTICO: (Kassi)

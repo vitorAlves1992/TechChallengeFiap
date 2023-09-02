@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -13,7 +14,7 @@ public class UsuarioDTO {
 
     @JsonProperty
     @Email(message = "Digite um e-mail válido")
-    @NotNull(message = "O e-mail não pode ser nulo")
+    @NotBlank(message = "O e-mail não pode ser nulo")
     private String email;
 
 }
