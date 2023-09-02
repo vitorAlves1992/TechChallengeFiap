@@ -20,10 +20,10 @@ INSERT INTO pessoa (data_nascimento, nome, sexo, endereco_id,  usuario_pessoa_id
 INSERT INTO pessoa (data_nascimento, nome, sexo, endereco_id,  usuario_pessoa_id) VALUES ( '2021-06-16', 'Vitor', 'masculino', 5, 5);
 
 
-INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (1, 'Modelo a', 'nome a', 200.00, 1, 1);
-INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (2, 'Modelo b', 'nome b', 120.00, 2, 2);
-INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (3, 'Modelo c', 'nome c', 180.00, 3, 3);
-INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (4, 'Modelo d', 'nome d', 300.00, 4, 4);
-INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (5, 'Modelo e', 'nome e', 550.00, 5, 5);
-INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (6, 'Modelo f', 'nome f', 250.00, 4, 4);
-INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id, usuario_id) VALUES  (7, 'Modelo g', 'nome g', 250.00, 5, 5);
+INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id) VALUES  (1, 'Modelo a', 'nome a', 200.00, 1);
+INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id) VALUES  (2, 'Modelo b', 'nome b', 120.00, 2);
+INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id) VALUES  (3, 'Modelo c', 'nome c', 180.00, 1);
+INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id) VALUES  (4, 'Modelo d', 'nome d', 300.00, 2);
+INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id) VALUES  (5, 'Modelo e', 'nome e', 550.00, 2);
+INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id) VALUES  (6, 'Modelo f', 'nome f', 250.00, 3);
+INSERT INTO eletrodomestico (id, modelo, nome, potencia, endereco_id) VALUES  (7, 'Modelo g', 'nome g', 250.00, 2);
