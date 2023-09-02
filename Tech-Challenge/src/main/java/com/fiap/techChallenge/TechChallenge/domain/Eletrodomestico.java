@@ -1,6 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.domain;
 
-import com.fiap.techChallenge.TechChallenge.controller.dto.EletrodomesticoDTO;
+import com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico.EletrodomesticoDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,10 +22,6 @@ public class Eletrodomestico {
     private Double potencia;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
@@ -36,7 +32,7 @@ public class Eletrodomestico {
         this.nome = form.getNome();
         this.modelo = form.getModelo();
         this.potencia = form.getPotencia();
-        this.usuario = new Usuario(form.getIdUsuario());
+        this.endereco = new Endereco(form.getIdEndereco());
     }
 
 }

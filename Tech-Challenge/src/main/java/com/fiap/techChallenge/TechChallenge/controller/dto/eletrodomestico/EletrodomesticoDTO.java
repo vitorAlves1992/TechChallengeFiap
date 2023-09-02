@@ -1,4 +1,4 @@
-package com.fiap.techChallenge.TechChallenge.controller.dto;
+package com.fiap.techChallenge.TechChallenge.controller.dto.eletrodomestico;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -10,9 +10,9 @@ import javax.validation.constraints.*;
 public class EletrodomesticoDTO {
 
     @JsonProperty
-    @NotNull(message = "O ID do usuário não pode ser nulo")
-    @Min(value = 1, message = "O ID do usuário deve ser maior que 0")
-    private Long idUsuario;
+    @NotNull(message = "O ID do endereco não pode ser nulo")
+    @Min(value = 1, message = "O ID do endereco deve ser maior que 0")
+    private Long idEndereco;
 
     @JsonProperty
     @NotBlank(message = "Nome obrigatorio")

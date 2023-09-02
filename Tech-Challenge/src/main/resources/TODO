@@ -1,15 +1,27 @@
-ENDEREÇO: (Vitor e Leandro)
-* trazer endereços do usuário (OK)
-* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo
-* trazer pessoas do endereço
+ENDEREÇO:
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (OK)
+* no result trazer uma lista de eletrodomestico por endereco e uma lista de pessoas por endereco (OK)
 
-PESSOA: (Felipe)
-* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo
-* Trazer a lista de parentes na pessoa
+
+PESSOA:
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (OK)
+* Parentesco vai ser uma string (OK)
+* Tirar o idUsuario do cadastro da pessoa (busca o usuario atraves endereco) (OK)
+* Uma pessoa nao pode ser cadastrada sem um endereco (OK)
+
 
 ELETRODOMESTICO: (Kassi)
-* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (Ainda nao esta funcionando, falta o parse do resultado)
-* Isolar um Eletrodomestico e criar uma tabela intermediaria endereco_eletrodomestico
-* Criar API de calculaConsumo(tempo, idEletrodomestico) OK
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo OK
+* Eletrodomestico tem um id de endereco (ele so tem um) OK
+* Eletrodomestico nao tem um usuario / nem pessoa OK
+* Result traz o endereco OK
+* Criar endpoint de calculaConsumo(tempo, idEletrodomestico) OK
+* Criar o endpoint de lista eletrodomestico por endereco OK
 
-* Atualizar documentação (Daniel)
+
+USUARIO
+* traz lista de endereco no result
+* expor api de usuario (criar o controller)
+
+
+* Atualizar documentação

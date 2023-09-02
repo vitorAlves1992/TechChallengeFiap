@@ -1,5 +1,6 @@
 package com.fiap.techChallenge.TechChallenge.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fiap.techChallenge.TechChallenge.domain.Pessoa;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Getter@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL) // Exclui propriedades com valores nulos
 public class PessoaResultDTO {
     @JsonProperty
     private Long id;
@@ -19,18 +21,19 @@ public class PessoaResultDTO {
     @JsonProperty
     private String sexo;
     @JsonProperty
-    private Long idUsuario;
+    private String parentesco;
     @JsonProperty
     private EnderecoResultDTO endereco;
     public PessoaResultDTO() {
     }
 
-    public PessoaResultDTO(Pessoa pessoa) {
+    public PessoaResultDTO(Pessoa pessoa , boolean hasEndereco) {
         this.id = pessoa.getId();
         this.nome = pessoa.getNome();
         this.dataNascimento = pessoa.getDataNascimento();
         this.sexo = pessoa.getSexo();
-        this.idUsuario = pessoa.getUsuario().getId();
-        this.endereco = new EnderecoResultDTO(pessoa.getEndereco());
+        this.parentesco = pessoa.getParentesco();
+        if(hasEndereco)
+            this.endereco = new EnderecoResultDTO(pessoa.getEndereco());
     }
 }
