@@ -1,14 +1,19 @@
-# Documentação da API de Gestão de Eletrodomésticos
+# Documentação da API de Gestão de Eletrodomésticos 
 
 ## Propósito
 Permitir o cadastro e gerenciamento de informações sobre os aparelhos eletrônicos dos usuários cadastrados em nosso sistema
 
-## Objetivos
+## Objetivos (Fase 2)
 Receber as informações dos eletrônicos com os campos de nome, modelo, potência e outros dados relevantes com os seguintes requisitos:
-1. Receber as solicitações em formato HTTP POST.
+1. O verbo POST deve ser alterado para gravar os dados recebidos no um banco de dados seguro, associando o aparelho ao usuário que está cadastrando-o.
 2. As informações devem ser validadas para garantir que elas estão no formato correto e que são válidas.    
-3. Caso haja algum erro, a API deve retornar uma mensagem de erro indicando o problema encontrado.
-4. Uma vez validadas as informações, a API deve informar que está tudo ok e dar um retorno positivo ao usuário.
+3. Caso haja algum erro, a API deve retornar uma mensagem de erro indicando o problema encontrado. 
+4. Os verbos GET, PUT e DELETE devem ser desenvolvidos para receber os dados, alterar os dados e remover os dados respectivamente.
+5. Cada usuário pode ter vários aparelhos eletrônicos cadastrados em nosso sistema. 
+6. A busca deve ser capaz de filtrar as informações por nome, modelo, potência ou outra informação relevante.
+7. A atualização de informações deve permitir a edição de qualquer informação sobre o aparelho eletrônico.
+8. A API de gestão de eletrodomésticos deve ser capaz de identificar os consumos de energia dos aparelhos eletrônicos cadastrados, com base no tempo de uso reportado pelo adaptador.
+            
                   
 ## Endpoints
 Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/eletrodomestico-controller](http://localhost:8080/swagger-ui/index.html#/eletrodomestico-controller)
@@ -17,7 +22,7 @@ Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/inde
 [Enpoints e Validações no Postman](/postman/EletrodomesticoAPI.postman_collection.json)
 
 
-![](2023-06-16-15-01-19.png)
+![](2023-09-02-22-43-05.png)
 
 <h3 style="background:rgba(73,204,144,.1)" dispay=block;>        <span style="background:#49cc90; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">POST</span>
 <span style="color: #000">/eletrodomestico</span>
@@ -26,7 +31,7 @@ Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/inde
 
 ### Descrição
 Recebe uma representação de eletrodoméstico no formato json com os seguintes campos
- - idUsuario - Long
+ - idEndereco - Long
  - modelo - String
  - nome - String
  - potencia - Double
@@ -36,7 +41,7 @@ Recebe uma representação de eletrodoméstico no formato json com os seguintes 
 **Entrada Esperada**
 ```json
 {
-  "idUsuario": 0,
+  "idEndereco": 0,
   "modelo": "string",
   "nome": "string",
   "potencia": 0
@@ -45,8 +50,27 @@ Recebe uma representação de eletrodoméstico no formato json com os seguintes 
 **Saída - Código 200 OK**
 ```json
 {
+  "endereco": {
+    "bairro": "string",
+    "cidade": "string",
+    "eletromesticos": [
+      null
+    ],
+    "estado": "string",
+    "id": 0,
+    "numero": 0,
+    "pessoas": [
+      {
+        "dataNascimento": "2023-09-03",
+        "id": 0,
+        "nome": "string",
+        "parentesco": "string",
+        "sexo": "string"
+      }
+    ],
+    "rua": "string"
+  },
   "id": 0,
-  "idUsuario": 0,
   "modelo": "string",
   "nome": "string",
   "potencia": 0
@@ -70,8 +94,27 @@ Recebe um id como Path Parameter e retorna o respectivo eletrodomestico correspo
 **Saída - Código 200 OK**
 ```json
 {
+  "endereco": {
+    "bairro": "string",
+    "cidade": "string",
+    "eletromesticos": [
+      null
+    ],
+    "estado": "string",
+    "id": 0,
+    "numero": 0,
+    "pessoas": [
+      {
+        "dataNascimento": "2023-09-03",
+        "id": 0,
+        "nome": "string",
+        "parentesco": "string",
+        "sexo": "string"
+      }
+    ],
+    "rua": "string"
+  },
   "id": 0,
-  "idUsuario": 2,
   "modelo": "string",
   "nome": "string",
   "potencia": 0
@@ -79,35 +122,115 @@ Recebe um id como Path Parameter e retorna o respectivo eletrodomestico correspo
 ```
 
 <h3 style="background:rgba(97,175,254,.1)" dispay=block;>        <span style="background:#61affe; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">GET</span>
-<span style="color: #000">/eletrodomestico/usuario/{id}</span>
-<sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >listar Eletrodomesticos de Usuario</sub>
+<span style="color: #000">/eletrodomestico</span>
+<sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >busca Avancada</sub>
 </h3>
 
 ### Descrição
-Recebe um id como Path Parameter e retorna uma lista com os eletrodomésticos associados ao usuário que corresponda a esse id
+Recebe qualquer combinação entre nome, modelo e potencia como Query Parameter e retorna a lista com os respectivos eletrodomésticos corresponentes a essa combinação
 ### Exemplos de entrada e saída
 
-**Entrada Esperada**
+**Entradas Esperadas (lista não exaustiva)**
 ```
-/eletrodomestico/usuario/1
+/eletrodomestico?nome=teste
+/eletrodomestico?modelo=teste
+/eletrodomestico?nome=teste&modelo=teste&potencia=10.0
 ```
 **Saída - Código 200 OK**
 ```json
 [
-    {
-        "idUsuario": 2,
-        "id": 809437828,
-        "nome": "Microondas 1",
-        "modelo": "Brastemp",
-        "potencia": 75.0
+{
+  "endereco": {
+    "bairro": "string",
+    "cidade": "string",
+    "eletromesticos": [
+      null
+    ],
+    "estado": "string",
+    "id": 0,
+    "numero": 0,
+    "pessoas": [
+      {
+        "dataNascimento": "2023-09-03",
+        "id": 0,
+        "nome": "string",
+        "parentesco": "string",
+        "sexo": "string"
+      }
+    ],
+    "rua": "string"
+  },
+  "id": 0,
+  "modelo": "string",
+  "nome": "string",
+  "potencia": 0
+}
+]
+```
+
+<h3 style="background:rgba(97,175,254,.1)" dispay=block;>        <span style="background:#61affe; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">GET</span>
+<span style="color: #000">/eletrodomestico/consumo/{id}/{tempo_uso}</span>
+<sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >calculo Consumo</sub>
+</h3>
+
+### Descrição
+Recebe um id e o tempo de uso como Path Parameters e retorna o respectivo consumo de um dado eletrodoméstico
+### Exemplos de entrada e saída
+
+**Entrada Esperada**
+```
+/eletrodomestico/1/10.5
+```
+**Saída - Código 200 OK**
+```json
+{
+  "consumo": 0
+}
+```
+
+
+<h3 style="background:rgba(97,175,254,.1)" dispay=block;>        <span style="background:#61affe; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">GET</span>
+<span style="color: #000">/eletrodomestico/endereco/{id}</span>
+<sub style="color: #000; font-size: 15px; display: inline-block; margin-left: 10px" >listar Eletrodomesticos Por Endereco</sub>
+</h3>
+
+### Descrição
+Recebe um id como Path Parameter e retorna uma lista com os eletrodomésticos associados ao endereço que corresponda a esse id
+### Exemplos de entrada e saída
+
+**Entrada Esperada**
+```
+/eletrodomestico/endereco/1
+```
+**Saída - Código 200 OK**
+```json
+[
+  {
+    "endereco": {
+      "bairro": "string",
+      "cidade": "string",
+      "eletromesticos": [
+        null
+      ],
+      "estado": "string",
+      "id": 0,
+      "numero": 0,
+      "pessoas": [
+        {
+          "dataNascimento": "2023-09-03",
+          "id": 0,
+          "nome": "string",
+          "parentesco": "string",
+          "sexo": "string"
+        }
+      ],
+      "rua": "string"
     },
-    {
-        "idUsuario": 2,
-        "id": 575896321,
-        "nome": "Microondas 2",
-        "modelo": "Brastemp",
-        "potencia": 75.0
-    }
+    "id": 0,
+    "modelo": "string",
+    "nome": "string",
+    "potencia": 0
+  }
 ]
 ```
 
@@ -118,7 +241,7 @@ Recebe um id como Path Parameter e retorna uma lista com os eletrodomésticos as
 
 ### Descrição
 Recebe um eletrodoméstico no formato json com os seguintes campos e um id como Path Parameter que indica qual eletrodoméstico será atualizado
- - idUsuario - Long
+ - idEndereco - Long
  - modelo - String
  - nome - String
  - potencia - Double
@@ -129,7 +252,7 @@ Recebe um eletrodoméstico no formato json com os seguintes campos e um id como 
 ```json
 /eletrodomestico/0
 {
-  "idUsuario": 2,
+  "idEndereco": 2,
   "modelo": "string alterado",
   "nome": "string alterado",
   "potencia": 4.0
@@ -138,11 +261,30 @@ Recebe um eletrodoméstico no formato json com os seguintes campos e um id como 
 **Saída - Código 200 OK**
 ```json
 {
+  "endereco": {
+    "bairro": "string",
+    "cidade": "string",
+    "eletromesticos": [
+      null
+    ],
+    "estado": "string",
+    "id": 0,
+    "numero": 0,
+    "pessoas": [
+      {
+        "dataNascimento": "2023-09-03",
+        "id": 0,
+        "nome": "string",
+        "parentesco": "string",
+        "sexo": "string"
+      }
+    ],
+    "rua": "string"
+  },
   "id": 0,
-  "idUsuario": 2,
-  "modelo": "string alterado",
-  "nome": "string alterado",
-  "potencia": 4.0
+  "modelo": "string",
+  "nome": "string",
+  "potencia": 0
 }
 ```
 <h3 style="background:rgba(249,62,62,.1)" dispay=block;>        <span style="background:#f93e3e; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">DELETE</span>
