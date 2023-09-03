@@ -134,7 +134,7 @@ Recebe qualquer combinação entre nome, modelo e potencia como Query Parameter 
 ```
 /eletrodomestico?nome=teste
 /eletrodomestico?modelo=teste
-/eletrodomestico?nome=teste?modelo=teste?potencia=10.0
+/eletrodomestico?nome=teste&modelo=teste&potencia=10.0
 ```
 **Saída - Código 200 OK**
 ```json

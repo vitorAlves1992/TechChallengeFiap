@@ -134,7 +134,7 @@ Recebe qualquer combinação entre nome, date, parentesco e sexo como Query Para
 /pessoa?nome=teste
 /pessoa?parentesco=primo
 /pessoa?date=2023-09-03
-/pessoa?nome=teste?parentesco=irmao
+/pessoa?nome=teste&parentesco=irmao
 ```
 **Saída - Código 200 OK**
 ```json
