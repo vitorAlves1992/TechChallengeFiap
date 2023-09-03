@@ -5,10 +5,15 @@ Permitir o gerenciamento de informações sobre os endereços cadastrados em nos
 
 ## Objetivos
 Receber as informações dos endereços com os campos de rua, número, bairro, cidade e estado com os seguintes requisitos:
-1. Receber as solicitações em formato HTTP POST.
+1. O verbo POST deve ser alterado para gravar os dados recebidos no um banco de dados seguro, associando o endereço ao usuário que está cadastrando-o.
 2. As informações devem ser validadas para garantir que elas estão no formato correto e que são válidas.    
-3. Caso haja algum erro, a API deve retornar uma mensagem de erro indicando o problema encontrado.
-4. Uma vez validadas as informações, a API deve informar que está tudo ok e dar um retorno positivo ao usuário.
+3. Os verbos GET, PUT e DELETE devem ser desenvolvidos para receber os dados, alterar os dados e remover os dados respectivamente;
+4. Caso haja algum erro, a API deve retornar uma mensagem de erro indicando o problema encontrado.
+5. Cada usuário pode ter mais de um endereço cadastrado em nosso sistema.
+6. A busca deve ser capaz de filtrar as informações por rua, bairro, cidade ou outra informação relevante.
+7. A atualização de informações deve permitir a edição de qualquer informação sobre o endereço.
+8. Essa API deve ser capaz de identificar as pessoas associadas a cada endereço cadastrado. Isso permitirá a criação de relacionamentos familiares entre os membros da casa e seus respectivos endereços.
+9. Essa API deve ser capaz de identificar as pessoas associadas a cada endereço e vice-versa. 
                   
 ## Endpoints
 Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/endereco-controller](http://localhost:8080/swagger-ui/index.html#/endereco-controller)
