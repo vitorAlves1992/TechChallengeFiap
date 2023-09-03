@@ -1,6 +1,5 @@
 package com.fiap.techChallenge.TechChallenge.controller;
 
-import com.fiap.techChallenge.TechChallenge.controller.dto.EnderecoResultDTO;
 import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaDTO;
 import com.fiap.techChallenge.TechChallenge.controller.dto.PessoaResultDTO;
 import com.fiap.techChallenge.TechChallenge.service.PessoaService;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.List;
@@ -51,13 +51,15 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.OK).body(pessoaService.listar(id));
     }
     @GetMapping
-    public ResponseEntity<List<PessoaResultDTO>> buscaAvancada(@RequestParam(required = false) String nome,
+    public ResponseEntity<List<PessoaResultDTO>> buscaAvancada(@RequestParam("idUsuario") @Valid @NotNull   (message = "O parâmetro 'idUsuario' é obrigatório")
+                                                                   Long idUsuario,
+                                                                @RequestParam(required = false) String nome,
                                                                  @RequestParam(required = false)
                                                                  @Valid @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
                                                                  @RequestParam(required = false) String sexo,
                                                                  @RequestParam(required = false) String parentesco) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.buscaAvancada(nome, date, sexo, parentesco));
+        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.buscaAvancada(nome, date, sexo, parentesco, idUsuario));
     }
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deletar(@PathVariable("id") @Positive Long id) {

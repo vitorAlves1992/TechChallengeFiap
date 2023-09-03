@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class PessoaDTO {
 
     @JsonProperty
-    @Min(value = 1, message = "Id do usuario deve ser maior do que zero")
+    @Min(value = 1, message = "Id do endereço deve ser maior do que zero")
     @NotNull
     private Long idEndereco;
 

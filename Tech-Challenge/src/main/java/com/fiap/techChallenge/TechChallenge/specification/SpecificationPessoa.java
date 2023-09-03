@@ -23,4 +23,9 @@ public class SpecificationPessoa {
         return (root, criteriaQuery, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("parentesco"), "%" + parentesco + "%");
     }
+
+    public static Specification<Pessoa> idUsuario(Long idUsuario) {
+        return (root, criteriaQuery, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("endereco").get("usuario").get("id"), idUsuario);
+    }
 }

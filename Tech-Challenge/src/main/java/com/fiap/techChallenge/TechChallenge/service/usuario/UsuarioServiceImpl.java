@@ -91,7 +91,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void deletarUsuario(Long id) {
         Optional<Usuario> usuarioExistente = repository.findById(id);
         if (usuarioExistente.isPresent()){
-            repository.deleteById(id);
+            repository.delete(usuarioExistente.get());
         } else {
             throw new IllegalArgumentException("Usuário não encontrado com o ID: " + id);
         }

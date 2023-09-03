@@ -14,6 +14,7 @@ import com.fiap.techChallenge.TechChallenge.specification.SpecificationEletrodom
 import com.fiap.techChallenge.TechChallenge.specification.SpecificationEndereco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -80,6 +81,9 @@ public class EnderecoServiceImpl implements EnderecoService {
                 .or(SpecificationEndereco.estado(estado))
                 .or(SpecificationEndereco.numero(numero))
         );
+        if(enderecos.isEmpty()){
+            throw new IllegalArgumentException("Não foi encontrado nenhum endereco com os filtros informados");
+        }
 
         return enderecos.stream().map(endereco -> new EnderecoResultDTO(endereco,
                 endereco.getEletrodomesticos().stream().
@@ -104,6 +108,8 @@ public class EnderecoServiceImpl implements EnderecoService {
 
         try {
             return new EnderecoResultDTO(enderecoRepository.save(endereco));
+        } catch (JpaObjectRetrievalFailureException e) {
+            throw new RuntimeException("Endereço não existe com esse ID: "+ id);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao atualizar endereco: "+ e.getMessage());
         }
