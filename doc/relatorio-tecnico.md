@@ -77,7 +77,7 @@ Avaliamos outras soluções para realizar o mapeamento, como o ModelMapper. Por�
 Como desafio proposto na API de pessoas, foi sugerida a criação de relacionamentos entre pessoas de maneira automática, baseado no contexto do relacionamento entre a pessoa que está sendo adicionada em relação ao usuário que a está adicionando e no relacionamento entre as outras pessoas associadas a este mesmo usuário.
 
 ### Solução: abraçar a simplicidade e reduzir o escopo 
-Entendo que esse não é um ponto crucial da aplicação, decidimos por não criar os relacionamentos de parentescos de maneira automática, dada a complexidade que parentescos não convencionais trariam, bem como a diversidade de configurações de famílias que a sociedade possui atualmente. Realizamos uma POC que pode ser consultada no endereço: Nela temos a criação automática de parentesco para PAIS, FILHOS, CONJUGES E IRMAOS. 
+Entendo que esse não é um ponto crucial da aplicação, decidimos por não criar os relacionamentos de parentescos de maneira automática, dada a complexidade que parentescos não convencionais trariam, bem como a diversidade de configurações de famílias que a sociedade possui atualmente. Realizamos uma POC que pode ser consultada no endereço: [Geração de Parentesco Automática](https://github.com/vitorAlves1992/TechChallengeFiap/tree/gerenciarParenteAutomaticamente) Nela temos a criação automática de parentesco para PAIS, FILHOS, CONJUGES E IRMAOS. 
 
 ---
 
