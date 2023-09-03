@@ -6,7 +6,7 @@
 - Swagger
 - Spring
 - Lombok 
-- JMapper
+- H2 Database
 - Bean Validation
 
 ---
