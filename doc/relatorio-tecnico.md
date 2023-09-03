@@ -6,13 +6,16 @@
 - Swagger
 - Spring
 - Lombok 
-- JMapper
+- H2 Database
 - Bean Validation
 
 ---
 
 ## Arquitetura Utilizada 
 ![](2023-06-16-20-10-00.png)
+
+## DER 
+![](modeloDER.jpeg)
 
 ## Desafios Encontrados / Soluções Apresentadas
 ### Desafio: Classe de domínio responsável por encapsular dados das requisições 
@@ -61,3 +64,26 @@ As validações definidas no Bean Validation lançam exceções, que, se não fo
 A Solução adotada foi criarmos uma classe responsável por interceptar as exceções de validação lançadas, o Spring fornece um facilitador para isso através da anotação @ControllerAdvice, que permite interceptar as exceções lançadas por qualquer Bean geranciado pelo Spring.
 Além disso, criamos classes para representar as exceções no formato HTTP.
 Dessa forma, utilizamos métodos para tratar e relançar essas exceções no formato desejado, transformando o Response Status 500 genérico em Response Status 4xx, com as respesctivas falhas de validação cometidas pelo cliente.
+
+---
+### Desafio: Remover a limitação do Jmapper em relação ao Java 11 
+A biblioteca Jmapper está em processo de descontinuidade, portanto, mantê-la limitaria todo o sistema ao Java 11. 
+
+### Solução: Adotar o mapeamento de DTOs de forma manual 
+Avaliamos outras soluções para realizar o mapeamento, como o ModelMapper. Porém, dada a baixa complexidade de nossas entidades, resolvemos não acoplar o sistema a uma implementação de mapper e realizarmos nós mesmos os mapeamentos. 
+
+---
+### Desafio: Criar o relacionamento de parentesco de maneira automática
+Como desafio proposto na API de pessoas, foi sugerida a criação de relacionamentos entre pessoas de maneira automática, baseado no contexto do relacionamento entre a pessoa que está sendo adicionada em relação ao usuário que a está adicionando e no relacionamento entre as outras pessoas associadas a este mesmo usuário.
+
+### Solução: abraçar a simplicidade e reduzir o escopo 
+Entendo que esse não é um ponto crucial da aplicação, decidimos por não criar os relacionamentos de parentescos de maneira automática, dada a complexidade que parentescos não convencionais trariam, bem como a diversidade de configurações de famílias que a sociedade possui atualmente. Realizamos uma POC que pode ser consultada no endereço: [Geração de Parentesco Automática](https://github.com/vitorAlves1992/TechChallengeFiap/tree/gerenciarParenteAutomaticamente) Nela temos a criação automática de parentesco para PAIS, FILHOS, CONJUGES E IRMAOS. 
+
+---
+
+### Desafio: Criar queries que possibilitem uma grande combinação de diferentes filtros 
+Um dos requisitos do desafio é implementar uma busca que aceite como parâmetro qualquer campo, bem como a combinação desses. Cobrir cada possibilidade implicaria em implementar diferentes buscas no Repository do Spring Data 
+
+### Solução: Utilizar o Critearia API + Specification 
+Decidimos por usar as Specifications do Spring Data para trazer maior flexibiliade e dinamicidade na criação das queries. 
+[Specification](https://reflectoring.io/spring-data-specifications/)

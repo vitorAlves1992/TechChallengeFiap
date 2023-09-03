@@ -1,20 +1,27 @@
-* Configurar H2
-    - Eletrodomestico - OK
-    - Pessoa (Vitor/Leandro) OK
-    - Endereco (Kassi) OK
-    - Parente (Daniel)
+ENDEREÇO:
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (OK)
+* no result trazer uma lista de eletrodomestico por endereco e uma lista de pessoas por endereco (OK)
 
-* Fazer o Seed da base
-    - Usuario - OK
-    - Eletrodomestico (Kassi) OK
-    - Pessoa (Vitor/Leandro)
-    - Endereco (Kassi) OK
-    - Parente (Daniel)
 
-* Refatorar / Criar API com persistência
-    - Eletrodomestico - OK
-    - Pessoa (Vitor/Leandro) OK
-    - Endereco (Kassi) OK
-    - Parente (Daniel)
+PESSOA:
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo (OK)
+* Parentesco vai ser uma string (OK)
+* Tirar o idUsuario do cadastro da pessoa (busca o usuario atraves endereco) (OK)
+* Uma pessoa nao pode ser cadastrada sem um endereco (OK)
+
+
+ELETRODOMESTICO: (Kassi)
+* Fazer uma busca com criteria JPA (SPRING) para filtrar com qualquer campo OK
+* Eletrodomestico tem um id de endereco (ele so tem um) OK
+* Eletrodomestico nao tem um usuario / nem pessoa OK
+* Result traz o endereco OK
+* Criar endpoint de calculaConsumo(tempo, idEletrodomestico) OK
+* Criar o endpoint de lista eletrodomestico por endereco OK
+
+
+USUARIO
+* traz lista de endereco no result
+* expor api de usuario (criar o controller)
+
 
 * Atualizar documentação
