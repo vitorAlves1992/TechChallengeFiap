@@ -127,7 +127,7 @@ Recebe um id como Path Parameter e retorna o respectivo eletrodomestico correspo
 </h3>
 
 ### Descrição
-Recebe qualquer combinação entre nome, modelo e potencia como Query Parameter e retorna o respectivo eletrodomestico corresponente a essa combinação
+Recebe qualquer combinação entre nome, modelo e potencia como Query Parameter e retorna a lista com os respectivos eletrodomésticos corresponentes a essa combinação
 ### Exemplos de entrada e saída
 
 **Entradas Esperadas (lista não exaustiva)**
@@ -138,6 +138,7 @@ Recebe qualquer combinação entre nome, modelo e potencia como Query Parameter 
 ```
 **Saída - Código 200 OK**
 ```json
+[
 {
   "endereco": {
     "bairro": "string",
@@ -164,6 +165,7 @@ Recebe qualquer combinação entre nome, modelo e potencia como Query Parameter 
   "nome": "string",
   "potencia": 0
 }
+]
 ```
 
 <h3 style="background:rgba(97,175,254,.1)" dispay=block;>        <span style="background:#61affe; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">GET</span>

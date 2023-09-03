@@ -10,13 +10,13 @@
 - [Luiz Felipe da Silva Santos](https://github.com/Felipe-3191)
 - [Vitor Hugo Campos Alves](https://github.com/vitorAlves1992/)
 
-## Fase 1 (28/04 até 05/07)
+## Fase 2 (28/06 até 04/09)
 
 **Objetivos:**
 
-1. Construir a API de [cadastro de endereços](doc/enderecos.md) 
-2. Construir a API de [gestão de pessoas](doc/pessoas.md)
-3. Construir a API de [gestão de eletrodomésticos](doc/eletrodomesticos.md) 
+1. Assegurar a persistência da  API de [cadastro de endereços](doc/enderecos.md) 
+2. Assegurar a persistência da API de [gestão de pessoas](doc/pessoas.md)
+3. Assegurar a persistência da API de [gestão de eletrodomésticos](doc/eletrodomesticos.md) 
    
 **Entregáveis:**
 
@@ -29,5 +29,3 @@ Um **relatório PDF** que contenha as seguintes informações:
 
 
 ---
-
-![image](https://github.com/vitorAlves1992/TechChallengeFiap/assets/68152760/371fb874-68bb-4fdd-8f7b-fb236399becf)
