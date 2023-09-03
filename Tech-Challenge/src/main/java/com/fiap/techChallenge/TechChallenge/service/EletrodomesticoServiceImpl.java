@@ -9,7 +9,9 @@ import com.fiap.techChallenge.TechChallenge.repository.IEletrodomesticoRepositor
 import com.fiap.techChallenge.TechChallenge.repository.IEnderecoRepository;
 import com.fiap.techChallenge.TechChallenge.specification.SpecificationEletrodomestico;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,7 +44,13 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
 
     @Override
     public EletrodomesticoResultDTO listar(Long id) {
-        return new EletrodomesticoResultDTO(eletrodomesticoRepository.findById(id).get(), true);
+        Optional <Eletrodomestico> eletrodomestico = eletrodomesticoRepository.findById(id);
+
+        if (eletrodomestico.isEmpty()) {
+            throw new RuntimeException("Eletromestico não encontrado");
+        }
+
+        return new EletrodomesticoResultDTO(eletrodomestico.get(), true);
     }
     @Override
     public List<EletrodomesticoResultDTO> listarEletrodomesticosPorEndereco(Long idEndereco) {
@@ -65,19 +73,21 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
     }
 
     @Override
-    public EletrodomesticoResultDTO atualizar(EletrodomesticoDTO eletrodomesticoForm, Long id) {
-        Eletrodomestico eletrodomestico = new Eletrodomestico(eletrodomesticoForm);
+    public EletrodomesticoResultDTO atualizar(EletrodomesticoDTO eletrodomesticoDTO, Long id) {
+        Eletrodomestico eletrodomestico = new Eletrodomestico(eletrodomesticoDTO);
 
-        Optional<Endereco> endereco = enderecoRepository.findById(eletrodomesticoForm.getIdEndereco());
-        if(!endereco.isPresent())
-            throw new RuntimeException("Endereco nao encontrado ao atualizar eletrodomestico: id " + eletrodomesticoForm.getIdEndereco());
-        eletrodomestico.setEndereco(endereco.get());
+        Optional<Endereco> endereco = enderecoRepository.findById(eletrodomesticoDTO.getIdEndereco());
+        if(endereco.isEmpty()) {
+            throw new RuntimeException("Endereco nao encontrado ao atualizar eletrodomestico: id " + eletrodomesticoDTO.getIdEndereco());
+        }
 
         eletrodomestico.setId(eletrodomesticoRepository.getReferenceById(id).getId());
         eletrodomestico.setEndereco(endereco.get());
 
         try {
             return new EletrodomesticoResultDTO(eletrodomesticoRepository.save(eletrodomestico), true);
+        } catch (JpaObjectRetrievalFailureException e) {
+            throw new RuntimeException("Eletrodomestico não existe com esse ID: "+ id);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao atualizar eletrodomestico: "+ e.getMessage());
         }
@@ -99,11 +109,15 @@ public class EletrodomesticoServiceImpl implements EletrodomesticoService {
                 .or(SpecificationEletrodomestico.potencia(potencia))
         );
 
-        List<EletrodomesticoResultDTO> eletrodomesticoResultForm = new ArrayList<>();
+        List<EletrodomesticoResultDTO> eletrodomesticoResultDTOS = new ArrayList<>();
         for (Eletrodomestico eletrodomestico : eletrodomesticosEncontrados) {
-            eletrodomesticoResultForm.add(new EletrodomesticoResultDTO(eletrodomestico, true));
+            eletrodomesticoResultDTOS.add(new EletrodomesticoResultDTO(eletrodomestico, true));
         }
-        return eletrodomesticoResultForm;
+        if (eletrodomesticoResultDTOS.isEmpty()) {
+            throw new RuntimeException("Nenhum eletrodomestico encontrado");
+        }
+
+        return eletrodomesticoResultDTOS;
     }
 
 }

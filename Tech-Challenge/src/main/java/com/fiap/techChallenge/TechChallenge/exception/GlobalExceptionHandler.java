@@ -5,6 +5,7 @@ import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -48,5 +49,20 @@ public class GlobalExceptionHandler {
         String errorMessage = ex.getMessage();
         ErrorMessage error = new ErrorMessage(errorMessage);
         return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ErroValidacaoResponse> handleValidationParameterException(MissingServletRequestParameterException ex) {
+        ErroValidacaoResponse response = new ErroValidacaoResponse();
+        response.setStatus(400);
+        response.setMensagem("Erro de validação");
+
+        List<String> erros = new ArrayList<>();
+
+        String mensagemErro = "Campo '" + ex.getParameterName() + "': " + ex.getMessage();
+        erros.add(mensagemErro);
+        response.setErros(erros);
+
+        return ResponseEntity.badRequest().body(response);
     }
 }

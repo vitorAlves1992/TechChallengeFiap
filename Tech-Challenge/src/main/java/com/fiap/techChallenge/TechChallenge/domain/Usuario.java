@@ -23,7 +23,7 @@ public class Usuario {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
     private List<Endereco> enderecos;
 
 

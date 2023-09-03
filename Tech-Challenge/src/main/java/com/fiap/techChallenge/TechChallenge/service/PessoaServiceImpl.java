@@ -12,6 +12,7 @@ import com.fiap.techChallenge.TechChallenge.specification.SpecificationPessoa;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,16 +73,22 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public List<PessoaResultDTO> buscaAvancada(String nome, LocalDate date, String sexo, String parentesco) {
+    public List<PessoaResultDTO> buscaAvancada(String nome, LocalDate date, String sexo, String parentesco, Long idUsuario) {
+        Specification <Pessoa> pessoaSpecification = Specification.where(SpecificationPessoa.idUsuario(idUsuario));
 
-        List<Pessoa> pessoas = pessoaRepository.findAll(Specification
-                .where(
-                        SpecificationPessoa.nome(nome))
-                .or(SpecificationPessoa.dataNascimento(date))
-                .or(SpecificationPessoa.sexo(sexo))
-                .or(SpecificationPessoa.parentesco(parentesco))
-        );
+        if(nome != null)
+            pessoaSpecification = pessoaSpecification.and(SpecificationPessoa.nome(nome));
+        if(date != null)
+            pessoaSpecification = pessoaSpecification.and(SpecificationPessoa.dataNascimento(date));
+        if(sexo != null)
+            pessoaSpecification = pessoaSpecification.and(SpecificationPessoa.sexo(sexo));
+        if(parentesco != null)
+            pessoaSpecification = pessoaSpecification.and(SpecificationPessoa.parentesco(parentesco));
 
+        List<Pessoa> pessoas = pessoaRepository.findAll(pessoaSpecification);
+        if(pessoas.isEmpty()){
+            throw new IllegalArgumentException("Não foi encontrada nenhuma pessoa com os filtros informados");
+        }
         return pessoas.stream().map(pessoa -> new PessoaResultDTO(pessoa, true)).collect(toList());
     }
 
@@ -99,10 +106,18 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public PessoaResultDTO atualizar(PessoaDTO pessoaDto, Long id) {
         try {
-            Pessoa pessoa = pessoaRepository.getReferenceById(id);
-            Endereco endereco = enderecoRepository.getReferenceById(pessoaDto.getIdEndereco());
-            pessoa.setEndereco(endereco);
+            Pessoa pessoa = new Pessoa(pessoaDto);
+
+            Optional<Endereco> endereco = enderecoRepository.findById(pessoaDto.getIdEndereco());
+            if(endereco.isEmpty()){
+                throw new RuntimeException("Endereco nao encontrado ao atualizar pessoa: id " + pessoaDto.getIdEndereco());
+            }
+            pessoa.setEndereco(endereco.get());
+            pessoa.setId(pessoaRepository.getReferenceById(id).getId());
+
             return new PessoaResultDTO(pessoaRepository.save(pessoa), true);
+        } catch (JpaObjectRetrievalFailureException e) {
+            throw new RuntimeException("Pessoa não existe com esse ID: "+ id);
         } catch (Exception e) {
             throw new IllegalArgumentException("Erro ao atualizar pessoa: " + e.getMessage());
         }

@@ -14,5 +14,5 @@ public interface PessoaService {
     public void deletar(Long idPessoa);
     public PessoaResultDTO atualizar(PessoaDTO pessoa, Long id);
 
-    List<PessoaResultDTO> buscaAvancada(String nome, LocalDate date, String sexo, String parentesco);
+    List<PessoaResultDTO> buscaAvancada(String nome, LocalDate date, String sexo, String parentesco, Long idUsuario);
 }
