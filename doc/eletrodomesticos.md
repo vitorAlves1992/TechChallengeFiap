@@ -50,30 +50,18 @@ Recebe uma representação de eletrodoméstico no formato json com os seguintes 
 **Saída - Código 200 OK**
 ```json
 {
-  "endereco": {
-    "bairro": "string",
-    "cidade": "string",
-    "eletromesticos": [
-      null
-    ],
-    "estado": "string",
-    "id": 0,
-    "numero": 0,
-    "pessoas": [
-      {
-        "dataNascimento": "2023-09-03",
-        "id": 0,
-        "nome": "string",
-        "parentesco": "string",
-        "sexo": "string"
-      }
-    ],
-    "rua": "string"
-  },
-  "id": 0,
-  "modelo": "string",
-  "nome": "string",
-  "potencia": 0
+    "id": 8,
+    "nome": "Microondas",
+    "modelo": "Eletrolux",
+    "potencia": 100.0,
+    "endereco": {
+        "id": 1,
+        "rua": "rua a",
+        "numero": 123,
+        "bairro": "bairro a",
+        "cidade": "cidade a",
+        "estado": "RS"
+    }
 }
 ```
 
@@ -94,30 +82,18 @@ Recebe um id como Path Parameter e retorna o respectivo eletrodomestico correspo
 **Saída - Código 200 OK**
 ```json
 {
-  "endereco": {
-    "bairro": "string",
-    "cidade": "string",
-    "eletromesticos": [
-      null
-    ],
-    "estado": "string",
-    "id": 0,
-    "numero": 0,
-    "pessoas": [
-      {
-        "dataNascimento": "2023-09-03",
-        "id": 0,
-        "nome": "string",
-        "parentesco": "string",
-        "sexo": "string"
-      }
-    ],
-    "rua": "string"
-  },
-  "id": 0,
-  "modelo": "string",
-  "nome": "string",
-  "potencia": 0
+    "id": 1,
+    "nome": "nome a",
+    "modelo": "Modelo a",
+    "potencia": 200.0,
+    "endereco": {
+        "id": 1,
+        "rua": "rua a",
+        "numero": 123,
+        "bairro": "bairro a",
+        "cidade": "cidade a",
+        "estado": "RS"
+    }
 }
 ```
 
@@ -139,32 +115,20 @@ Recebe qualquer combinação entre nome, modelo e potencia como Query Parameter 
 **Saída - Código 200 OK**
 ```json
 [
-{
-  "endereco": {
-    "bairro": "string",
-    "cidade": "string",
-    "eletromesticos": [
-      null
-    ],
-    "estado": "string",
-    "id": 0,
-    "numero": 0,
-    "pessoas": [
-      {
-        "dataNascimento": "2023-09-03",
-        "id": 0,
-        "nome": "string",
-        "parentesco": "string",
-        "sexo": "string"
-      }
-    ],
-    "rua": "string"
-  },
-  "id": 0,
-  "modelo": "string",
-  "nome": "string",
-  "potencia": 0
-}
+    {
+        "id": 1,
+        "nome": "nome a",
+        "modelo": "Modelo a",
+        "potencia": 200.0,
+        "endereco": {
+            "id": 1,
+            "rua": "rua a",
+            "numero": 123,
+            "bairro": "bairro a",
+            "cidade": "cidade a",
+            "estado": "RS"
+        }
+    }
 ]
 ```
 
@@ -205,32 +169,34 @@ Recebe um id como Path Parameter e retorna uma lista com os eletrodomésticos as
 **Saída - Código 200 OK**
 ```json
 [
-  {
-    "endereco": {
-      "bairro": "string",
-      "cidade": "string",
-      "eletromesticos": [
-        null
-      ],
-      "estado": "string",
-      "id": 0,
-      "numero": 0,
-      "pessoas": [
-        {
-          "dataNascimento": "2023-09-03",
-          "id": 0,
-          "nome": "string",
-          "parentesco": "string",
-          "sexo": "string"
+    {
+        "id": 1,
+        "nome": "nome a",
+        "modelo": "Modelo a",
+        "potencia": 200.0,
+        "endereco": {
+            "id": 1,
+            "rua": "rua a",
+            "numero": 123,
+            "bairro": "bairro a",
+            "cidade": "cidade a",
+            "estado": "RS"
         }
-      ],
-      "rua": "string"
     },
-    "id": 0,
-    "modelo": "string",
-    "nome": "string",
-    "potencia": 0
-  }
+    {
+        "id": 3,
+        "nome": "nome c",
+        "modelo": "Modelo c",
+        "potencia": 180.0,
+        "endereco": {
+            "id": 1,
+            "rua": "rua a",
+            "numero": 123,
+            "bairro": "bairro a",
+            "cidade": "cidade a",
+            "estado": "RS"
+        }
+    }
 ]
 ```
 
@@ -249,42 +215,31 @@ Recebe um eletrodoméstico no formato json com os seguintes campos e um id como 
 ### Exemplos de entrada e saída
 
 **Entrada Esperada**
+/eletrodomestico/1
 ```json
-/eletrodomestico/0
+
 {
-  "idEndereco": 2,
-  "modelo": "string alterado",
-  "nome": "string alterado",
-  "potencia": 4.0
+"idEndereco": 2,
+"nome": "Microondas alterado", 
+"modelo": "Brastemp alterado",
+"potencia": 80.0
 }
 ```
 **Saída - Código 200 OK**
 ```json
 {
-  "endereco": {
-    "bairro": "string",
-    "cidade": "string",
-    "eletromesticos": [
-      null
-    ],
-    "estado": "string",
-    "id": 0,
-    "numero": 0,
-    "pessoas": [
-      {
-        "dataNascimento": "2023-09-03",
-        "id": 0,
-        "nome": "string",
-        "parentesco": "string",
-        "sexo": "string"
-      }
-    ],
-    "rua": "string"
-  },
-  "id": 0,
-  "modelo": "string",
-  "nome": "string",
-  "potencia": 0
+    "id": 2,
+    "nome": "Microondas alterado",
+    "modelo": "Brastemp alterado",
+    "potencia": 80.0,
+    "endereco": {
+        "id": 2,
+        "rua": "rua b",
+        "numero": 456,
+        "bairro": "bairro b",
+        "cidade": "cidade b",
+        "estado": "RS"
+    }
 }
 ```
 <h3 style="background:rgba(249,62,62,.1)" dispay=block;>        <span style="background:#f93e3e; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">DELETE</span>
