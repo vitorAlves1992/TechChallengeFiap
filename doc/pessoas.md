@@ -18,7 +18,7 @@ Receber as informações das pessoas com os campos de nome, data de nascimento, 
 Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/pessoa-controller](http://localhost:8080/swagger-ui/index.html#/pessoa-controller)
 
 ### Para exemplos práticos de entrada e de validações consultar arquivo Postman:
-[Enpoints e Validações no Postman](/postman/PessoaAPI.postman_collection.json)
+[Enpoints e Validações no Postman](/postman/PessoaAPI.postman_collection.json)****
 
 ![](2023-09-02-23-56-40.png)
 
@@ -30,7 +30,7 @@ Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/inde
 ### Descrição
 Recebe uma representação de pessoa no formato json com os seguintes campos
  - dataNascimento - LocalDate
- - idUsuario - Long
+ - idEndereco - Long
  - nome - String
  - parentesco - String
  - sexo - String
@@ -40,40 +40,29 @@ Recebe uma representação de pessoa no formato json com os seguintes campos
 **Entrada Esperada**
 ```json
 {
-  "dataNascimento": "2021-06-16",
-  "idEndereco": 0,
-  "nome": "string",
-  "parentesco": "string",
-  "sexo": "string"
+  "idEndereco" : 1,
+  "dataNascimento": "2021-06-16",  
+  "nome": "Felipe",
+  "parentesco": "irmão",
+  "sexo": "masculino"
 }
 ```
 **Saída - Código 200 OK**
 ```json
 {
-  "dataNascimento": "2023-09-03",
-  "endereco": {
-    "bairro": "string",
-    "cidade": "string",
-    "eletromesticos": [
-      {
-        "id": 0,
-        "modelo": "string",
-        "nome": "string",
-        "potencia": 0
-      }
-    ],
-    "estado": "string",
-    "id": 0,
-    "numero": 0,
-    "pessoas": [
-      null
-    ],
-    "rua": "string"
-  },
-  "id": 0,
-  "nome": "string",
-  "parentesco": "string",
-  "sexo": "string"
+    "id": 6,
+    "nome": "Felipe",
+    "dataNascimento": "2021-06-16",
+    "sexo": "masculino",
+    "parentesco": "irmão",
+    "endereco": {
+        "id": 1,
+        "rua": "rua teste",
+        "numero": 50,
+        "bairro": "Bairro",
+        "cidade": "Rio de Janeiro",
+        "estado": "Rio de Janeiro"
+    }
 }
 ```
 
@@ -94,30 +83,19 @@ Recebe um id como Path Parameter e retorna a respectiva pessoa corresponente a e
 **Saída - Código 200 OK**
 ```json
 {
-  "dataNascimento": "2023-09-03",
-  "endereco": {
-    "bairro": "string",
-    "cidade": "string",
-    "eletromesticos": [
-      {
-        "id": 0,
-        "modelo": "string",
-        "nome": "string",
-        "potencia": 0
-      }
-    ],
-    "estado": "string",
-    "id": 0,
-    "numero": 0,
-    "pessoas": [
-      null
-    ],
-    "rua": "string"
-  },
-  "id": 0,
-  "nome": "string",
-  "parentesco": "string",
-  "sexo": "string"
+    "id": 1,
+    "nome": "Daniel",
+    "dataNascimento": "2021-06-16",
+    "sexo": "masculino",
+    "parentesco": "Pai",
+    "endereco": {
+        "id": 1,
+        "rua": "rua teste alterada",
+        "numero": 50,
+        "bairro": "Bairro alterado",
+        "cidade": "Rio de Janeiro alterado",
+        "estado": "Rio de Janeiro alterado"
+    }
 }
 ```
 <h3 style="background:rgba(97,175,254,.1)" dispay=block;>        <span style="background:#61affe; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">GET</span>
@@ -126,45 +104,49 @@ Recebe um id como Path Parameter e retorna a respectiva pessoa corresponente a e
 </h3>
 
 ### Descrição
-Recebe qualquer combinação entre nome, date, parentesco e sexo como Query Parameter e retorna as pessoas corresponentes a essa combinação
+Recebe um idUsuario + qualquer combinação entre nome, date, parentesco e sexo como Query Parameter e retorna as pessoas corresponentes a essa combinação
 ### Exemplos de entrada e saída
 
 **Entradas Esperadas (lista não exaustiva)**
 ```
-/pessoa?nome=teste
-/pessoa?parentesco=primo
-/pessoa?date=2023-09-03
-/pessoa?nome=teste&parentesco=irmao
+/pessoa?nome=teste&idUsuario=1
+/pessoa?parentesco=primo&idUsuario=1
+/pessoa?date=2023-09-03&idUsuario=1
+/pessoa?nome=teste&parentesco=irmao&idUsuario=1
 ```
 **Saída - Código 200 OK**
 ```json
 [
-  {
-    "dataNascimento": "2023-09-03",
-    "endereco": {
-      "bairro": "string",
-      "cidade": "string",
-      "eletromesticos": [
-        {
-          "id": 0,
-          "modelo": "string",
-          "nome": "string",
-          "potencia": 0
+    {
+        "id": 2,
+        "nome": "Felipe",
+        "dataNascimento": "2021-06-16",
+        "sexo": "masculino",
+        "parentesco": "Primo",
+        "endereco": {
+            "id": 1,
+            "rua": "rua teste alterada",
+            "numero": 50,
+            "bairro": "Bairro alterado",
+            "cidade": "Rio de Janeiro alterado",
+            "estado": "Rio de Janeiro alterado"
         }
-      ],
-      "estado": "string",
-      "id": 0,
-      "numero": 0,
-      "pessoas": [
-        null
-      ],
-      "rua": "string"
     },
-    "id": 0,
-    "nome": "string",
-    "parentesco": "string",
-    "sexo": "string"
-  }
+    {
+        "id": 6,
+        "nome": "Felipe",
+        "dataNascimento": "2021-06-16",
+        "sexo": "masculino",
+        "parentesco": "irmão",
+        "endereco": {
+            "id": 1,
+            "rua": "rua teste alterada",
+            "numero": 50,
+            "bairro": "Bairro alterado",
+            "cidade": "Rio de Janeiro alterado",
+            "estado": "Rio de Janeiro alterado"
+        }
+    }
 ]
 ```
 
@@ -184,33 +166,37 @@ Recebe um id como Path Parameter e retorna uma lista com as pessoas associadas a
 ```
 **Saída - Código 200 OK**
 ```json
-[
-  {
-    "dataNascimento": "2023-09-03",
-    "endereco": {
-      "bairro": "string",
-      "cidade": "string",
-      "eletromesticos": [
-        {
-          "id": 0,
-          "modelo": "string",
-          "nome": "string",
-          "potencia": 0
+  [
+    {
+        "id": 1,
+        "nome": "Daniel",
+        "dataNascimento": "2021-06-16",
+        "sexo": "masculino",
+        "parentesco": "Pai",
+        "endereco": {
+            "id": 1,
+            "rua": "rua teste alterada",
+            "numero": 50,
+            "bairro": "Bairro alterado",
+            "cidade": "Rio de Janeiro alterado",
+            "estado": "Rio de Janeiro alterado"
         }
-      ],
-      "estado": "string",
-      "id": 0,
-      "numero": 0,
-      "pessoas": [
-        null
-      ],
-      "rua": "string"
     },
-    "id": 0,
-    "nome": "string",
-    "parentesco": "string",
-    "sexo": "string"
-  }
+    {
+        "id": 2,
+        "nome": "Felipe",
+        "dataNascimento": "2021-06-16",
+        "sexo": "masculino",
+        "parentesco": "Primo",
+        "endereco": {
+            "id": 1,
+            "rua": "rua teste alterada",
+            "numero": 50,
+            "bairro": "Bairro alterado",
+            "cidade": "Rio de Janeiro alterado",
+            "estado": "Rio de Janeiro alterado"
+        }
+    }
 ]
 ```
 
@@ -228,13 +214,13 @@ Recebe uma pessoa no formato json com os seguintes campos e um id como Path Para
  - sexo - String
 
 ### Exemplos de entrada e saída
-
+/pessoa/1
 **Entrada Esperada**
 ```json
-/pessoa/1
+
 {
   "dataNascimento": "2020-06-16",
-  "idEndereco": 0,
+  "idEndereco": 1,
   "nome": "string alterado",
   "parentesco": "string alterado",
   "sexo": "string alterado"
@@ -243,30 +229,19 @@ Recebe uma pessoa no formato json com os seguintes campos e um id como Path Para
 **Saída - Código 200 OK**
 ```json
 {
-  "dataNascimento": "2023-09-03",
-  "endereco": {
-    "bairro": "string",
-    "cidade": "string",
-    "eletromesticos": [
-      {
-        "id": 0,
-        "modelo": "string",
-        "nome": "string",
-        "potencia": 0
-      }
-    ],
-    "estado": "string",
-    "id": 0,
-    "numero": 0,
-    "pessoas": [
-      null
-    ],
-    "rua": "string"
-  },
-  "id": 0,
-  "nome": "string",
-  "parentesco": "string",
-  "sexo": "string"
+    "id": 1,
+    "nome": "Felipe alterado",
+    "dataNascimento": "2020-06-16",
+    "sexo": "masculino",
+    "parentesco": "teste",
+    "endereco": {
+        "id": 1,
+        "rua": "rua teste alterada",
+        "numero": 50,
+        "bairro": "Bairro alterado",
+        "cidade": "Rio de Janeiro alterado",
+        "estado": "Rio de Janeiro alterado"
+    }
 }
 ```
 <h3 style="background:rgba(249,62,62,.1)" dispay=block;>        <span style="background:#f93e3e; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">DELETE</span>

@@ -42,6 +42,7 @@ Recebe uma representação de endereço no formato json com os seguintes campos
 **Entrada Esperada**
 ```json
 {
+  "idUsuario" : 1,
   "bairro": "string",
   "cidade": "string",
   "estado": "string",
@@ -53,29 +54,12 @@ Recebe uma representação de endereço no formato json com os seguintes campos
 **Saída - Código 200 OK**
 ```json
 {
-  "bairro": "string",
-  "cidade": "string",
-  "eletromesticos": [
-    {
-      "id": 0,
-      "modelo": "string",
-      "nome": "string",
-      "potencia": 0
-    }
-  ],
-  "estado": "string",
-  "id": 0,
-  "numero": 0,
-  "pessoas": [
-    {
-      "dataNascimento": "2023-09-03",
-      "id": 0,
-      "nome": "string",
-      "parentesco": "string",
-      "sexo": "string"
-    }
-  ],
-  "rua": "string"
+    "id": 8,
+    "rua": "rua teste",
+    "numero": 40,
+    "bairro": "Bangu",
+    "cidade": "Rio de Janeiro",
+    "estado": "Rio de Janeiro"
 }
 ```
 
@@ -227,43 +211,15 @@ Recebe um endereço no formato json com os seguintes campos e um id como Path Pa
 ###Exemplos de entrada e saída
 
 **Entrada Esperada**
-```json
 /endereco/1
-{
-  "bairro": "string",
-  "cidade": "string",
-  "estado": "string",
-  "idUsuario": 0,
-  "numero": 0,
-  "rua": "string"
-}
-```
-**Saída - Código 200 OK**
 ```json
 {
-  "bairro": "string",
-  "cidade": "string",
-  "eletromesticos": [
-    {
-      "id": 0,
-      "modelo": "string",
-      "nome": "string",
-      "potencia": 0
-    }
-  ],
-  "estado": "string",
-  "id": 0,
-  "numero": 0,
-  "pessoas": [
-    {
-      "dataNascimento": "2023-09-03",
-      "id": 0,
-      "nome": "string",
-      "parentesco": "string",
-      "sexo": "string"
-    }
-  ],
-  "rua": "string"
+    "id": 1,
+    "rua": "rua teste alterada",
+    "numero": 50,
+    "bairro": "Bairro alterado",
+    "cidade": "Rio de Janeiro alterado",
+    "estado": "Rio de Janeiro alterado"
 }
 ```
 <h3 style="background:rgba(249,62,62,.1)" dispay=block;>        <span style="background:#f93e3e; color: #FFF; display:inline-block; padding: 6px 15px; border-radius:3px">DELETE</span>

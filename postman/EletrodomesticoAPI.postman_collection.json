@@ -234,6 +234,43 @@
 			"response": []
 		},
 		{
+			"name": "Buscar Eletrodomestico por Endereço",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/eletrodomestico/endereco/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"eletrodomestico",
+						"endereco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Eletrodomestico por Endereço Nao Existente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/eletrodomestico/1321",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"eletrodomestico",
+						"1321"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Buscar por ID Não existente",
 			"request": {
 				"method": "GET",
