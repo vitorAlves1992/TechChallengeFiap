@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"numero\": 40,\n  \"rua\": \"rua teste\"\n}",
+					"raw": "{\n  \"idUsuario\" : 1,  \n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"numero\": 40,\n  \"rua\": \"rua teste\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"numero\": 40\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,7 +95,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": -1\n}",
+					"raw": "{\n   \"idUsuario\" : 1,\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": -1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -122,7 +122,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,7 +149,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
+					"raw": "{\n  \"bairro\": \"Bangu\",\n\"idUsuario\" : 1,\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -176,7 +176,34 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/endereco/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"endereco",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inserir c/ erro validação 7",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\" : \"teste\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -202,13 +229,59 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/endereco/1435687598",
+					"raw": "{{url}}/endereco/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"endereco",
-						"1435687598"
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca avançada",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/endereco?bairro=Bangu",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"endereco"
+					],
+					"query": [
+						{
+							"key": "bairro",
+							"value": "Bangu"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca avançada por valor inexistente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/endereco?bairro=teste",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"endereco"
+					],
+					"query": [
+						{
+							"key": "bairro",
+							"value": "teste"
+						}
 					]
 				}
 			},
@@ -239,7 +312,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bairro alterado\",\n  \"cidade\": \"Rio de Janeiro alterado\",\n  \"estado\": \"Rio de Janeiro alterado\",\n  \"numero\": 50,\n  \"rua\": \"rua teste alterada\"\n}",
+					"raw": "{\n  \"idUsuario\" : 1,\n  \"bairro\": \"Bairro alterado\",\n  \"cidade\": \"Rio de Janeiro alterado\",\n  \"estado\": \"Rio de Janeiro alterado\",\n  \"numero\": 50,\n  \"rua\": \"rua teste alterada\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -247,13 +320,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/endereco/1435687598",
+					"raw": "{{url}}/endereco/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"endereco",
-						"1435687598"
+						"1"
 					]
 				}
 			},
@@ -266,7 +339,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bairro alterado\",\n  \"cidade\": \"Rio de Janeiro alterado\",\n  \"estado\": \"Rio de Janeiro alterado\",\n  \"numero\": 50,\n  \"rua\": \"rua teste alterada\"\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"bairro\": \"Bairro alterado\",\n  \"cidade\": \"Rio de Janeiro alterado\",\n  \"estado\": \"Rio de Janeiro alterado\",\n  \"numero\": 50,\n  \"rua\": \"rua teste alterada\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -293,7 +366,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"numero\": 40\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -320,7 +393,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n\n  \"rua\" : \"rua teste\"\n}",
+					"raw": "{\n  \"idUsuario\" : 1,\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n\n  \"rua\" : \"rua teste\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -347,7 +420,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": -1\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": -1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -374,7 +447,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"cidade\": \"Rio de Janeiro\",\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -401,7 +474,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
+					"raw": "{\n  \"bairro\": \"Bangu\",\n\"idUsuario\" : 1,\n  \"estado\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -428,7 +501,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
+					"raw": "{\n    \"idUsuario\" : 1,\n  \"bairro\": \"Bangu\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"rua\": \"rua teste\",\n  \"numero\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -454,13 +527,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/endereco/1435687598",
+					"raw": "{{url}}/endereco/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"endereco",
-						"1435687598"
+						"1"
 					]
 				}
 			},

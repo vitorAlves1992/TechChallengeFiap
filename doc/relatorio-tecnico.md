@@ -15,7 +15,7 @@
 ![](2023-06-16-20-10-00.png)
 
 ## DER 
-![](modeloDER.jpeg)
+![](ModeloDERv2.jpeg)
 
 ## Desafios Encontrados / Soluções Apresentadas
 ### Desafio: Classe de domínio responsável por encapsular dados das requisições 
