@@ -10,7 +10,7 @@ Servir de endpoint para o cadastro e gerenciamento de Usuários
 Swagger acessível através do endereço: [http://localhost:8080/swagger-ui/index.html#/usuario-controller](http://localhost:8080/swagger-ui/index.html#/usuario-controller)
 
 ### Para exemplos práticos de entrada e de validações consultar arquivo Postman:
-[Enpoints e Validações no Postman]()
+[Enpoints e Validações no Postman](https://github.com/vitorAlves1992/TechChallengeFiap/blob/fase2/postman/UsuarioAPI.postman_collection.json)
 
 ![](2023-09-03-12-45-12.png)
 

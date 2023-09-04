@@ -242,6 +242,24 @@
 			"response": []
 		},
 		{
+			"name": "Buscar Endereços de um Usuário",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/endereco/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"endereco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Busca avançada",
 			"request": {
 				"method": "GET",

@@ -8,52 +8,6 @@
 	},
 	"item": [
 		{
-			"name": "Buscar avançada pessoa",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/pessoa?nome=Felipe",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"pessoa"
-					],
-					"query": [
-						{
-							"key": "nome",
-							"value": "Felipe"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Busca avançada pessoa não existente",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/pessoa?nome=teste",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"pessoa"
-					],
-					"query": [
-						{
-							"key": "nome",
-							"value": "teste"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Inserir",
 			"request": {
 				"method": "POST",
@@ -338,6 +292,56 @@
 						"pessoa",
 						"usuario",
 						"987"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca avançada pessoa não existente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/pessoa?nome=teste",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pessoa"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "teste"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar avançada pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/pessoa?nome=Felipe&idUsuario=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pessoa"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Felipe"
+						},
+						{
+							"key": "idUsuario",
+							"value": "1"
+						}
 					]
 				}
 			},
