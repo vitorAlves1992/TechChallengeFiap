@@ -8,13 +8,59 @@
 	},
 	"item": [
 		{
+			"name": "Buscar avançada pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/pessoa?nome=Felipe",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pessoa"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Felipe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca avançada pessoa não existente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/pessoa?nome=teste",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pessoa"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "teste"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Inserir",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n  \"idEndereco\" : 1,\n  \"dataNascimento\": \"2021-06-16\",  \n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +87,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 0,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n  \"idEndereco\" : 0,  \n  \"dataNascimento\": \"2021-06-16\",  \n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,7 +141,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 1,\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idEndereco\": 1,\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -122,7 +168,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,7 +195,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -176,7 +222,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -203,7 +249,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -229,13 +275,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/pessoa/1465571452",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"pessoa",
-						"1465571452"
+						"1"
 					]
 				}
 			},
@@ -284,14 +330,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/pessoa/usuario/1",
+					"raw": "{{url}}/pessoa/usuario/987",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"pessoa",
 						"usuario",
-						"1"
+						"987"
 					]
 				}
 			},
@@ -304,7 +350,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"dataNascimento\": \"2020-06-16\",\n  \"idUsuario\": 1,\n  \"nome\": \"Felipe alterado\",\n  \"parentesco\": \"pai\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n  \"dataNascimento\": \"2020-06-16\",\n  \"idEndereco\": 1,\n  \"nome\": \"Felipe alterado\",\n  \"parentesco\": \"teste\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -312,13 +358,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/pessoa/1465571452",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"pessoa",
-						"1465571452"
+						"1"
 					]
 				}
 			},
@@ -331,7 +377,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"dataNascimento\": \"2020-06-16\",\n  \"idUsuario\": 1,\n  \"nome\": \"Felipe alterado\",\n  \"parentesco\": \"pai\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n  \"dataNascimento\": \"2020-06-16\",\n  \"idEndereco\": 1,\n  \"nome\": \"Felipe alterado\",\n  \"parentesco\": \"pai\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -358,7 +404,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 0,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idEndereco\": 0,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -412,7 +458,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idUsuario\": 1,\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n  \"dataNascimento\": \"2021-06-16\",\n  \"idEndereco\": 1,\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -439,7 +485,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -466,7 +512,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -493,7 +539,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -520,7 +566,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n \n  \"idUsuario\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
+					"raw": "{\n \n  \"idEndereco\": 1,\n  \"nome\": \"Felipe\",\n  \"parentesco\": \"irmão\",\n  \"sexo\": \"masculino\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -546,13 +592,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/pessoa/1465571452",
+					"raw": "{{url}}/pessoa/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"pessoa",
-						"1465571452"
+						"1"
 					]
 				}
 			},

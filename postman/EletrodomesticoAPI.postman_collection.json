@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"idUsuario\": 2,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\"idEndereco\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Eletrolux\",\n\"potencia\": 100.0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -221,13 +221,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/575896321",
+					"raw": "{{url}}/eletrodomestico/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"eletrodomestico",
-						"575896321"
+						"1"
 					]
 				}
 			},
@@ -252,38 +252,66 @@
 			"response": []
 		},
 		{
-			"name": "Buscar Eletrodomésticos por Usuário",
+			"name": "Buscar avançada eletrodoméstico",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/usuario/2",
+					"raw": "{{url}}/eletrodomestico?nome=nome a",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"eletrodomestico",
-						"usuario",
-						"2"
+						"eletrodomestico"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "nome a"
+						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Buscar Eletrodomésticos por Usuário não existente",
+			"name": "Busca avançada eletrodoméstico não existente",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/eletrodomestico/usuario/2",
+					"raw": "{{url}}/eletrodomestico?nome=teste",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"eletrodomestico"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "teste"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calcular Consumo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/eletrodomestico/consumo/1/10.5",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"eletrodomestico",
-						"usuario",
-						"2"
+						"consumo",
+						"1",
+						"10.5"
 					]
 				}
 			},
@@ -296,7 +324,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"idUsuario\": 2,\n\"nome\": \"Microondas alterado\", \n\"modelo\": \"Brastemp alterado\",\n\"potencia\": 80.0\n}",
+					"raw": "{\"idEndereco\": 2,\n\"nome\": \"Microondas alterado\", \n\"modelo\": \"Brastemp alterado\",\n\"potencia\": 80.0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -304,13 +332,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/eletrodomestico/23715860",
+					"raw": "{{url}}/eletrodomestico/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"eletrodomestico",
-						"23715860"
+						"2"
 					]
 				}
 			},
@@ -323,7 +351,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"idUsuario\": 2,\n\"nome\": \"Microondas alterado\", \n\"modelo\": \"Brastemp alterado\",\n\"potencia\": 80.0\n}",
+					"raw": "{\"idEndereco\": 2,\n\"nome\": \"Microondas alterado\", \n\"modelo\": \"Brastemp alterado\",\n\"potencia\": 80.0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -377,7 +405,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": -1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n\"idEndereco\": -1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -404,7 +432,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
+					"raw": "{\n\"idEndereco\": 1,\n\"nome\": \"\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 75.0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -431,7 +459,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"potencia\": 75.0\n}",
+					"raw": "{\n\"idEndereco\": 1,\n\"nome\": \"Microondas\", \n\"potencia\": 75.0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -458,7 +486,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\"\n}",
+					"raw": "{\n\"idEndereco\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -485,7 +513,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": -1.3\n}",
+					"raw": "{\n\"idEndereco\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": -1.3\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -512,7 +540,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"idUsuario\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 55555.123\n}",
+					"raw": "{\n\"idEndereco\": 1,\n\"nome\": \"Microondas\", \n\"modelo\": \"Brastemp\",\n\"potencia\": 55555.123\n}",
 					"options": {
 						"raw": {
 							"language": "json"
